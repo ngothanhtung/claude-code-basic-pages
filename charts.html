@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Báo Cáo E-Commerce — Sales, Business &amp; Marketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@700;800&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/recharts@2.15.0/umd/Recharts.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#090A14',
+            primary: '#DF6B33',
+            'primary-hover': '#C45C2A',
+            surface: '#12141F',
+            'surface-2': '#1A1D2E',
+            'border-subtle': '#23263A',
+            'text-secondary': '#8B8FA8',
+          },
+          fontFamily: {
+            heading: ['Poppins', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      background-color: #090A14;
+    }
+
+    .font-heading {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .font-body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .recharts-tooltip-wrapper {
+      outline: none !important;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen font-body text-gray-100">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const { PieChart, Pie, Cell, BarChart, Bar, LineChart, Line,
+      XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+      AreaChart, Area } = window.Recharts;
+
+    // ── Mock Data ─────────────────────────────────────────────────────────────
+
+    const MONTHLY_REVENUE = [
+      { month: 'T1', revenue: 285000000, orders: 1240, visitors: 18200 },
+      { month: 'T2', revenue: 312000000, orders: 1380, visitors: 20400 },
+      { month: 'T3', revenue: 348000000, orders: 1520, visitors: 22800 },
+      { month: 'T4', revenue: 298000000, orders: 1290, visitors: 19300 },
+      { month: 'T5', revenue: 421000000, orders: 1840, visitors: 27600 },
+      { month: 'T6', revenue: 456000000, orders: 2010, visitors: 30200 },
+      { month: 'T7', revenue: 389000000, orders: 1710, visitors: 25700 },
+      { month: 'T8', revenue: 512000000, orders: 2240, visitors: 33600 },
+      { month: 'T9', revenue: 478000000, orders: 2090, visitors: 31400 },
+      { month: 'T10', revenue: 543000000, orders: 2380, visitors: 35700 },
+      { month: 'T11', revenue: 621000000, orders: 2720, visitors: 40800 },
+      { month: 'T12', revenue: 698000000, orders: 3060, visitors: 45900 },
+    ];
+
+    const CATEGORY_SALES = [
+      { name: 'Điện tử', value: 38, color: '#DF6B33', amount: 2185000000 },
+      { name: 'Thời trang', value: 24, color: '#4F8EF7', amount: 1380000000 },
+      { name: 'Gia dụng', value: 16, color: '#10B981', amount: 920000000 },
+      { name: 'Sắc đẹp', value: 12, color: '#F59E0B', amount: 690000000 },
+      { name: 'Sách', value: 6, color: '#8B8FA8', amount: 345000000 },
+      { name: 'Thể thao', value: 4, color: '#EC4899', amount: 230000000 },
+    ];
+
+    const MARKETING_CHANNELS = [
+      { channel: 'Google Ads', spend: 85000000, revenue: 423000000, roi: 398, conversions: 3840 },
+      { channel: 'Facebook Ads', spend: 62000000, revenue: 298000000, roi: 381, conversions: 2710 },
+      { channel: 'TikTok Ads', spend: 45000000, revenue: 267000000, roi: 493, conversions: 2430 },
+      { channel: 'Email Marketing', spend: 8000000, revenue: 124000000, roi: 1450, conversions: 1120 },
+      { channel: 'SEO / Content', spend: 22000000, revenue: 189000000, roi: 759, conversions: 1720 },
+      { channel: 'Affiliate', spend: 18000000, revenue: 96000000, roi: 433, conversions: 870 },
+      { channel: ' influencer', spend: 35000000, revenue: 145000000, roi: 314, conversions: 1320 },
+    ];
+
+    const WEEKLY_CONVERSION = [
+      { day: 'T2', rate: 3.2, orders: 142 },
+      { day: 'T3', rate: 3.8, orders: 168 },
+      { day: 'T4', rate: 3.5, orders: 155 },
+      { day: 'T5', rate: 4.1, orders: 182 },
+      { day: 'T6', rate: 4.8, orders: 212 },
+      { day: 'T7', rate: 5.9, orders: 261 },
+      { day: 'CN', rate: 6.2, orders: 274 },
+    ];
+
+    const TOP_PRODUCTS = [
+      { rank: 1, name: 'iPhone 15 Pro Max 256GB', category: 'Điện tử', revenue: 234000000, units: 156, trend: 12.4 },
+      { rank: 2, name: 'MacBook Air M3 13"', category: 'Điện tử', revenue: 189000000, units: 105, trend: 8.7 },
+      { rank: 3, name: 'Giày Nike Air Max 97', category: 'Thời trang', revenue: 124000000, units: 620, trend: -2.1 },
+      { rank: 4, name: 'Son MAC Ruby Woo', category: 'Sắc đẹp', revenue: 98000000, units: 980, trend: 18.3 },
+      { rank: 5, name: 'Máy lọc không khí Xiaomi', category: 'Gia dụng', revenue: 87000000, units: 174, trend: 5.2 },
+      { rank: 6, name: 'Bộ sách Marketing 4.0', category: 'Sách', revenue: 65000000, units: 1300, trend: 22.1 },
+      { rank: 7, name: 'Balo Laptop Thule', category: 'Thời trang', revenue: 58000000, units: 145, trend: -0.8 },
+      { rank: 8, name: 'Găng tay Gym Titan', category: 'Thể thao', revenue: 42000000, units: 840, trend: 31.5 },
+    ];
+
+    const CUSTOMER_SEGMENTS = [
+      { segment: 'Khách hàng mới', count: 8420, revenue: 1240000000, aov: 147300, retention: 23 },
+      { segment: 'Khách quen', count: 5180, revenue: 2180000000, aov: 420800, retention: 61 },
+      { segment: 'VIP / Loyal', count: 1340, revenue: 1560000000, aov: 1164200, retention: 89 },
+      { segment: 'Khách rời bỏ', count: 2960, revenue: 0, aov: 0, retention: 0 },
+    ];
+
+    const formatVND = (n) => {
+      if (n >= 1e9) return (n / 1e9).toFixed(1) + ' tỷ';
+      if (n >= 1e6) return (n / 1e6).toFixed(0) + ' tr';
+      return n.toLocaleString('vi-VN') + ' đ';
+    };
+
+    const formatNum = (n) => n.toLocaleString('vi-VN');
+
+    // ── Tooltip & Card Components ──────────────────────────────────────────────
+
+    const Card = ({ title, value, sub, icon, color = 'text-primary' }) => (
+      <div className="bg-surface rounded-2xl p-5 border border-border-subtle">
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="text-text-secondary text-sm mb-1">{title}</p>
+            <p className={`text-2xl font-bold font-heading ${color}`}>{value}</p>
+            {sub && <p className="text-text-secondary text-xs mt-1">{sub}</p>}
+          </div>
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-surface-2 ${color}`}>
+            {icon}
+          </div>
+        </div>
+      </div>
+    );
+
+    const SectionTitle = ({ children }) => (
+      <h2 className="text-lg font-heading font-bold text-gray-100 mb-4">{children}</h2>
+    );
+
+    const CustomTooltip = ({ active, payload, label, formatter }) => {
+      if (!active || !payload || !payload.length) return null;
+      return (
+        <div className="bg-surface-2 border border-border-subtle rounded-lg p-3 shadow-xl">
+          {label && <p className="text-text-secondary text-xs mb-1">{label}</p>}
+          {payload.map((p, i) => (
+            <p key={i} className="text-sm font-medium" style={{ color: p.color }}>
+              {p.name}: {formatter ? formatter(p.value) : p.value}
+            </p>
+          ))}
+        </div>
+      );
+    };
+
+    // ── Main App ────────────────────────────────────────────────────────────────
+
+    const App = () => {
+
+      const totalRevenue = MONTHLY_REVENUE.reduce((s, m) => s + m.revenue, 0);
+      const totalOrders = MONTHLY_REVENUE.reduce((s, m) => s + m.orders, 0);
+      const avgAOV = totalRevenue / totalOrders;
+      const totalVisitors = MONTHLY_REVENUE.reduce((s, m) => s + m.visitors, 0);
+      const conversionRate = (totalOrders / totalVisitors * 100).toFixed(1);
+      const totalMarketingSpend = MARKETING_CHANNELS.reduce((s, c) => s + c.spend, 0);
+      const totalMarketingRevenue = MARKETING_CHANNELS.reduce((s, c) => s + c.revenue, 0);
+      const overallROI = ((totalMarketingRevenue - totalMarketingSpend) / totalMarketingSpend * 100).toFixed(0);
+      const growthRate = ((MONTHLY_REVENUE[11].revenue - MONTHLY_REVENUE[0].revenue) / MONTHLY_REVENUE[0].revenue * 100).toFixed(1);
+
+      return (
+        <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
+
+          {/* Header */}
+          <div className="text-center mb-6">
+            <h1 className="text-3xl font-heading font-extrabold text-gray-100">
+              Báo Cáo E-Commerce
+            </h1>
+            <p className="text-text-secondary mt-1 font-body">
+              Sales &amp; Business &amp; Marketing — Năm 2025
+            </p>
+          </div>
+
+          {/* KPI Cards */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <Card title="Tổng Doanh Thu" value={formatVND(totalRevenue)} sub={`+${growthRate}% YoY`} color="text-primary" icon={
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" /></svg>
+            } />
+            <Card title="Đơn Hàng" value={formatNum(totalOrders)} sub="Đơn hàng thành công" color="text-blue-400" icon={
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 01-8 0" /></svg>
+            } />
+            <Card title="AOV TB" value={formatVND(avgAOV)} sub="Giá trị đơn hàng TB" color="text-emerald-400" icon={
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 7H6a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-2" /><path d="M13 7h2a2 2 0 012 2v2a2 2 0 01-2 2h-2" /><path d="M12 12v4" /></svg>
+            } />
+            <Card title="Lượt Truy Cập" value={formatNum(totalVisitors)} sub="Tổng lượt truy cập năm" color="text-purple-400" icon={
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg>
+            } />
+            <Card title="Tỷ Lệ Chuyển Đổi" value={conversionRate + '%'} sub="CV / lượt truy cập" color="text-amber-400" icon={
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><path d="M22 4L12 14.01l-3-3" /></svg>
+            } />
+            <Card title="Marketing ROI" value={overallROI + '%'} sub="Trên tổng chi phí" color="text-pink-400" icon={
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>
+            } />
+          </div>
+
+          {/* Section 1: Revenue & Orders Trend */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="bg-surface rounded-2xl p-5 border border-border-subtle">
+              <SectionTitle>Doanh Thu Hàng Tháng</SectionTitle>
+              <ResponsiveContainer width="100%" height={260}>
+                <AreaChart data={MONTHLY_REVENUE}>
+                  <defs>
+                    <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#DF6B33" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#DF6B33" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#23263A" />
+                  <XAxis dataKey="month" tick={{ fill: '#8B8FA8', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <YAxis tickFormatter={v => formatVND(v)} tick={{ fill: '#8B8FA8', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <Tooltip content={<CustomTooltip formatter={formatVND} />} />
+                  <Area type="monotone" dataKey="revenue" name="Doanh Thu" stroke="#DF6B33" strokeWidth={2} fill="url(#colorRevenue)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+
+            <div className="bg-surface rounded-2xl p-5 border border-border-subtle">
+              <SectionTitle>Đơn Hàng &amp; Lượt Truy Cập</SectionTitle>
+              <ResponsiveContainer width="100%" height={260}>
+                <LineChart data={MONTHLY_REVENUE}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#23263A" />
+                  <XAxis dataKey="month" tick={{ fill: '#8B8FA8', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <YAxis yAxisId="left" tick={{ fill: '#8B8FA8', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <YAxis yAxisId="right" orientation="right" tick={{ fill: '#8B8FA8', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ color: '#8B8FA8', fontSize: 12 }} />
+                  <Line yAxisId="left" type="monotone" dataKey="orders" name="Đơn hàng" stroke="#4F8EF7" strokeWidth={2} dot={{ fill: '#4F8EF7', r: 3 }} />
+                  <Line yAxisId="right" type="monotone" dataKey="visitors" name="Lượt truy cập" stroke="#10B981" strokeWidth={2} dot={{ fill: '#10B981', r: 3 }} strokeDasharray="5 5" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Section 2: Category + Conversion */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="bg-surface rounded-2xl p-5 border border-border-subtle">
+              <SectionTitle>Phân Bổ Theo Danh Mục</SectionTitle>
+              <ResponsiveContainer width="100%" height={240}>
+                <PieChart>
+                  <Pie data={CATEGORY_SALES} cx="50%" cy="50%" innerRadius={55} outerRadius={90} paddingAngle={3} dataKey="value">
+                    {CATEGORY_SALES.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(v, name) => [v + '%', name]} contentStyle={{ background: '#1A1D2E', border: '1px solid #23263A', borderRadius: 8, color: '#8B8FA8' }} />
+                  <Legend wrapperStyle={{ color: '#8B8FA8', fontSize: 11, lineHeight: '22px' }} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+
+            <div className="bg-surface rounded-2xl p-5 border border-border-subtle lg:col-span-2">
+              <SectionTitle>Tỷ Lệ Chuyển Đổi Theo Ngày Trong Tuần</SectionTitle>
+              <ResponsiveContainer width="100%" height={240}>
+                <BarChart data={WEEKLY_CONVERSION} barGap={4}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#23263A" vertical={false} />
+                  <XAxis dataKey="day" tick={{ fill: '#8B8FA8', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <YAxis yAxisId="left" tick={{ fill: '#8B8FA8', fontSize: 11 }} axisLine={false} tickLine={false} unit="%" />
+                  <YAxis yAxisId="right" orientation="right" tick={{ fill: '#8B8FA8', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ color: '#8B8FA8', fontSize: 12 }} />
+                  <Bar yAxisId="left" dataKey="rate" name="Tỷ lệ (%)" fill="#DF6B33" radius={[4, 4, 0, 0]} />
+                  <Bar yAxisId="right" dataKey="orders" name="Số đơn" fill="#4F8EF7" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Section 3: Marketing Performance Table */}
+          <div className="bg-surface rounded-2xl p-5 border border-border-subtle">
+            <SectionTitle>Hiệu Suất Kênh Marketing</SectionTitle>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm font-body">
+                <thead>
+                  <tr className="border-b border-border-subtle text-text-secondary text-xs uppercase tracking-wide">
+                    <th className="text-left py-3 px-3">Kênh</th>
+                    <th className="text-right py-3 px-3">Chi Phí (đ)</th>
+                    <th className="text-right py-3 px-3">Doanh Thu (đ)</th>
+                    <th className="text-right py-3 px-3">ROI (%)</th>
+                    <th className="text-right py-3 px-3">Chuyển Đổi</th>
+                    <th className="text-right py-3 px-3">ROAS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {MARKETING_CHANNELS.map((ch, i) => {
+                    const roas = (ch.revenue / ch.spend).toFixed(1);
+                    const roiColor = ch.roi >= 400 ? 'text-emerald-400' : ch.roi >= 300 ? 'text-amber-400' : 'text-pink-400';
+                    return (
+                      <tr key={i} className="border-b border-border-subtle/50 hover:bg-surface-2/50 transition-colors">
+                        <td className="py-3 px-3 font-medium text-gray-200">{ch.channel}</td>
+                        <td className="py-3 px-3 text-right text-text-secondary">{formatNum(ch.spend)}</td>
+                        <td className="py-3 px-3 text-right text-gray-200">{formatVND(ch.revenue)}</td>
+                        <td className={`py-3 px-3 text-right font-bold ${roiColor}`}>{ch.roi}%</td>
+                        <td className="py-3 px-3 text-right text-text-secondary">{formatNum(ch.conversions)}</td>
+                        <td className="py-3 px-3 text-right text-blue-400 font-medium">{roas}x</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+                <tfoot>
+                  <tr className="text-gray-200 font-bold border-t-2 border-border-subtle">
+                    <td className="py-3 px-3">Tổng Cộng</td>
+                    <td className="py-3 px-3 text-right">{formatNum(totalMarketingSpend)}</td>
+                    <td className="py-3 px-3 text-right text-primary">{formatVND(totalMarketingRevenue)}</td>
+                    <td className="py-3 px-3 text-right text-emerald-400">{overallROI}%</td>
+                    <td className="py-3 px-3 text-right">{formatNum(MARKETING_CHANNELS.reduce((s, c) => s + c.conversions, 0))}</td>
+                    <td className="py-3 px-3 text-right text-blue-400">{(totalMarketingRevenue / totalMarketingSpend).toFixed(1)}x</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          {/* Section 4: Top Products */}
+          <div className="bg-surface rounded-2xl p-5 border border-border-subtle">
+            <SectionTitle>Top 8 Sản Phẩm Bán Chạy</SectionTitle>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm font-body">
+                <thead>
+                  <tr className="border-b border-border-subtle text-text-secondary text-xs uppercase tracking-wide">
+                    <th className="text-center py-3 px-3 w-10">#</th>
+                    <th className="text-left py-3 px-3">Sản Phẩm</th>
+                    <th className="text-left py-3 px-3">Danh Mục</th>
+                    <th className="text-right py-3 px-3">Doanh Thu</th>
+                    <th className="text-right py-3 px-3">Đã Bán</th>
+                    <th className="text-right py-3 px-3">Giá TB</th>
+                    <th className="text-right py-3 px-3">Xu Hướng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {TOP_PRODUCTS.map((p, i) => {
+                    const trendColor = p.trend > 0 ? 'text-emerald-400' : p.trend < 0 ? 'text-pink-400' : 'text-text-secondary';
+                    const trendIcon = p.trend > 0 ? '▲' : p.trend < 0 ? '▼' : '―';
+                    const badgeColor = {
+                      'Điện tử': 'bg-blue-500/20 text-blue-400',
+                      'Thời trang': 'bg-purple-500/20 text-purple-400',
+                      'Sắc đẹp': 'bg-pink-500/20 text-pink-400',
+                      'Gia dụng': 'bg-emerald-500/20 text-emerald-400',
+                      'Sách': 'bg-amber-500/20 text-amber-400',
+                      'Thể thao': 'bg-orange-500/20 text-orange-400',
+                    }[p.category] || 'bg-surface-2 text-text-secondary';
+                    return (
+                      <tr key={i} className="border-b border-border-subtle/50 hover:bg-surface-2/50 transition-colors">
+                        <td className="py-3 px-3 text-center text-text-secondary font-bold">{p.rank}</td>
+                        <td className="py-3 px-3 font-medium text-gray-200">{p.name}</td>
+                        <td className="py-3 px-3">
+                          <span className={`text-xs px-2 py-0.5 rounded-full ${badgeColor}`}>{p.category}</span>
+                        </td>
+                        <td className="py-3 px-3 text-right text-primary font-medium">{formatVND(p.revenue)}</td>
+                        <td className="py-3 px-3 text-right text-text-secondary">{formatNum(p.units)}</td>
+                        <td className="py-3 px-3 text-right text-text-secondary">{formatVND(Math.round(p.revenue / p.units))}</td>
+                        <td className={`py-3 px-3 text-right font-medium ${trendColor}`}>
+                          {trendIcon} {Math.abs(p.trend)}%
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Section 5: Customer Segments */}
+          <div className="bg-surface rounded-2xl p-5 border border-border-subtle">
+            <SectionTitle>Phân Khúc Khách Hàng</SectionTitle>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {CUSTOMER_SEGMENTS.map((seg, i) => {
+                const colors = ['bg-blue-500/20 border-blue-500/30', 'bg-emerald-500/20 border-emerald-500/30', 'bg-amber-500/20 border-amber-500/30', 'bg-pink-500/20 border-pink-500/30'];
+                const textColors = ['text-blue-400', 'text-emerald-400', 'text-amber-400', 'text-pink-400'];
+                return (
+                  <div key={i} className={`rounded-xl p-4 border ${colors[i]}`}>
+                    <p className="text-text-secondary text-xs mb-2">{seg.segment}</p>
+                    <p className={`text-xl font-bold font-heading ${textColors[i]}`}>{formatNum(seg.count)}</p>
+                    <p className="text-text-secondary text-xs mt-1">khách hàng</p>
+                    {seg.revenue > 0 && (
+                      <>
+                        <div className="mt-3 pt-3 border-t border-white/10">
+                          <p className="text-text-secondary text-xs">Doanh thu</p>
+                          <p className="text-gray-200 text-sm font-medium">{formatVND(seg.revenue)}</p>
+                        </div>
+                        <div className="mt-2">
+                          <p className="text-text-secondary text-xs">AOV</p>
+                          <p className="text-gray-200 text-sm font-medium">{formatVND(seg.aov)}</p>
+                        </div>
+                        <div className="mt-2">
+                          <p className="text-text-secondary text-xs">Tỷ lệ giữ chân</p>
+                          <p className={`${textColors[i]} text-sm font-bold`}>{seg.retention}%</p>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="text-center text-text-secondary text-xs pb-6 font-body">
+            Báo cáo được tạo tự động — Dữ liệu demo cho mục đích minh họa
+          </div>
+
+        </div>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+
+</html>
