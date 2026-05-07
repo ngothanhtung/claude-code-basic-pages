@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Claude Code — Xây dựng ứng dụng hoàn chỉnh</title>
-  <meta name="description" content="Khóa học 8 buổi (16 tiết) trang bị kỹ năng thực chiến — từ cài đặt đến triển khai sản phẩm hoàn chỉnh với Claude Code">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta name="description"
+    content="Khóa học 8 buổi (16 tiết) trang bị kỹ năng thực chiến — từ cài đặt đến triển khai sản phẩm hoàn chỉnh với Claude Code">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -33,9 +37,21 @@
     }
   </script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background-color: #090A14; color: #E2E4ED; font-family: 'Inter', sans-serif; }
-    .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #090A14;
+      color: #E2E4ED;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .font-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
 
     /* Gradient text */
     .gradient-text {
@@ -46,102 +62,207 @@
     }
 
     /* Custom scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #12141F; }
-    ::-webkit-scrollbar-thumb { background: #23263A; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #DF6B33; }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #12141F;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #23263A;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #DF6B33;
+    }
 
     /* Accordion animation */
-    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-    .accordion-content.open { max-height: 200px; }
-    .accordion-icon { transition: transform 0.3s ease; }
-    .accordion-icon.open { transform: rotate(180deg); }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .accordion-content.open {
+      max-height: 200px;
+    }
+
+    .accordion-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-icon.open {
+      transform: rotate(180deg);
+    }
 
     /* Card hover glow */
-    .card-glow { transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-    .card-glow:hover { border-color: #DF6B33; box-shadow: 0 0 20px rgba(223, 107, 51, 0.12); }
+    .card-glow {
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-glow:hover {
+      border-color: #DF6B33;
+      box-shadow: 0 0 20px rgba(223, 107, 51, 0.12);
+    }
 
     /* Session card */
-    .session-card { transition: border-color 0.3s ease, background-color 0.3s ease; }
-    .session-card:hover { border-color: #DF6B33; background-color: rgba(223, 107, 51, 0.04); }
+    .session-card {
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .session-card:hover {
+      border-color: #DF6B33;
+      background-color: rgba(223, 107, 51, 0.04);
+    }
+
     .session-card .session-number {
-      width: 40px; height: 40px; border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       background: linear-gradient(135deg, #DF6B33, #C45C2A);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
       flex-shrink: 0;
     }
 
     /* Button scale */
     .btn-primary {
-      background: #DF6B33; color: white;
+      background: #DF6B33;
+      color: white;
       transition: background-color 0.2s ease, transform 0.15s ease;
     }
-    .btn-primary:hover { background: #C45C2A; transform: scale(0.97); }
+
+    .btn-primary:hover {
+      background: #C45C2A;
+      transform: scale(0.97);
+    }
 
     .btn-secondary {
-      background: transparent; color: #8B8FA8; border: 1px solid #23263A;
+      background: transparent;
+      color: #8B8FA8;
+      border: 1px solid #23263A;
       transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
     }
-    .btn-secondary:hover { border-color: #8B8FA8; color: #E2E4ED; transform: scale(0.97); }
+
+    .btn-secondary:hover {
+      border-color: #8B8FA8;
+      color: #E2E4ED;
+      transform: scale(0.97);
+    }
 
     /* Hero image placeholder */
     .hero-image {
       background: linear-gradient(135deg, #12141F 0%, #1A1D2E 50%, #12141F 100%);
-      border: 1px solid #23263A; border-radius: 16px;
-      position: relative; overflow: hidden;
+      border: 1px solid #23263A;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
     }
+
     .hero-image::before {
-      content: ''; position: absolute; inset: 0;
+      content: '';
+      position: absolute;
+      inset: 0;
       background: radial-gradient(ellipse at 30% 50%, rgba(223, 107, 51, 0.15) 0%, transparent 60%),
-                  radial-gradient(ellipse at 70% 50%, rgba(79, 142, 247, 0.08) 0%, transparent 50%);
+        radial-gradient(ellipse at 70% 50%, rgba(79, 142, 247, 0.08) 0%, transparent 50%);
     }
+
     .hero-image::after {
-      content: ''; position: absolute; inset: 0;
+      content: '';
+      position: absolute;
+      inset: 0;
       background: repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(35, 38, 58, 0.5) 25px),
-                  repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(35, 38, 58, 0.3) 25px);
+        repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(35, 38, 58, 0.3) 25px);
     }
 
     /* Form inputs */
     .form-input {
-      background: #1A1D2E; border: 1px solid #23263A; color: #E2E4ED;
+      background: #1A1D2E;
+      border: 1px solid #23263A;
+      color: #E2E4ED;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
       outline: none;
     }
-    .form-input:focus { border-color: #DF6B33; box-shadow: 0 0 0 3px rgba(223, 107, 51, 0.15); }
-    .form-input::placeholder { color: #8B8FA8; }
+
+    .form-input:focus {
+      border-color: #DF6B33;
+      box-shadow: 0 0 0 3px rgba(223, 107, 51, 0.15);
+    }
+
+    .form-input::placeholder {
+      color: #8B8FA8;
+    }
 
     /* Nav */
-    nav.scrolled { background: rgba(9, 10, 20, 0.92); backdrop-filter: blur(12px); }
+    nav.scrolled {
+      background: rgba(9, 10, 20, 0.92);
+      backdrop-filter: blur(12px);
+    }
 
     /* Stat divider */
-    .stat-divider { width: 1px; height: 32px; background: #23263A; }
+    .stat-divider {
+      width: 1px;
+      height: 32px;
+      background: #23263A;
+    }
 
     /* Fade in animation */
-    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* FAQ border accent */
-    .faq-item { border-bottom: 1px solid #23263A; }
-    .faq-item:last-child { border-bottom: none; }
+    .faq-item {
+      border-bottom: 1px solid #23263A;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
 
     /* Floating decoration */
     .float-badge {
       animation: float 3s ease-in-out infinite;
     }
+
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
     }
 
     /* Quote decoration */
     .quote-mark {
-      font-size: 120px; line-height: 1; color: rgba(223, 107, 51, 0.15);
-      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 120px;
+      line-height: 1;
+      color: rgba(223, 107, 51, 0.15);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
       user-select: none;
     }
   </style>
 </head>
+
 <body class="antialiased">
 
   <!-- ======================== NAVIGATION ======================== -->
@@ -181,7 +302,8 @@
             <span class="text-xs font-medium text-[#8B8FA8]">Tuyển sinh khóa mới — Khai giảng sắp tới</span>
           </div>
 
-          <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-[56px] leading-[1.1] mb-6 fade-up" style="transition-delay: 0.1s">
+          <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-[56px] leading-[1.1] mb-6 fade-up"
+            style="transition-delay: 0.1s">
             Xây dựng ứng dụng với<br>
             <span class="gradient-text">Claude Code</span>
           </h1>
@@ -192,18 +314,22 @@
 
           <!-- Buttons -->
           <div class="flex flex-col sm:flex-row gap-3 mb-10 fade-up" style="transition-delay: 0.3s">
-            <a href="#dang-ky" class="btn-primary px-7 py-3.5 rounded-xl font-heading font-bold text-sm text-center inline-flex items-center justify-center gap-2">
+            <a href="#dang-ky"
+              class="btn-primary px-7 py-3.5 rounded-xl font-heading font-bold text-sm text-center inline-flex items-center justify-center gap-2">
               <i data-lucide="rocket" class="w-4 h-4"></i>
               Đăng Ký Khóa Học
             </a>
-            <a href="#san-pham" class="btn-secondary px-7 py-3.5 rounded-xl font-heading font-semibold text-sm text-center inline-flex items-center justify-center gap-2">
+            <a href="#san-pham"
+              class="btn-secondary px-7 py-3.5 rounded-xl font-heading font-semibold text-sm text-center inline-flex items-center justify-center gap-2">
               <i data-lucide="play-circle" class="w-4 h-4"></i>
               Xem Demo
             </a>
           </div>
 
           <!-- Stats -->
-          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-0 sm:[&>div:not(:last-child)]:pr-6 fade-up" style="transition-delay: 0.4s">
+          <div
+            class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-0 sm:[&>div:not(:last-child)]:pr-6 fade-up"
+            style="transition-delay: 0.4s">
             <div class="text-center sm:text-left w-full sm:w-auto">
               <div class="font-heading font-extrabold text-2xl text-white">16</div>
               <div class="text-xs text-[#8B8FA8]">tiết học</div>
@@ -233,21 +359,29 @@
                 <span class="ml-3 text-xs text-[#8B8FA8]">app.js</span>
               </div>
               <div class="space-y-2 font-mono text-xs">
-                <div><span class="text-purple-400">import</span> <span class="text-[#F59E0B]">Claude</span> <span class="text-purple-400">from</span> <span class="text-green-400">'@anthropic-ai/sdk'</span></div>
-                <div><span class="text-purple-400">const</span> <span class="text-[#4F8EF7]">client</span> = <span class="text-purple-400">new</span> <span class="text-[#F59E0B]">Claude</span>()</div>
+                <div><span class="text-purple-400">import</span> <span class="text-[#F59E0B]">Claude</span> <span
+                    class="text-purple-400">from</span> <span class="text-green-400">'@anthropic-ai/sdk'</span></div>
+                <div><span class="text-purple-400">const</span> <span class="text-[#4F8EF7]">client</span> = <span
+                    class="text-purple-400">new</span> <span class="text-[#F59E0B]">Claude</span>()</div>
                 <div><span class="text-[#8B8FA8]">// Xây dựng ứng dụng hoàn chỉnh</span></div>
-                <div><span class="text-purple-400">await</span> <span class="text-[#4F8EF7]">client</span>.<span class="text-[#10B981]">build</span>({</div>
-                <div class="pl-4"><span class="text-[#F59E0B]">backend:</span> <span class="text-[#4F8EF7]">Firebase</span>,</div>
-                <div class="pl-4"><span class="text-[#F59E0B]">frontend:</span> <span class="text-[#4F8EF7]">Tailwind</span>,</div>
+                <div><span class="text-purple-400">await</span> <span class="text-[#4F8EF7]">client</span>.<span
+                    class="text-[#10B981]">build</span>({</div>
+                <div class="pl-4"><span class="text-[#F59E0B]">backend:</span> <span class="text-[#4F8EF7]">Firebase</span>,
+                </div>
+                <div class="pl-4"><span class="text-[#F59E0B]">frontend:</span> <span class="text-[#4F8EF7]">Tailwind</span>,
+                </div>
                 <div class="pl-4"><span class="text-[#F59E0B]">deploy:</span> <span class="text-[#4F8EF7]">Vercel</span></div>
                 <div>})</div>
               </div>
               <!-- Floating badge -->
-              <div class="absolute -top-4 -right-4 bg-[#DF6B33] text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg float-badge">
+              <div
+                class="absolute -top-4 -right-4 bg-[#DF6B33] text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg float-badge">
                 100% Thực chiến
               </div>
               <!-- Floating badge 2 -->
-              <div class="absolute -bottom-4 -left-4 bg-[#12141F] border border-[#23263A] text-[#8B8FA8] text-xs font-medium px-3 py-1.5 rounded-lg shadow-lg float-badge" style="animation-delay: 1s">
+              <div
+                class="absolute -bottom-4 -left-4 bg-[#12141F] border border-[#23263A] text-[#8B8FA8] text-xs font-medium px-3 py-1.5 rounded-lg shadow-lg float-badge"
+                style="animation-delay: 1s">
                 Firebase + Vercel
               </div>
             </div>
@@ -272,7 +406,8 @@
             <i data-lucide="clock" class="w-6 h-6 text-[#DF6B33]"></i>
           </div>
           <h3 class="font-heading font-bold text-white mb-2">Viết code mất quá nhiều thời gian</h3>
-          <p class="text-sm text-[#8B8FA8] leading-relaxed">Những dòng code lặp đi lặp lại ngốn hết giờ làm việc mà không mang lại giá trị cao.</p>
+          <p class="text-sm text-[#8B8FA8] leading-relaxed">Những dòng code lặp đi lặp lại ngốn hết giờ làm việc mà không mang
+            lại giá trị cao.</p>
         </div>
         <!-- Pain 2 -->
         <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-6 card-glow fade-up" style="transition-delay: 0.1s">
@@ -280,7 +415,8 @@
             <i data-lucide="brain" class="w-6 h-6 text-[#DF6B33]"></i>
           </div>
           <h3 class="font-heading font-bold text-white mb-2">Khó ghi nhớ syntax và APIs</h3>
-          <p class="text-sm text-[#8B8FA8] leading-relaxed">Hàng trăm thư viện, hàng nghìn hàm — bộ não không thể nhớ hết mà vẫn phải tra cứu liên tục.</p>
+          <p class="text-sm text-[#8B8FA8] leading-relaxed">Hàng trăm thư viện, hàng nghìn hàm — bộ não không thể nhớ hết mà vẫn
+            phải tra cứu liên tục.</p>
         </div>
         <!-- Pain 3 -->
         <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-6 card-glow fade-up" style="transition-delay: 0.2s">
@@ -288,7 +424,8 @@
             <i data-lucide="git-branch" class="w-6 h-6 text-[#DF6B33]"></i>
           </div>
           <h3 class="font-heading font-bold text-white mb-2">Sợ làm hỏng code khi refactoring</h3>
-          <p class="text-sm text-[#8B8FA8] leading-relaxed">Những thay đổi nhỏ có thể phá vỡ cả hệ thống. Không có AI hỗ trợ, rủi ro luôn hiện hữu.</p>
+          <p class="text-sm text-[#8B8FA8] leading-relaxed">Những thay đổi nhỏ có thể phá vỡ cả hệ thống. Không có AI hỗ trợ,
+            rủi ro luôn hiện hữu.</p>
         </div>
         <!-- Pain 4 -->
         <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-6 card-glow fade-up" style="transition-delay: 0.3s">
@@ -296,7 +433,8 @@
             <i data-lucide="zap" class="w-6 h-6 text-[#DF6B33]"></i>
           </div>
           <h3 class="font-heading font-bold text-white mb-2">Muốn tự động hóa nhưng không biết bắt đầu từ đâu</h3>
-          <p class="text-sm text-[#8B8FA8] leading-relaxed">Công việc nhàm chán lặp đi lặp lại mỗi ngày nhưng không tìm ra cách tự động hóa hiệu quả.</p>
+          <p class="text-sm text-[#8B8FA8] leading-relaxed">Công việc nhàm chán lặp đi lặp lại mỗi ngày nhưng không tìm ra cách
+            tự động hóa hiệu quả.</p>
         </div>
       </div>
     </div>
@@ -309,7 +447,8 @@
         <span class="inline-block text-xs font-semibold tracking-widest uppercase text-[#DF6B33] mb-3">Giải pháp</span>
         <h2 class="font-heading font-extrabold text-3xl lg:text-4xl text-white mb-4">Giải Pháp Toàn Diện Cho Bạn</h2>
         <p class="text-[#8B8FA8] max-w-2xl mx-auto leading-relaxed">
-          Khóa học 8 buổi tập trung thực chiến, học cách sử dụng Claude Code để xây dựng ứng dụng hoàn chỉnh từ Firebase Backend đến Frontend, deploy lên Vercel.
+          Khóa học 8 buổi tập trung thực chiến, học cách sử dụng Claude Code để xây dựng ứng dụng hoàn chỉnh từ Firebase Backend
+          đến Frontend, deploy lên Vercel.
         </p>
       </div>
 
@@ -320,29 +459,35 @@
             <i data-lucide="target" class="w-7 h-7 text-[#DF6B33]"></i>
           </div>
           <h3 class="font-heading font-bold text-white text-sm mb-2">Hướng dẫn từng bước chi tiết</h3>
-          <p class="text-xs text-[#8B8FA8] leading-relaxed">8 buổi thực chiến có lộ trình rõ ràng, không nhảy cóc, phù hợp mọi trình độ.</p>
+          <p class="text-xs text-[#8B8FA8] leading-relaxed">8 buổi thực chiến có lộ trình rõ ràng, không nhảy cóc, phù hợp mọi
+            trình độ.</p>
           <div class="mt-3 text-xs font-semibold text-[#DF6B33]">8 buổi thực chiến</div>
         </div>
         <!-- Feature 2 -->
-        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-5 text-center card-glow fade-up" style="transition-delay: 0.1s">
+        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-5 text-center card-glow fade-up"
+          style="transition-delay: 0.1s">
           <div class="w-14 h-14 rounded-2xl bg-[#DF6B33]/10 flex items-center justify-center mx-auto mb-4">
             <i data-lucide="wrench" class="w-7 h-7 text-[#DF6B33]"></i>
           </div>
           <h3 class="font-heading font-bold text-white text-sm mb-2">Thực hành với bài tập thực tế</h3>
-          <p class="text-xs text-[#8B8FA8] leading-relaxed">16 tiết học thực hành liên tục, mỗi buổi đều có project cụ thể để áp dụng ngay.</p>
+          <p class="text-xs text-[#8B8FA8] leading-relaxed">16 tiết học thực hành liên tục, mỗi buổi đều có project cụ thể để áp
+            dụng ngay.</p>
           <div class="mt-3 text-xs font-semibold text-[#DF6B33]">16 tiết thực hành</div>
         </div>
         <!-- Feature 3 -->
-        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-5 text-center card-glow fade-up" style="transition-delay: 0.2s">
+        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-5 text-center card-glow fade-up"
+          style="transition-delay: 0.2s">
           <div class="w-14 h-14 rounded-2xl bg-[#DF6B33]/10 flex items-center justify-center mx-auto mb-4">
             <i data-lucide="folder-open" class="w-7 h-7 text-[#DF6B33]"></i>
           </div>
           <h3 class="font-heading font-bold text-white text-sm mb-2">Học từ dự án thực tế</h3>
-          <p class="text-xs text-[#8B8FA8] leading-relaxed">Áp dụng ngay vào ProjectOS — dự án Enterprise thực tế đang được sử dụng.</p>
+          <p class="text-xs text-[#8B8FA8] leading-relaxed">Áp dụng ngay vào ProjectOS — dự án Enterprise thực tế đang được sử
+            dụng.</p>
           <div class="mt-3 text-xs font-semibold text-[#DF6B33]">ProjectOS</div>
         </div>
         <!-- Feature 4 -->
-        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-5 text-center card-glow fade-up" style="transition-delay: 0.3s">
+        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-5 text-center card-glow fade-up"
+          style="transition-delay: 0.3s">
           <div class="w-14 h-14 rounded-2xl bg-[#DF6B33]/10 flex items-center justify-center mx-auto mb-4">
             <i data-lucide="video" class="w-7 h-7 text-[#DF6B33]"></i>
           </div>
@@ -351,12 +496,14 @@
           <div class="mt-3 text-xs font-semibold text-[#DF6B33]">Video full HD</div>
         </div>
         <!-- Feature 5 -->
-        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-5 text-center card-glow fade-up" style="transition-delay: 0.4s">
+        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-5 text-center card-glow fade-up"
+          style="transition-delay: 0.4s">
           <div class="w-14 h-14 rounded-2xl bg-[#DF6B33]/10 flex items-center justify-center mx-auto mb-4">
             <i data-lucide="users" class="w-7 h-7 text-[#DF6B33]"></i>
           </div>
           <h3 class="font-heading font-bold text-white text-sm mb-2">Cộng đồng hỗ trợ sau khóa</h3>
-          <p class="text-xs text-[#8B8FA8] leading-relaxed">Group Zalo riêng cho học viên, được giảng viên và cộng đồng hỗ trợ mãi mãi.</p>
+          <p class="text-xs text-[#8B8FA8] leading-relaxed">Group Zalo riêng cho học viên, được giảng viên và cộng đồng hỗ trợ
+            mãi mãi.</p>
           <div class="mt-3 text-xs font-semibold text-[#DF6B33]">Group Zalo</div>
         </div>
       </div>
@@ -380,13 +527,16 @@
           <div>
             <h3 class="font-heading font-bold text-white text-lg mb-1">Sinh viên năm 3-4 & mới ra trường</h3>
             <p class="text-sm text-[#8B8FA8] leading-relaxed mb-3">
-              Chuẩn bị hành trang vững vàng cho nghề nghiệp. Lương khởi điểm <span class="text-[#DF6B33] font-semibold">10–15 triệu</span> ngay từ đầu.
+              Chuẩn bị hành trang vững vàng cho nghề nghiệp. Lương khởi điểm <span class="text-[#DF6B33] font-semibold">10–15
+                triệu</span> ngay từ đầu.
             </p>
-            <span class="inline-block text-xs bg-[#DF6B33]/10 text-[#DF6B33] px-2.5 py-1 rounded-full font-medium">Lương 10-15 triệu</span>
+            <span class="inline-block text-xs bg-[#DF6B33]/10 text-[#DF6B33] px-2.5 py-1 rounded-full font-medium">Lương 10-15
+              triệu</span>
           </div>
         </div>
         <!-- Audience 2 -->
-        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-6 lg:p-8 card-glow flex gap-5 fade-up" style="transition-delay: 0.1s">
+        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-6 lg:p-8 card-glow flex gap-5 fade-up"
+          style="transition-delay: 0.1s">
           <div class="w-14 h-14 rounded-2xl bg-[#4F8EF7] flex items-center justify-center flex-shrink-0">
             <i data-lucide="briefcase" class="w-7 h-7 text-white"></i>
           </div>
@@ -395,11 +545,13 @@
             <p class="text-sm text-[#8B8FA8] leading-relaxed mb-3">
               Fresher, IT Support, Tester muốn chuyển hướng sang lập trình hoặc nâng tốc độ làm việc lên gấp 3 lần.
             </p>
-            <span class="inline-block text-xs bg-[#4F8EF7]/10 text-[#4F8EF7] px-2.5 py-1 rounded-full font-medium">Fresher, IT Support, Tester</span>
+            <span class="inline-block text-xs bg-[#4F8EF7]/10 text-[#4F8EF7] px-2.5 py-1 rounded-full font-medium">Fresher, IT
+              Support, Tester</span>
           </div>
         </div>
         <!-- Audience 3 -->
-        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-6 lg:p-8 card-glow flex gap-5 fade-up" style="transition-delay: 0.2s">
+        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-6 lg:p-8 card-glow flex gap-5 fade-up"
+          style="transition-delay: 0.2s">
           <div class="w-14 h-14 rounded-2xl bg-[#10B981] flex items-center justify-center flex-shrink-0">
             <i data-lucide="palette" class="w-7 h-7 text-white"></i>
           </div>
@@ -408,11 +560,13 @@
             <p class="text-sm text-[#8B8FA8] leading-relaxed mb-3">
               PM, Designer, Entrepreneur muốn tự xây sản phẩm mà không cần phụ thuộc vào đội ngũ kỹ thuật.
             </p>
-            <span class="inline-block text-xs bg-[#10B981]/10 text-[#10B981] px-2.5 py-1 rounded-full font-medium">PM, Designer, Entrepreneur</span>
+            <span class="inline-block text-xs bg-[#10B981]/10 text-[#10B981] px-2.5 py-1 rounded-full font-medium">PM, Designer,
+              Entrepreneur</span>
           </div>
         </div>
         <!-- Audience 4 -->
-        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-6 lg:p-8 card-glow flex gap-5 fade-up" style="transition-delay: 0.3s">
+        <div class="bg-[#12141F] border border-[#23263A] rounded-2xl p-6 lg:p-8 card-glow flex gap-5 fade-up"
+          style="transition-delay: 0.3s">
           <div class="w-14 h-14 rounded-2xl bg-[#F59E0B] flex items-center justify-center flex-shrink-0">
             <i data-lucide="cpu" class="w-7 h-7 text-white"></i>
           </div>
@@ -421,7 +575,8 @@
             <p class="text-sm text-[#8B8FA8] leading-relaxed mb-3">
               Đã có nền tảng lập trình, muốn tích hợp AI vào workflow để tạo ra sản phẩm thông minh hơn.
             </p>
-            <span class="inline-block text-xs bg-[#F59E0B]/10 text-[#F59E0B] px-2.5 py-1 rounded-full font-medium">AI-Native Development</span>
+            <span class="inline-block text-xs bg-[#F59E0B]/10 text-[#F59E0B] px-2.5 py-1 rounded-full font-medium">AI-Native
+              Development</span>
           </div>
         </div>
       </div>
@@ -454,13 +609,15 @@
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5 pt-0 ml-[56px]">
-              <p class="text-sm text-[#8B8FA8] leading-relaxed">Cài đặt Claude Code trên macOS/Windows/Linux, cấu hình API key, làm quen giao diện dòng lệnh, và thực hành câu lệnh đầu tiên.</p>
+              <p class="text-sm text-[#8B8FA8] leading-relaxed">Cài đặt Claude Code trên macOS/Windows/Linux, cấu hình API key,
+                làm quen giao diện dòng lệnh, và thực hành câu lệnh đầu tiên.</p>
             </div>
           </div>
         </div>
 
         <!-- Session 2 -->
-        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up" style="transition-delay: 0.05s">
+        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up"
+          style="transition-delay: 0.05s">
           <button class="accordion-btn w-full flex items-center gap-4 p-5 text-left" onclick="toggleAccordion(this)">
             <div class="session-number">2</div>
             <div class="flex-1 min-w-0">
@@ -474,13 +631,15 @@
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5 pt-0 ml-[56px]">
-              <p class="text-sm text-[#8B8FA8] leading-relaxed">Học cách cấu trúc prompt để nhận được code đúng ý, xử lý các tình huống AI tạo code sai, và tối ưu hóa context window.</p>
+              <p class="text-sm text-[#8B8FA8] leading-relaxed">Học cách cấu trúc prompt để nhận được code đúng ý, xử lý các
+                tình huống AI tạo code sai, và tối ưu hóa context window.</p>
             </div>
           </div>
         </div>
 
         <!-- Session 3 -->
-        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up" style="transition-delay: 0.1s">
+        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up"
+          style="transition-delay: 0.1s">
           <button class="accordion-btn w-full flex items-center gap-4 p-5 text-left" onclick="toggleAccordion(this)">
             <div class="session-number">3</div>
             <div class="flex-1 min-w-0">
@@ -494,13 +653,15 @@
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5 pt-0 ml-[56px]">
-              <p class="text-sm text-[#8B8FA8] leading-relaxed">Sử dụng AI để phân tích yêu cầu nghiệp vụ, thiết kế database schema, vẽ sơ đồ kiến trúc, và lên kế hoạch phát triển. Thực hành trên ProjectOS.</p>
+              <p class="text-sm text-[#8B8FA8] leading-relaxed">Sử dụng AI để phân tích yêu cầu nghiệp vụ, thiết kế database
+                schema, vẽ sơ đồ kiến trúc, và lên kế hoạch phát triển. Thực hành trên ProjectOS.</p>
             </div>
           </div>
         </div>
 
         <!-- Session 4 -->
-        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up" style="transition-delay: 0.15s">
+        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up"
+          style="transition-delay: 0.15s">
           <button class="accordion-btn w-full flex items-center gap-4 p-5 text-left" onclick="toggleAccordion(this)">
             <div class="session-number">4</div>
             <div class="flex-1 min-w-0">
@@ -514,17 +675,20 @@
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5 pt-0 ml-[56px]">
-              <p class="text-sm text-[#8B8FA8] leading-relaxed">Xây dựng complete backend: thiết lập Firebase project, viết authentication flow, thiết kế Firestore database, cấu hình security rules, và viết Cloud Functions.</p>
+              <p class="text-sm text-[#8B8FA8] leading-relaxed">Xây dựng complete backend: thiết lập Firebase project, viết
+                authentication flow, thiết kế Firestore database, cấu hình security rules, và viết Cloud Functions.</p>
             </div>
           </div>
         </div>
 
         <!-- Session 5 -->
-        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up" style="transition-delay: 0.2s">
+        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up"
+          style="transition-delay: 0.2s">
           <button class="accordion-btn w-full flex items-center gap-4 p-5 text-left" onclick="toggleAccordion(this)">
             <div class="session-number">5</div>
             <div class="flex-1 min-w-0">
-              <div class="font-heading font-bold text-white text-sm lg:text-base">Xây dựng Frontend — UI, kết nối Firebase, xử lý nghiệp vụ</div>
+              <div class="font-heading font-bold text-white text-sm lg:text-base">Xây dựng Frontend — UI, kết nối Firebase, xử
+                lý nghiệp vụ</div>
               <div class="text-xs text-[#8B8FA8] mt-0.5">Giao diện với Tailwind CSS, kết nối data, xử lý logic</div>
             </div>
             <div class="flex items-center gap-3 flex-shrink-0">
@@ -534,13 +698,15 @@
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5 pt-0 ml-[56px]">
-              <p class="text-sm text-[#8B8FA8] leading-relaxed">Thiết kế và xây dựng giao diện người dùng với Tailwind CSS, kết nối Firebase realtime data, xử lý các nghiệp vụ CRUD, form validation, và state management.</p>
+              <p class="text-sm text-[#8B8FA8] leading-relaxed">Thiết kế và xây dựng giao diện người dùng với Tailwind CSS, kết
+                nối Firebase realtime data, xử lý các nghiệp vụ CRUD, form validation, và state management.</p>
             </div>
           </div>
         </div>
 
         <!-- Session 6 -->
-        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up" style="transition-delay: 0.25s">
+        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up"
+          style="transition-delay: 0.25s">
           <button class="accordion-btn w-full flex items-center gap-4 p-5 text-left" onclick="toggleAccordion(this)">
             <div class="session-number">6</div>
             <div class="flex-1 min-w-0">
@@ -554,13 +720,15 @@
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5 pt-0 ml-[56px]">
-              <p class="text-sm text-[#8B8FA8] leading-relaxed">Sử dụng Claude Code để phân tích bug, refactor code sạch hơn, viết unit test tự động, và cải thiện performance.</p>
+              <p class="text-sm text-[#8B8FA8] leading-relaxed">Sử dụng Claude Code để phân tích bug, refactor code sạch hơn,
+                viết unit test tự động, và cải thiện performance.</p>
             </div>
           </div>
         </div>
 
         <!-- Session 7 -->
-        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up" style="transition-delay: 0.3s">
+        <div class="session-card bg-[#12141F] border border-[#23263A] rounded-xl overflow-hidden fade-up"
+          style="transition-delay: 0.3s">
           <button class="accordion-btn w-full flex items-center gap-4 p-5 text-left" onclick="toggleAccordion(this)">
             <div class="session-number">7</div>
             <div class="flex-1 min-w-0">
@@ -574,17 +742,20 @@
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5 pt-0 ml-[56px]">
-              <p class="text-sm text-[#8B8FA8] leading-relaxed">Bổ sung các tính năng nâng cao: biểu đồ với Recharts, thông báo real-time, upload file lên Firebase Storage, và collaborative features.</p>
+              <p class="text-sm text-[#8B8FA8] leading-relaxed">Bổ sung các tính năng nâng cao: biểu đồ với Recharts, thông báo
+                real-time, upload file lên Firebase Storage, và collaborative features.</p>
             </div>
           </div>
         </div>
 
         <!-- Session 8 -->
-        <div class="session-card bg-[#12141F] border border-[#DF6B33]/40 rounded-xl overflow-hidden fade-up" style="transition-delay: 0.35s">
+        <div class="session-card bg-[#12141F] border border-[#DF6B33]/40 rounded-xl overflow-hidden fade-up"
+          style="transition-delay: 0.35s">
           <button class="accordion-btn w-full flex items-center gap-4 p-5 text-left" onclick="toggleAccordion(this)">
             <div class="session-number bg-gradient-to-br from-[#DF6B33] to-[#F59E0B]">8</div>
             <div class="flex-1 min-w-0">
-              <div class="font-heading font-bold text-white text-sm lg:text-base">Deploy &amp; Hoàn thiện sản phẩm trên Vercel</div>
+              <div class="font-heading font-bold text-white text-sm lg:text-base">Deploy &amp; Hoàn thiện sản phẩm trên Vercel
+              </div>
               <div class="text-xs text-[#8B8FA8] mt-0.5">CI/CD, custom domain, SEO, monitoring</div>
             </div>
             <div class="flex items-center gap-3 flex-shrink-0">
@@ -594,7 +765,8 @@
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5 pt-0 ml-[56px]">
-              <p class="text-sm text-[#8B8FA8] leading-relaxed">Deploy hoàn chỉnh lên Vercel, thiết lập CI/CD tự động, cấu hình custom domain, tối ưu SEO, và monitoring với Vercel Analytics.</p>
+              <p class="text-sm text-[#8B8FA8] leading-relaxed">Deploy hoàn chỉnh lên Vercel, thiết lập CI/CD tự động, cấu hình
+                custom domain, tối ưu SEO, và monitoring với Vercel Analytics.</p>
             </div>
           </div>
         </div>
@@ -621,7 +793,8 @@
               </div>
               <h3 class="font-heading font-extrabold text-2xl text-white mb-1">ProjectOS</h3>
               <p class="text-sm text-[#8B8FA8]">Enterprise Project Management</p>
-              <a href="https://project-management.vercel.app" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 mt-4 text-xs text-[#DF6B33] hover:underline">
+              <a href="https://project-management.vercel.app" target="_blank" rel="noopener"
+                class="inline-flex items-center gap-1.5 mt-4 text-xs text-[#DF6B33] hover:underline">
                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                 project-management.vercel.app
               </a>
@@ -667,29 +840,35 @@
         <form class="space-y-4" onsubmit="handleSubmit(event)">
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-[#8B8FA8] mb-1.5">Số điện thoại <span class="text-[#DF6B33]">*</span></label>
+              <label class="block text-sm font-medium text-[#8B8FA8] mb-1.5">Số điện thoại <span
+                  class="text-[#DF6B33]">*</span></label>
               <input type="tel" required placeholder="0905.xxx.xxx" class="form-input w-full px-4 py-3 rounded-xl text-sm">
             </div>
             <div>
               <label class="block text-sm font-medium text-[#8B8FA8] mb-1.5">Email <span class="text-[#DF6B33]">*</span></label>
-              <input type="email" required placeholder="email@example.com" class="form-input w-full px-4 py-3 rounded-xl text-sm">
+              <input type="email" required placeholder="email@example.com"
+                class="form-input w-full px-4 py-3 rounded-xl text-sm">
             </div>
           </div>
           <div>
-            <label class="block text-sm font-medium text-[#8B8FA8] mb-1.5">Họ và tên <span class="text-[#DF6B33]">*</span></label>
+            <label class="block text-sm font-medium text-[#8B8FA8] mb-1.5">Họ và tên <span
+                class="text-[#DF6B33]">*</span></label>
             <input type="text" required placeholder="Nguyễn Văn A" class="form-input w-full px-4 py-3 rounded-xl text-sm">
           </div>
           <div>
             <label class="block text-sm font-medium text-[#8B8FA8] mb-1.5">Nội dung tư vấn</label>
-            <textarea rows="3" placeholder="Bạn muốn hỏi về khóa học..." class="form-input w-full px-4 py-3 rounded-xl text-sm resize-none"></textarea>
+            <textarea rows="3" placeholder="Bạn muốn hỏi về khóa học..."
+              class="form-input w-full px-4 py-3 rounded-xl text-sm resize-none"></textarea>
           </div>
 
           <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
-            <button type="submit" class="btn-primary w-full sm:w-auto px-8 py-3.5 rounded-xl font-heading font-bold text-sm inline-flex items-center justify-center gap-2">
+            <button type="submit"
+              class="btn-primary w-full sm:w-auto px-8 py-3.5 rounded-xl font-heading font-bold text-sm inline-flex items-center justify-center gap-2">
               <i data-lucide="send" class="w-4 h-4"></i>
               Đăng Ký Tư Vấn
             </button>
-            <a href="tel:02363779779" class="btn-secondary w-full sm:w-auto px-6 py-3.5 rounded-xl font-heading font-semibold text-sm inline-flex items-center justify-center gap-2">
+            <a href="tel:02363779779"
+              class="btn-secondary w-full sm:w-auto px-6 py-3.5 rounded-xl font-heading font-semibold text-sm inline-flex items-center justify-center gap-2">
               <i data-lucide="phone" class="w-4 h-4"></i>
               Liên Hệ Hỗ Trợ
             </a>
@@ -716,60 +895,78 @@
         <div class="faq-item">
           <button class="faq-btn w-full flex items-center justify-between p-5 text-left gap-4" onclick="toggleFaq(this)">
             <span class="font-heading font-semibold text-white text-sm">Tôi là người mới bắt đầu, có học được không?</span>
-            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
+            <i data-lucide="chevron-down"
+              class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
           </button>
           <div class="faq-content px-5 pb-5 hidden">
-            <p class="text-sm text-[#8B8FA8] leading-relaxed">Hoàn toàn có thể! Khóa học được thiết kế từ cơ bản đến nâng cao. Buổi 1 bắt đầu từ việc cài đặt và làm quen giao diện, không yêu cầu kiến thức chuyên sâu. Giảng viên hỗ trợ sát sao từng bước.</p>
+            <p class="text-sm text-[#8B8FA8] leading-relaxed">Hoàn toàn có thể! Khóa học được thiết kế từ cơ bản đến nâng cao.
+              Buổi 1 bắt đầu từ việc cài đặt và làm quen giao diện, không yêu cầu kiến thức chuyên sâu. Giảng viên hỗ trợ sát
+              sao từng bước.</p>
           </div>
         </div>
         <!-- FAQ 2 -->
         <div class="faq-item">
           <button class="faq-btn w-full flex items-center justify-between p-5 text-left gap-4" onclick="toggleFaq(this)">
             <span class="font-heading font-semibold text-white text-sm">Khóa này dành cho những ai?</span>
-            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
+            <i data-lucide="chevron-down"
+              class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
           </button>
           <div class="faq-content px-5 pb-5 hidden">
-            <p class="text-sm text-[#8B8FA8] leading-relaxed">Khóa học phù hợp với: Sinh viên năm 3-4 & mới ra trường, người đi làm muốn nâng cấp kỹ năng (Fresher, IT Support, Tester), người không chuyên kỹ thuật muốn tự xây sản phẩm (PM, Designer, Entrepreneur), và Developer muốn chuyển hướng AI-native.</p>
+            <p class="text-sm text-[#8B8FA8] leading-relaxed">Khóa học phù hợp với: Sinh viên năm 3-4 & mới ra trường, người đi
+              làm muốn nâng cấp kỹ năng (Fresher, IT Support, Tester), người không chuyên kỹ thuật muốn tự xây sản phẩm (PM,
+              Designer, Entrepreneur), và Developer muốn chuyển hướng AI-native.</p>
           </div>
         </div>
         <!-- FAQ 3 -->
         <div class="faq-item">
           <button class="faq-btn w-full flex items-center justify-between p-5 text-left gap-4" onclick="toggleFaq(this)">
             <span class="font-heading font-semibold text-white text-sm">Tôi bao giờ hoàn thành?</span>
-            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
+            <i data-lucide="chevron-down"
+              class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
           </button>
           <div class="faq-content px-5 pb-5 hidden">
-            <p class="text-sm text-[#8B8FA8] leading-relaxed">Sau 8 buổi học (16 tiết) bạn sẽ có một sản phẩm hoàn chỉnh được deploy lên Vercel. Nếu học liên tục, có thể hoàn thành trong 2–3 tuần. Video buổi học được ghi lại để bạn học lại bất cứ lúc nào.</p>
+            <p class="text-sm text-[#8B8FA8] leading-relaxed">Sau 8 buổi học (16 tiết) bạn sẽ có một sản phẩm hoàn chỉnh được
+              deploy lên Vercel. Nếu học liên tục, có thể hoàn thành trong 2–3 tuần. Video buổi học được ghi lại để bạn học lại
+              bất cứ lúc nào.</p>
           </div>
         </div>
         <!-- FAQ 4 -->
         <div class="faq-item">
           <button class="faq-btn w-full flex items-center justify-between p-5 text-left gap-4" onclick="toggleFaq(this)">
             <span class="font-heading font-semibold text-white text-sm">Có hỗ trợ sau khi mua không?</span>
-            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
+            <i data-lucide="chevron-down"
+              class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
           </button>
           <div class="faq-content px-5 pb-5 hidden">
-            <p class="text-sm text-[#8B8FA8] leading-relaxed">Có! Bạn được tham gia Group Zalo riêng cho học viên, được giảng viên và cộng đồng hỗ trợ mãi mãi sau khóa học. Bạn cũng nhận được toàn bộ video ghi lại buổi học để tham khảo mọi lúc.</p>
+            <p class="text-sm text-[#8B8FA8] leading-relaxed">Có! Bạn được tham gia Group Zalo riêng cho học viên, được giảng
+              viên và cộng đồng hỗ trợ mãi mãi sau khóa học. Bạn cũng nhận được toàn bộ video ghi lại buổi học để tham khảo mọi
+              lúc.</p>
           </div>
         </div>
         <!-- FAQ 5 -->
         <div class="faq-item">
           <button class="faq-btn w-full flex items-center justify-between p-5 text-left gap-4" onclick="toggleFaq(this)">
             <span class="font-heading font-semibold text-white text-sm">Nếu tôi không hài lòng thì sao?</span>
-            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
+            <i data-lucide="chevron-down"
+              class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
           </button>
           <div class="faq-content px-5 pb-5 hidden">
-            <p class="text-sm text-[#8B8FA8] leading-relaxed">Chúng tôi cam kết chất lượng khóa học. Nếu trong buổi đầu tiên bạn cảm thấy không phù hợp, hãy liên hệ hotline 0236.3.779.779 để được hỗ trợ hoàn tiền hoặc chuyển đổi khóa học phù hợp hơn.</p>
+            <p class="text-sm text-[#8B8FA8] leading-relaxed">Chúng tôi cam kết chất lượng khóa học. Nếu trong buổi đầu tiên bạn
+              cảm thấy không phù hợp, hãy liên hệ hotline 0236.3.779.779 để được hỗ trợ hoàn tiền hoặc chuyển đổi khóa học phù
+              hợp hơn.</p>
           </div>
         </div>
         <!-- FAQ 6 -->
         <div class="faq-item">
           <button class="faq-btn w-full flex items-center justify-between p-5 text-left gap-4" onclick="toggleFaq(this)">
             <span class="font-heading font-semibold text-white text-sm">Tôi có truy cập vĩnh viễn không?</span>
-            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
+            <i data-lucide="chevron-down"
+              class="faq-icon w-4 h-4 text-[#8B8FA8] flex-shrink-0 transition-transform duration-300"></i>
           </button>
           <div class="faq-content px-5 pb-5 hidden">
-            <p class="text-sm text-[#8B8FA8] leading-relaxed">Có! Bạn được truy cập vĩnh viễn vào tất cả tài liệu khóa học, video ghi lại, và code mẫu. Group Zalo hỗ trợ cũng mở vĩnh viễn cho học viên. Khóa học được cập nhật thêm nội dung mới theo thời gian.</p>
+            <p class="text-sm text-[#8B8FA8] leading-relaxed">Có! Bạn được truy cập vĩnh viễn vào tất cả tài liệu khóa học,
+              video ghi lại, và code mẫu. Group Zalo hỗ trợ cũng mở vĩnh viễn cho học viên. Khóa học được cập nhật thêm nội dung
+              mới theo thời gian.</p>
           </div>
         </div>
       </div>
@@ -800,8 +997,10 @@
         <div>
           <h4 class="font-heading font-bold text-white text-sm mb-4">Liên kết nhanh</h4>
           <ul class="space-y-2.5">
-            <li><a href="#chuong-trinh" class="text-sm text-[#8B8FA8] hover:text-white transition-colors">Chương trình học</a></li>
-            <li><a href="#doi-tuong" class="text-sm text-[#8B8FA8] hover:text-white transition-colors">Đối tượng phù hợp</a></li>
+            <li><a href="#chuong-trinh" class="text-sm text-[#8B8FA8] hover:text-white transition-colors">Chương trình học</a>
+            </li>
+            <li><a href="#doi-tuong" class="text-sm text-[#8B8FA8] hover:text-white transition-colors">Đối tượng phù hợp</a>
+            </li>
             <li><a href="#san-pham" class="text-sm text-[#8B8FA8] hover:text-white transition-colors">Sản phẩm mẫu</a></li>
             <li><a href="#faq" class="text-sm text-[#8B8FA8] hover:text-white transition-colors">FAQ</a></li>
           </ul>
@@ -812,13 +1011,15 @@
           <h4 class="font-heading font-bold text-white text-sm mb-4">Liên hệ</h4>
           <ul class="space-y-2.5">
             <li>
-              <a href="tel:02363779779" class="flex items-center gap-2 text-sm text-[#8B8FA8] hover:text-white transition-colors">
+              <a href="tel:02363779779"
+                class="flex items-center gap-2 text-sm text-[#8B8FA8] hover:text-white transition-colors">
                 <i data-lucide="phone" class="w-3.5 h-3.5 text-[#DF6B33]"></i>
                 0236.3.779.779
               </a>
             </li>
             <li>
-              <a href="https://zalo.me" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-[#8B8FA8] hover:text-white transition-colors">
+              <a href="https://zalo.me" target="_blank" rel="noopener"
+                class="flex items-center gap-2 text-sm text-[#8B8FA8] hover:text-white transition-colors">
                 <i data-lucide="message-circle" class="w-3.5 h-3.5 text-[#DF6B33]"></i>
                 Zalo Support
               </a>
@@ -826,13 +1027,16 @@
           </ul>
           <!-- Social -->
           <div class="flex items-center gap-3 mt-5">
-            <a href="https://facebook.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-[#23263A] flex items-center justify-center text-[#8B8FA8] hover:text-white hover:bg-[#DF6B33] transition-all">
+            <a href="https://facebook.com" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-lg bg-[#23263A] flex items-center justify-center text-[#8B8FA8] hover:text-white hover:bg-[#DF6B33] transition-all">
               <i data-lucide="facebook" class="w-4 h-4"></i>
             </a>
-            <a href="https://zalo.me" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-[#23263A] flex items-center justify-center text-[#8B8FA8] hover:text-white hover:bg-[#DF6B33] transition-all">
+            <a href="https://zalo.me" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-lg bg-[#23263A] flex items-center justify-center text-[#8B8FA8] hover:text-white hover:bg-[#DF6B33] transition-all">
               <i data-lucide="message-circle" class="w-4 h-4"></i>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-[#23263A] flex items-center justify-center text-[#8B8FA8] hover:text-white hover:bg-[#DF6B33] transition-all">
+            <a href="https://linkedin.com" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-lg bg-[#23263A] flex items-center justify-center text-[#8B8FA8] hover:text-white hover:bg-[#DF6B33] transition-all">
               <i data-lucide="linkedin" class="w-4 h-4"></i>
             </a>
           </div>
@@ -841,9 +1045,11 @@
         <!-- Newsletter -->
         <div>
           <h4 class="font-heading font-bold text-white text-sm mb-4">Nhận tips Claude Code miễn phí</h4>
-          <p class="text-xs text-[#8B8FA8] mb-3 leading-relaxed">Cập nhật chiêu lợi prompt engineering và thủ thuật AI mới nhất mỗi tuần.</p>
+          <p class="text-xs text-[#8B8FA8] mb-3 leading-relaxed">Cập nhật chiêu lợi prompt engineering và thủ thuật AI mới nhất
+            mỗi tuần.</p>
           <form onsubmit="handleNewsletter(event)" class="flex gap-2">
-            <input type="email" required placeholder="Email của bạn" class="form-input flex-1 px-3 py-2.5 rounded-lg text-sm min-w-0">
+            <input type="email" required placeholder="Email của bạn"
+              class="form-input flex-1 px-3 py-2.5 rounded-lg text-sm min-w-0">
             <button type="submit" class="btn-primary px-3 py-2.5 rounded-lg text-xs font-semibold flex-shrink-0">
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </button>
@@ -878,6 +1084,38 @@
       measurementId: ""
     });
     const db = firebase.firestore();
+
+    // Telegram configuration
+    const TELEGRAM_BOT_TOKEN = '8461486907:AAH9KBx7wbNHdLwbmMsN39hxpwXnISRL6vY';
+    const TELEGRAM_CHAT_ID = '-5265421887';
+
+    async function sendTelegramNotification(data) {
+      const message = `📋 *New Course Registration*
+
+👤 *Name:* ${data.name}
+📧 *Email:* ${data.email}
+📱 *Phone:* ${data.phone}
+💬 *Message:* ${data.message || '-'}
+🕐 *Registered at:* ${data.registeredAt}`;
+
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'Markdown',
+          }),
+        });
+        const result = await response.json();
+        console.log('Telegram notification:', result.ok ? 'Success' : 'Failed', result);
+        return result.ok;
+      } catch (error) {
+        console.error('Telegram notification error:', error);
+        return false;
+      }
+    }
 
     // Sticky nav scroll effect
     const navbar = document.getElementById('navbar');
@@ -957,6 +1195,9 @@
 
       db.collection('register_users').add(data)
         .then(() => {
+          // Send Telegram notification (non-blocking)
+          sendTelegramNotification({ ...data, registeredAt: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }) });
+
           btn.innerHTML = '<i data-lucide="check-circle" class="w-4 h-4"></i> Đã gửi thành công!';
           btn.style.background = '#10B981';
           lucide.createIcons();
@@ -997,4 +1238,5 @@
     }
   </script>
 </body>
+
 </html>
