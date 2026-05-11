@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lily Spa — Trung Tâm Chăm Sóc Sắc Đẹp Cao Cấp tại Đà Nẵng</title>
+  <meta name="description"
+    content="Lily Spa — Spa cao cấp tại Đà Nẵng. Trị mụn, chống lão hóa, massage thư giãn bằng công nghệ tiên tiến và sản phẩm hữu cơ." />
+  <meta name="keywords" content="spa đà nẵng, thẩm mỹ viện, trị mụn, chống lão hóa, massage, chăm sóc da" />
+  <meta name="author" content="Lily Spa" />
+  <meta property="og:title" content="Lily Spa — Trung Tâm Chăm Sóc Sắc Đẹp Cao Cấp" />
+  <meta property="og:description" content="Spa cao cấp tại Đà Nẵng với công nghệ tiên tiến và sản phẩm hữu cơ." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#090A14" />
+  <link rel="canonical" href="https://lilyspa.vn/" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'bg-primary': '#090A14',
+            'bg-secondary': '#13141f',
+            'bg-tertiary': '#1a1d2e',
+            'border-subtle': '#23263a',
+            'text-primary': '#ffffff',
+            'text-secondary': '#a0a0b0',
+            'primary': '#9333EA',
+            'primary-hover': '#7C22D9',
+            'accent': '#F472B6',
+          },
+          fontFamily: {
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --bg-primary: #090A14;
+      --bg-secondary: #13141f;
+      --bg-tertiary: #1a1d2e;
+      --border-subtle: #23263a;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --primary: #9333EA;
+      --primary-hover: #7C22D9;
+      --accent: #F472B6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #9333EA, #F472B6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-glow {
+      box-shadow:
+        0 0 80px rgba(147, 51, 234, 0.3),
+        0 0 120px rgba(244, 114, 182, 0.15),
+        inset 0 0 60px rgba(147, 51, 234, 0.1);
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(147, 51, 234, 0.15);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #9333EA, #7C22D9);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #7C22D9, #6B21A8);
+      transform: scale(0.97);
+      box-shadow: 0 8px 30px rgba(147, 51, 234, 0.4);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: rgba(147, 51, 234, 0.1);
+      transform: scale(0.97);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .float-anim {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    nav {
+      background: rgba(9, 10, 20, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(9, 10, 20, 0.95);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details[open] .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-chevron {
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .gallery-grid {
+      grid-auto-rows: 200px;
+    }
+
+    .float-anim-1 {
+      animation: float 4s ease-in-out infinite;
+      animation-delay: 0.5s;
+    }
+
+    .float-anim-2 {
+      animation: float 4s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+
+    .float-anim-3 {
+      animation: float 4s ease-in-out infinite;
+      animation-delay: 1.5s;
+    }
+
+    .float-anim-4 {
+      animation: float 4s ease-in-out infinite;
+      animation-delay: 2s;
+    }
+
+    .float-anim-5 {
+      animation: float 4s ease-in-out infinite;
+      animation-delay: 2.5s;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 3px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: linear-gradient(135deg, #9333EA, #7C22D9);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 500;
+      z-index: 9999;
+      box-shadow: 0 8px 30px rgba(147, 51, 234, 0.4);
+      transform: translateY(120%);
+      transition: transform 0.4s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 24px;
+      top: 48px;
+      bottom: 48px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+    }
+
+    .section-badge {
+      display: inline-block;
+      background: rgba(147, 51, 234, 0.15);
+      border: 1px solid rgba(147, 51, 234, 0.3);
+      color: var(--primary);
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea,
+    select {
+      background: var(--bg-tertiary) !important;
+      border-color: var(--border-subtle) !important;
+      color: var(--text-primary) !important;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary) !important;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.15) !important;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--text-secondary) !important;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- ===================== SECTION 1: NAVIGATION ===================== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-4">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <a href="#hero" class="flex items-center gap-2 text-xl font-bold font-heading">
+        <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+          <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
+        </div>
+        <span class="gradient-text">Lily Spa</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#problems" class="text-sm text-text-secondary hover:text-white transition-colors">Vấn đề</a>
+        <a href="#services" class="text-sm text-text-secondary hover:text-white transition-colors">Dịch vụ</a>
+        <a href="#audience" class="text-sm text-text-secondary hover:text-white transition-colors">Đối tượng</a>
+        <a href="#pricing" class="text-sm text-text-secondary hover:text-white transition-colors">Bảng giá</a>
+        <a href="#gallery" class="text-sm text-text-secondary hover:text-white transition-colors">Gallery</a>
+        <a href="#faq" class="text-sm text-text-secondary hover:text-white transition-colors">FAQ</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="#cta" class="hidden md:inline-block btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl">
+          Đặt Lịch Ngay
+        </a>
+        <button data-hamburger class="md:hidden text-white p-2" aria-label="Mở menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div data-mobile-menu class="mobile-menu fixed inset-0 z-[60] bg-bg-primary flex flex-col pt-20 px-6">
+    <button data-close-menu class="absolute top-5 right-5 text-white p-2" aria-label="Đóng menu">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    <div class="flex flex-col gap-6 mt-8">
+      <a href="#problems" class="text-lg font-medium text-white border-b border-border-subtle pb-4">Vấn đề da</a>
+      <a href="#services" class="text-lg font-medium text-white border-b border-border-subtle pb-4">Dịch vụ</a>
+      <a href="#audience" class="text-lg font-medium text-white border-b border-border-subtle pb-4">Đối tượng</a>
+      <a href="#pricing" class="text-lg font-medium text-white border-b border-border-subtle pb-4">Bảng giá</a>
+      <a href="#gallery" class="text-lg font-medium text-white border-b border-border-subtle pb-4">Gallery</a>
+      <a href="#faq" class="text-lg font-medium text-white border-b border-border-subtle pb-4">FAQ</a>
+      <a href="#cta" class="btn-primary text-white font-semibold px-6 py-3 rounded-xl text-center mt-4">
+        Đặt Lịch Ngay
+      </a>
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 2: HERO ===================== -->
+  <section id="hero" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <!-- Decorative orbs -->
+    <div class="hero-orb w-96 h-96 bg-primary top-20 -left-48"></div>
+    <div class="hero-orb w-64 h-64 bg-accent bottom-20 right-10"></div>
+
+    <div class="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left: Text -->
+        <div class="space-y-6 reveal">
+          <div class="section-badge">
+            <i data-lucide="award" class="w-3 h-3 inline mr-1"></i>
+            Top 10 Spa cao cấp miền Trung 2025
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold font-heading leading-tight">
+            Giải phóng <span class="gradient-text">làn da hoàn hảo</span> — Bứt phá nét đẹp tự nhiên
+          </h1>
+
+          <p class="text-lg text-text-secondary leading-relaxed max-w-lg">
+            Lily Spa mang đến trải nghiệm chăm sóc da cao cấp với công nghệ tiên tiến từ Hàn Quốc, sản phẩm hữu cơ 100% nhập
+            khẩu, và đội ngũ chuyên gia được đào tạo quốc tế.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#cta"
+              class="btn-primary text-white font-bold px-8 py-4 rounded-xl text-center text-lg shadow-lg shadow-primary/20">
+              Đặt Lịch Tư Vấn Miễn Phí
+            </a>
+            <a href="#services"
+              class="btn-outline font-semibold px-8 py-4 rounded-xl text-center text-lg flex items-center justify-center gap-2">
+              <i data-lucide="play-circle" class="w-5 h-5"></i>
+              Xem Dịch Vụ
+            </a>
+          </div>
+
+          <div class="flex items-center gap-6 pt-2">
+            <div class="flex -space-x-2">
+              <div
+                class="w-10 h-10 rounded-full bg-primary/60 border-2 border-bg-primary flex items-center justify-center text-xs font-bold">
+                A</div>
+              <div
+                class="w-10 h-10 rounded-full bg-accent/60 border-2 border-bg-primary flex items-center justify-center text-xs font-bold">
+                M</div>
+              <div
+                class="w-10 h-10 rounded-full bg-primary/40 border-2 border-bg-primary flex items-center justify-center text-xs font-bold">
+                H</div>
+            </div>
+            <p class="text-sm text-text-secondary">
+              <span class="text-white font-semibold">2,400+</span> khách hàng tin tưởng
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Visual - Image grid with floating cards -->
+        <div class="relative flex items-center justify-center reveal">
+          <!-- Main image with glow -->
+          <div
+            class="hero-glow w-64 h-80 md:w-80 md:h-[420px] rounded-3xl overflow-hidden border border-border-subtle float-anim relative">
+            <img
+              src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80"
+              alt="Không gian Lily Spa cao cấp"
+              class="w-full h-full object-cover"
+              loading="eager" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          </div>
+
+          <!-- Secondary image - top right -->
+          <div class="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-32 h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border-2 border-border-subtle shadow-2xl float-anim-1 z-10">
+            <img
+              src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&q=80"
+              alt="Điều trị da mặt"
+              class="w-full h-full object-cover"
+              loading="eager" />
+          </div>
+
+          <!-- Secondary image - bottom left -->
+          <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 w-28 h-36 md:w-36 md:h-44 rounded-2xl overflow-hidden border-2 border-border-subtle shadow-2xl float-anim-2 z-10">
+            <img
+              src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80"
+              alt="Chăm sóc da cao cấp"
+              class="w-full h-full object-cover"
+              loading="eager" />
+          </div>
+
+          <!-- Floating badge - organic product -->
+          <div class="absolute -bottom-8 right-6 md:-bottom-8 md:right-8 bg-bg-secondary border border-border-subtle rounded-2xl p-3 shadow-xl z-20 float-anim-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="leaf" class="w-5 h-5 text-green-400"></i>
+              </div>
+              <div>
+                <p class="text-xs text-text-secondary">Sản phẩm</p>
+                <p class="text-xs font-bold text-white">100% Hữu cơ</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating badge - rating -->
+          <div class="absolute top-4 right-4 md:top-4 md:right-4 bg-bg-secondary border border-border-subtle rounded-2xl p-3 shadow-xl z-20 float-anim-4">
+            <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1">
+                <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+                <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+                <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+                <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+                <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+              </div>
+            </div>
+            <p class="text-xs text-text-secondary mt-1">4.9 / 5.0</p>
+          </div>
+
+          <!-- Floating badge - customers -->
+          <div class="absolute bottom-24 left-[-16px] md:bottom-28 md:left-[-20px] bg-bg-secondary border border-border-subtle rounded-2xl p-3 shadow-xl z-20 float-anim-5">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
+                <i data-lucide="users" class="w-4 h-4 text-white"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-white">2,400+</p>
+                <p class="text-xs text-text-secondary">Khách hàng</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 reveal">
+        <div class="text-center p-4">
+          <p class="text-3xl md:text-4xl font-extrabold font-heading gradient-text" data-counter="2400">0</p>
+          <p class="text-sm text-text-secondary mt-1">Khách hàng</p>
+        </div>
+        <div class="text-center p-4">
+          <p class="text-3xl md:text-4xl font-extrabold font-heading gradient-text" data-counter="15">0</p>
+          <p class="text-sm text-text-secondary mt-1">Chuyên gia</p>
+        </div>
+        <div class="text-center p-4">
+          <p class="text-3xl md:text-4xl font-extrabold font-heading gradient-text" data-counter="98">0</p>
+          <p class="text-sm text-text-secondary mt-1">% Hài lòng</p>
+        </div>
+        <div class="text-center p-4">
+          <p class="text-3xl md:text-4xl font-extrabold font-heading gradient-text" data-counter="8">0</p>
+          <p class="text-sm text-text-secondary mt-1">Năm kinh nghiệm</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 3: PROBLEM STATEMENT ===================== -->
+  <section id="problems" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="section-badge mb-4">
+          <i data-lucide="alert-circle" class="w-3 h-3 inline mr-1"></i>
+          Vấn đề thường gặp
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading mb-4">
+          Da bạn đang gặp <span class="gradient-text">những rắc rối</span> này?
+        </h2>
+        <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+          Theo khảo sát trên 1,000 khách hàng tại Đà Nẵng, đây là những vấn đề da phổ biến nhất mà phụ nữ gặp phải
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+        <div class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-red-500/10 flex items-center justify-center">
+            <i data-lucide="zap" class="w-8 h-8 text-red-400"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading mb-2">Mụn ẩn & Mụn viêm</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Mụn tái đi tái lại, để lại sẹo và vết thâm khó phục hồi, ảnh
+            hưởng đến tự tin mỗi ngày.</p>
+        </div>
+
+        <div class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-yellow-500/10 flex items-center justify-center">
+            <i data-lucide="sun" class="w-8 h-8 text-yellow-400"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading mb-2">Nám & Tàn nhang</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Vết nám lan rộng, tàn nhang đậm dần do tác động của tia UV và
+            thay đổi hormone.</p>
+        </div>
+
+        <div class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-blue-500/10 flex items-center justify-center">
+            <i data-lucide="droplets" class="w-8 h-8 text-blue-400"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading mb-2">Da khô & Mất ẩm</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Da bong tróc, nứt nẻ, thiếu sự đàn hồi và bức xúc khi trang
+            điểm không bám.</p>
+        </div>
+
+        <div class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-purple-500/10 flex items-center justify-center">
+            <i data-lucide="clock" class="w-8 h-8 text-purple-400"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading mb-2">Lão hóa sớm</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Nếp nhăn, vết chân chim xuất hiện sớm hơn tuổi, da chùng nhão,
+            kém săn chắc.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 4: SOLUTION ===================== -->
+  <section id="services" class="py-20 md:py-28 bg-gradient-to-b from-bg-primary via-bg-secondary/30 to-bg-primary">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="section-badge mb-4">
+          <i data-lucide="sparkles" class="w-3 h-3 inline mr-1"></i>
+          Giải pháp của chúng tôi
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading mb-4">
+          Lily Spa — <span class="gradient-text">Hệ thống dịch vụ</span> đẳng cấp
+        </h2>
+        <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+          Kết hợp công nghệ hiện đại và sản phẩm cao cấp, mỗi liệu trình được thiết kế riêng cho làn da của bạn
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+        <div class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6">
+          <div class="w-12 h-12 mb-4 rounded-xl bg-gradient-to-br from-primary to-accent/60 flex items-center justify-center">
+            <i data-lucide="scan-face" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-bold font-heading mb-2">Phân tích da AI</h3>
+          <p class="text-sm text-text-secondary leading-relaxed mb-4">Sử dụng công nghệ phân tích da bằng AI từ Hàn Quốc, đưa ra
+            chẩn đoán chính xác 95% về tình trạng da.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">AI Scan</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">Chẩn đoán 5K</span>
+          </div>
+        </div>
+
+        <div class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6">
+          <div class="w-12 h-12 mb-4 rounded-xl bg-gradient-to-br from-accent to-primary/60 flex items-center justify-center">
+            <i data-lucide="sparkle" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-bold font-heading mb-2">Trị mụn Laser</h3>
+          <p class="text-sm text-text-secondary leading-relaxed mb-4">Công nghệ Laser Nd:YAG giúp tiêu diệt vi khuẩn gây mụn,
+            giảm viêm và ngăn ngừa tái phát hiệu quả.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs px-2 py-1 rounded-full bg-accent/10 text-accent">Laser</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-accent/10 text-accent">Không đau</span>
+          </div>
+        </div>
+
+        <div class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6">
+          <div class="w-12 h-12 mb-4 rounded-xl bg-gradient-to-br from-pink-500 to-accent flex items-center justify-center">
+            <i data-lucide="droplet" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-bold font-heading mb-2">Cấy Hyaluronic</h3>
+          <p class="text-sm text-text-secondary leading-relaxed mb-4">Bổ sung độ ẩm sâu với Hyaluronic Acid nguyên chất, phục
+            hồi độ căng mịn cho da trong 1 tuần.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs px-2 py-1 rounded-full bg-pink-500/10 text-pink-400">Hyaluronic</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-pink-500/10 text-pink-400">100% Hữu cơ</span>
+          </div>
+        </div>
+
+        <div class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6">
+          <div class="w-12 h-12 mb-4 rounded-xl bg-gradient-to-br from-violet-600 to-primary flex items-center justify-center">
+            <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-bold font-heading mb-2">Trị Nám Pico</h3>
+          <p class="text-sm text-text-secondary leading-relaxed mb-4">Công nghệ Pico Laser phá vỡ melanin từ sâu bên trong, xóa
+            nám 85% sau 3 liệu trình, an toàn mọi loại da.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs px-2 py-1 rounded-full bg-violet-500/10 text-violet-400">Pico Laser</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-violet-500/10 text-violet-400">FDA Approved</span>
+          </div>
+        </div>
+
+        <div class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6">
+          <div
+            class="w-12 h-12 mb-4 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
+            <i data-lucide="heart" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-bold font-heading mb-2">Massage Thư Giãn</h3>
+          <p class="text-sm text-text-secondary leading-relaxed mb-4">Liệu pháp massage toàn thân bằng tinh dầu lavender và trà
+            xanh, giảm stress và cải thiện giấc ngủ.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs px-2 py-1 rounded-full bg-teal-500/10 text-teal-400">Tinh dầu</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-teal-500/10 text-teal-400">60-90 phút</span>
+          </div>
+        </div>
+
+        <div class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6">
+          <div
+            class="w-12 h-12 mb-4 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center">
+            <i data-lucide="gem" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-bold font-bold font-heading mb-2">Premium Package</h3>
+          <p class="text-sm text-text-secondary leading-relaxed mb-4">Gói trọn gói 12 buổi bao gồm: phân tích da, trị mụn, cấy
+            ẩm, trị nám và massage — tiết kiệm 30%.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs px-2 py-1 rounded-full bg-amber-500/10 text-amber-400">Tiết kiệm 30%</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-amber-500/10 text-amber-400">12 buổi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 5: TARGET AUDIENCE ===================== -->
+  <section id="audience" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="section-badge mb-4">
+          <i data-lucide="users" class="w-3 h-3 inline mr-1"></i>
+          Đối tượng phù hợp
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading mb-4">
+          Ai phù hợp với <span class="gradient-text">Lily Spa?</span>
+        </h2>
+        <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+          Chúng tôi phục vụ mọi đối tượng từ 18 đến 60 tuổi, từ sinh viên đến doanh nhân
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+        <div
+          class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full"></div>
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/20 flex items-center justify-center">
+            <i data-lucide="graduation-cap" class="w-8 h-8 text-primary"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading mb-2">Sinh viên & Văn phòng</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Căng thẳng từ học tập và công việc khiến da xuống cấp. Lily Spa
+            có gói tiết kiệm chỉ từ 299K.</p>
+          <span class="inline-block mt-3 text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">Gói Sinh
+            Viên</span>
+        </div>
+
+        <div
+          class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-accent/10 to-transparent rounded-bl-full"></div>
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-accent/20 flex items-center justify-center">
+            <i data-lucide="briefcase" class="w-8 h-8 text-accent"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading mb-2">Chị em công sở</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Cần tái tạo nhan sắc sau ngày làm việc dài. Đặt lịch linh hoạt,
+            phục vụ đến 21h hàng ngày.</p>
+          <span class="inline-block mt-3 text-xs font-semibold text-accent bg-accent/10 px-3 py-1 rounded-full">Phục vụ đến
+            21h</span>
+        </div>
+
+        <div
+          class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-pink-500/10 to-transparent rounded-bl-full"></div>
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-pink-500/20 flex items-center justify-center">
+            <i data-lucide="heart-handshake" class="w-8 h-8 text-pink-400"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading mb-2">Mẹ bỉm & Cặp đôi</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Không có thời gian riêng? Lily Spa có phòng VIP cho cặp đôi và
+            dịch vụ trông con miễn phí.</p>
+          <span class="inline-block mt-3 text-xs font-semibold text-pink-400 bg-pink-500/10 px-3 py-1 rounded-full">Phòng VIP
+            Couple</span>
+        </div>
+
+        <div
+          class="card-hover bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-violet-500/10 to-transparent rounded-bl-full">
+          </div>
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-violet-500/20 flex items-center justify-center">
+            <i data-lucide="gem" class="w-8 h-8 text-violet-400"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading mb-2">Doanh nhân & VIP</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Không gian riêng tư tuyệt đối, chuyên gia hàng đầu, sản phẩm
+            nhập khẩu độc quyền từ Pháp và Hàn Quốc.</p>
+          <span
+            class="inline-block mt-3 text-xs font-semibold text-violet-400 bg-violet-500/10 px-3 py-1 rounded-full">Membership
+            VIP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 6: SERVICE DETAILS / TIMELINE ===================== -->
+  <section id="pricing" class="py-20 md:py-28 bg-gradient-to-b from-bg-primary via-bg-secondary/30 to-bg-primary">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="section-badge mb-4">
+          <i data-lucide="list-ordered" class="w-3 h-3 inline mr-1"></i>
+          Liệu trình chi tiết
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading mb-4">
+          Quy trình <span class="gradient-text">8 bước</span> chuẩn quốc tế
+        </h2>
+        <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+          Mỗi liệu trình được thiết kế khoa học, đảm bảo hiệu quả tối đa cho làn da của bạn
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative max-w-3xl mx-auto reveal">
+        <div class="timeline-line"></div>
+
+        <div class="space-y-6">
+          <!-- Step 1 -->
+          <div class="flex gap-6 items-start">
+            <div
+              class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center font-bold font-heading text-white text-lg relative z-10 shadow-lg shadow-primary/30">
+              1</div>
+            <div class="flex-1 bg-bg-secondary border border-border-subtle rounded-xl p-5 card-hover">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <h3 class="text-lg font-bold font-heading">Tư vấn & Khám da</h3>
+                <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">15 phút</span>
+              </div>
+              <p class="text-sm text-text-secondary">Chuyên gia phân tích tình trạng da bằng máy AI 5K, lập kế hoạch điều trị cá
+                nhân hóa.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex gap-6 items-start">
+            <div
+              class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center font-bold font-heading text-white text-lg relative z-10 shadow-lg shadow-accent/30">
+              2</div>
+            <div class="flex-1 bg-bg-secondary border border-border-subtle rounded-xl p-5 card-hover">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <h3 class="text-lg font-bold font-heading">Làm sạch sâu</h3>
+                <span class="text-xs bg-accent/10 text-accent px-2 py-0.5 rounded-full">20 phút</span>
+              </div>
+              <p class="text-sm text-text-secondary">Tẩy trang, rửa mặt bằng sữa rửa mặt organic, xông hơi nước nóng mở lỗ chân
+                lông.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex gap-6 items-start">
+            <div
+              class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-accent flex items-center justify-center font-bold font-heading text-white text-lg relative z-10 shadow-lg shadow-pink-500/30">
+              3</div>
+            <div class="flex-1 bg-bg-secondary border border-border-subtle rounded-xl p-5 card-hover">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <h3 class="text-lg font-bold font-heading">Tẩy tế bào chết</h3>
+                <span class="text-xs bg-pink-500/10 text-pink-400 px-2 py-0.5 rounded-full">10 phút</span>
+              </div>
+              <p class="text-sm text-text-secondary">Scrub hạt jojoba nguyên chất, loại bỏ tế bào chết nhẹ nhàng, không gây kích
+                ứng.</p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="flex gap-6 items-start">
+            <div
+              class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center font-bold font-heading text-white text-lg relative z-10 shadow-lg shadow-violet-500/30">
+              4</div>
+            <div class="flex-1 bg-bg-secondary border border-border-subtle rounded-xl p-5 card-hover">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <h3 class="text-lg font-bold font-heading">Điều trị chuyên sâu</h3>
+                <span class="text-xs bg-violet-500/10 text-violet-400 px-2 py-0.5 rounded-full">45 phút</span>
+              </div>
+              <p class="text-sm text-text-secondary">Laser/Chemical Peel/mesotherapy tùy loại da. Công nghệ được chọn phù hợp
+                với từng vấn đề.</p>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="flex gap-6 items-start">
+            <div
+              class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center font-bold font-heading text-white text-lg relative z-10 shadow-lg shadow-teal-500/30">
+              5</div>
+            <div class="flex-1 bg-bg-secondary border border-border-subtle rounded-xl p-5 card-hover">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <h3 class="text-lg font-bold font-heading">Cấp ẩm & Dưỡng</h3>
+                <span class="text-xs bg-teal-500/10 text-teal-400 px-2 py-0.5 rounded-full">20 phút</span>
+              </div>
+              <p class="text-sm text-text-secondary">Mặt nạ Hyaluronic Acid + serum vitamin C/E, khóa ẩm bằng kem nền phù hợp
+                loại da.</p>
+            </div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="flex gap-6 items-start">
+            <div
+              class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center font-bold font-heading text-white text-lg relative z-10 shadow-lg shadow-amber-500/30">
+              6</div>
+            <div class="flex-1 bg-bg-secondary border border-border-subtle rounded-xl p-5 card-hover">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <h3 class="text-lg font-bold font-heading">Massage mặt</h3>
+                <span class="text-xs bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-full">15 phút</span>
+              </div>
+              <p class="text-sm text-text-secondary">Massage nâng cơ với dầu argan và kem dưỡng cao cấp, kích thích sản sinh
+                collagen tự nhiên.</p>
+            </div>
+          </div>
+
+          <!-- Step 7 -->
+          <div class="flex gap-6 items-start">
+            <div
+              class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary to-violet-600 flex items-center justify-center font-bold font-heading text-white text-lg relative z-10 shadow-lg shadow-primary/30">
+              7</div>
+            <div class="flex-1 bg-bg-secondary border border-border-subtle rounded-xl p-5 card-hover">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <h3 class="text-lg font-bold font-heading">Ánh sáng LED</h3>
+                <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">20 phút</span>
+              </div>
+              <p class="text-sm text-text-secondary">Liệu pháp ánh sáng LED đỏ/xanh da cam giúp phục hồi, kháng viêm và tăng
+                hiệu quả điều trị 40%.</p>
+            </div>
+          </div>
+
+          <!-- Step 8 -->
+          <div class="flex gap-6 items-start">
+            <div
+              class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-accent to-pink-600 flex items-center justify-center font-bold font-heading text-white text-lg relative z-10 shadow-lg shadow-accent/30">
+              8</div>
+            <div class="flex-1 bg-bg-secondary border border-border-subtle rounded-xl p-5 card-hover">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <h3 class="text-lg font-bold font-heading">Bảo vệ & Kết thúc</h3>
+                <span class="text-xs bg-accent/10 text-accent px-2 py-0.5 rounded-full">10 phút</span>
+              </div>
+              <p class="text-sm text-text-secondary">Thoa kem chống nắng SPF 50++, nhận phác đồ chăm sóc tại nhà và lịch hẹn
+                tiếp theo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 7: GALLERY ===================== -->
+  <section id="gallery" class="py-20 md:py-28 bg-gradient-to-b from-bg-primary via-bg-secondary/30 to-bg-primary">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="section-badge mb-4">
+          <i data-lucide="image" class="w-3 h-3 inline mr-1"></i>
+          Không gian &amp; Dịch vụ
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading mb-4">
+          Khám phá <span class="gradient-text">Lily Spa</span> qua hình ảnh
+        </h2>
+        <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+          Hơn 50 hình ảnh thực tế về không gian, liệu trình và kết quả khách hàng tại Lily Spa
+        </p>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 reveal">
+        <!-- Featured large image (spans 2 cols x 2 rows) -->
+        <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl cursor-pointer">
+          <img
+            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80"
+            alt="Không gian Lily Spa cao cấp"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+            <div>
+              <p class="text-white font-bold font-heading">Không gian Spa</p>
+              <p class="text-white/80 text-sm">Phòng trị liệu cao cấp</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+          <img
+            src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&q=80"
+            alt="Điều trị mặt cao cấp"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+            <p class="text-white font-bold text-sm font-heading">Điều trị da</p>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+          <img
+            src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&q=80"
+            alt="Massage thư giãn"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+            <p class="text-white font-bold text-sm font-heading">Massage</p>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+          <img
+            src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=400&q=80"
+            alt="Sản phẩm chăm sóc da"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+            <p class="text-white font-bold text-sm font-heading">Sản phẩm hữu cơ</p>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+          <img
+            src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80"
+            alt="Chăm sóc da mặt"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+            <p class="text-white font-bold text-sm font-heading">Facial Spa</p>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+          <img
+            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&q=80"
+            alt="Liệu pháp spa cao cấp"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+            <p class="text-white font-bold text-sm font-heading">Liệu pháp</p>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+          <img
+            src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=400&q=80"
+            alt="Tinh dầu thư giãn"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+            <p class="text-white font-bold text-sm font-heading">Tinh dầu</p>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+          <img
+            src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=400&q=80"
+            alt="Spa nghỉ dưỡng"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+            <p class="text-white font-bold text-sm font-heading">Nghỉ dưỡng</p>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+          <img
+            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80"
+            alt="Trị liệu laser"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+            <p class="text-white font-bold text-sm font-heading">Trị liệu</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery CTA -->
+      <div class="text-center mt-10 reveal">
+        <a href="#cta"
+          class="inline-flex items-center gap-2 btn-outline font-semibold px-6 py-3 rounded-xl">
+          <i data-lucide="camera" class="w-4 h-4"></i>
+          Xem thêm hình ảnh &amp; Đặt lịch ngay
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 8: SOCIAL PROOF ===================== -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="section-badge mb-4">
+          <i data-lucide="star" class="w-3 h-3 inline mr-1"></i>
+          Khách hàng nói gì
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading mb-4">
+          <span class="gradient-text">2,400+</span> câu chuyện thành công
+        </h2>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="grid md:grid-cols-3 gap-6 mb-16 reveal">
+        <div class="bg-bg-secondary border border-border-subtle rounded-2xl p-6 card-hover">
+          <div class="flex gap-1 mb-3">
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+          </div>
+          <p class="text-text-secondary italic leading-relaxed mb-4">"Sau 3 liệu trình trị nám Pico Laser, vết nám trên mặt tôi
+            đã mờ đi rõ rệt. Da mịn hơn rất nhiều và tôi tự tin hơn khi ra ngoài mà không cần đánh kem nền."</p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-sm font-bold">
+              PT</div>
+            <div>
+              <p class="font-semibold text-sm">Phạm Thảo</p>
+              <p class="text-xs text-text-secondary">Khách hàng 8 tháng</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-bg-secondary border border-border-subtle rounded-2xl p-6 card-hover">
+          <div class="flex gap-1 mb-3">
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+          </div>
+          <p class="text-text-secondary italic leading-relaxed mb-4">"Tôi làm việc văn phòng, da khô và nhạy cảm. Sau gói cấy ẩm
+            tại Lily Spa, da tôi căng mịn cả tuần. Đặc biệt nhân viên rất tận tâm và chu đáo."</p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-pink-500 flex items-center justify-center text-sm font-bold">
+              NH</div>
+            <div>
+              <p class="font-semibold text-sm">Nguyễn Hương</p>
+              <p class="text-xs text-text-secondary">Nhân viên văn phòng</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-bg-secondary border border-border-subtle rounded-2xl p-6 card-hover">
+          <div class="flex gap-1 mb-3">
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+            <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
+          </div>
+          <p class="text-text-secondary italic leading-relaxed mb-4">"Mình dẫn chồng đến Lily Spa dịp kỷ niệm cưới. Phòng couple
+            rất riêng tư, massage thư giãn tuyệt vời. Đây là spa duy nhất ở Đà Nẵng mình muốn quay lại."</p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center text-sm font-bold">
+              LT</div>
+            <div>
+              <p class="font-semibold text-sm">Lê Thủy</p>
+              <p class="text-xs text-text-secondary">Khách VIP</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+        <div class="bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center">
+          <p class="text-3xl md:text-4xl font-extrabold font-heading gradient-text">98%</p>
+          <p class="text-sm text-text-secondary mt-1">Khách hàng hài lòng</p>
+        </div>
+        <div class="bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center">
+          <p class="text-3xl md:text-4xl font-extrabold font-heading gradient-text">85%</p>
+          <p class="text-sm text-text-secondary mt-1">Xóa nám sau 3 buổi</p>
+        </div>
+        <div class="bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center">
+          <p class="text-3xl md:text-4xl font-extrabold font-heading gradient-text">100%</p>
+          <p class="text-sm text-text-secondary mt-1">Sản phẩm hữu cơ</p>
+        </div>
+        <div class="bg-bg-secondary border border-border-subtle rounded-2xl p-6 text-center">
+          <p class="text-3xl md:text-4xl font-extrabold font-heading gradient-text">12K+</p>
+          <p class="text-sm text-text-secondary mt-1">Liệu trình đã thực hiện</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 9: CTA ===================== -->
+  <section id="cta" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <div
+        class="bg-gradient-to-br from-bg-secondary via-bg-secondary to-primary/10 border border-border-subtle rounded-3xl p-8 md:p-16 text-center relative overflow-hidden reveal">
+        <!-- Decorative -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-accent/5 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 max-w-xl mx-auto space-y-6">
+          <div class="section-badge">
+            <i data-lucide="calendar-check" class="w-3 h-3 inline mr-1"></i>
+            Đặt lịch hẹn ngay hôm nay
+          </div>
+
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading">
+            Sẵn sàng bứt phá <span class="gradient-text">vẻ đẹp</span> của bạn?
+          </h2>
+
+          <p class="text-text-secondary text-lg">
+            Đăng ký ngay để nhận <strong class="text-white">tư vấn miễn phí</strong> từ chuyên gia và <strong
+              class="text-white">ưu đãi 20%</strong> liệu trình đầu tiên
+          </p>
+
+          <form id="registration-form" class="space-y-4 text-left" novalidate>
+            <div>
+              <label for="fullname" class="block text-sm font-medium mb-1.5">Họ và tên <span
+                  class="text-red-400">*</span></label>
+              <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên của bạn" required
+                class="w-full px-4 py-3 rounded-xl border bg-bg-tertiary border-border-subtle text-white placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" />
+              <p class="error-msg text-red-400 text-xs mt-1 hidden">Vui lòng nhập họ và tên</p>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium mb-1.5">Email <span class="text-red-400">*</span></label>
+              <input type="email" id="email" name="email" placeholder="email@example.com" required
+                class="w-full px-4 py-3 rounded-xl border bg-bg-tertiary border-border-subtle text-white placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" />
+              <p class="error-msg text-red-400 text-xs mt-1 hidden">Email không hợp lệ</p>
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium mb-1.5">Số điện thoại</label>
+              <input type="tel" id="phone" name="phone" placeholder="0912 345 678"
+                class="w-full px-4 py-3 rounded-xl border bg-bg-tertiary border-border-subtle text-white placeholder-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" />
+              <p class="error-msg text-red-400 text-xs mt-1 hidden">Số điện thoại không hợp lệ</p>
+            </div>
+            <div>
+              <label for="service" class="block text-sm font-medium mb-1.5">Dịch vụ quan tâm</label>
+              <select id="service" name="service"
+                class="w-full px-4 py-3 rounded-xl border bg-bg-tertiary border-border-subtle text-white outline-none transition-all">
+                <option value="">-- Chọn dịch vụ --</option>
+                <option value="acne">Trị mụn Laser</option>
+                <option value="melasma">Trị nám Pico</option>
+                <option value="hydration">Cấy Hyaluronic</option>
+                <option value="massage">Massage thư giãn</option>
+                <option value="premium">Premium Package</option>
+                <option value="other">Khác</option>
+              </select>
+            </div>
+            <button type="submit" class="w-full btn-primary text-white font-bold py-4 rounded-xl text-lg">
+              Đặt Lịch Tư Vấn Miễn Phí
+            </button>
+            <p class="text-xs text-text-secondary text-center">
+              Lily Spa cam kết bảo mật thông tin. Chuyên gia sẽ liên hệ trong vòng 30 phút.
+            </p>
+          </form>
+
+          <div class="flex items-center gap-4 justify-center pt-2">
+            <div class="h-px flex-1 bg-border-subtle max-w-24"></div>
+            <span class="text-sm text-text-secondary">hoặc</span>
+            <div class="h-px flex-1 bg-border-subtle max-w-24"></div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="tel:0236456789" class="btn-outline font-semibold px-6 py-3 rounded-xl flex items-center gap-2">
+              <i data-lucide="phone" class="w-4 h-4"></i>
+              Liên hệ hỗ trợ
+            </a>
+            <div class="flex items-center gap-2 text-center sm:text-left">
+              <i data-lucide="phone-call" class="w-5 h-5 text-primary"></i>
+              <span class="text-xl font-bold font-heading gradient-text">0236.456.789</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 10: FAQ ===================== -->
+  <section id="faq" class="py-20 md:py-28 bg-gradient-to-b from-bg-primary via-bg-secondary/20 to-bg-primary">
+    <div class="max-w-3xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="section-badge mb-4">
+          <i data-lucide="message-circle" class="w-3 h-3 inline mr-1"></i>
+          Câu hỏi thường gặp
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading mb-4">
+          Bạn có <span class="gradient-text">thắc mắc?</span>
+        </h2>
+        <p class="text-text-secondary text-lg">Giải đáp những câu hỏi phổ biến nhất của khách hàng</p>
+      </div>
+
+      <div class="space-y-4 reveal">
+        <details class="bg-bg-secondary border border-border-subtle rounded-xl p-6 group">
+          <summary class="cursor-pointer font-bold font-heading text-base flex justify-between items-center list-none">
+            <span>Liệu trình trị mụn mất bao lâu để thấy hiệu quả?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-primary flex-shrink-0"></i>
+          </summary>
+          <p class="mt-4 text-text-secondary leading-relaxed">Thông thường, bạn sẽ thấy da sạch mụn rõ rệt sau 1-2 tuần đầu
+            tiên. Liệu trình trọn vẹn kéo dài 4-8 tuần tùy mức độ nghiêm trọng. Lily Spa cam kết hoàn tiền nếu không có kết quả
+            sau 3 liệu trình đầu tiên.</p>
+        </details>
+
+        <details class="bg-bg-secondary border border-border-subtle rounded-xl p-6 group">
+          <summary class="cursor-pointer font-bold font-heading text-base flex justify-between items-center list-none">
+            <span>Sản phẩm sử dụng có an toàn cho da nhạy cảm không?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-primary flex-shrink-0"></i>
+          </summary>
+          <p class="mt-4 text-text-secondary leading-relaxed">Tất cả sản phẩm tại Lily Spa đều được kiểm duyệt bởi FDA, không
+            chứa paraben, không thử nghiệm trên động vật, và phù hợp với mọi loại da kể cả da nhạy cảm. Chúng tôi cũng test
+            trước 15 phút trên da trước mỗi liệu trình.</p>
+        </details>
+
+        <details class="bg-bg-secondary border border-border-subtle rounded-xl p-6 group">
+          <summary class="cursor-pointer font-bold font-heading text-base flex justify-between items-center list-none">
+            <span>Tôi có cần đặt lịch trước không?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-primary flex-shrink-0"></i>
+          </summary>
+          <p class="mt-4 text-text-secondary leading-relaxed">Có, chúng tôi khuyến khích đặt lịch trước tối thiểu 2 giờ để đảm
+            bảo chuyên gia và phòng trị liệu sẵn sàng. Bạn có thể đặt lịch qua website, hotline hoặc Zalo. Đặt trước cũng được
+            giảm 10% phí dịch vụ.</p>
+        </details>
+
+        <details class="bg-bg-secondary border border-border-subtle rounded-xl p-6 group">
+          <summary class="cursor-pointer font-bold font-heading text-base flex justify-between items-center list-none">
+            <span>Spa có phục vụ nam giới không?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-primary flex-shrink-0"></i>
+          </summary>
+          <p class="mt-4 text-text-secondary leading-relaxed">Có! Lily Spa phục vụ cả nam và nữ. Chúng tôi có gói dịch vụ riêng
+            cho nam giới: trị mụn, cạo lông mặt, massage thể thao và chăm sóc da dầu. Khoảng 20% khách hàng của Lily Spa là nam
+            giới.</p>
+        </details>
+
+        <details class="bg-bg-secondary border border-border-subtle rounded-xl p-6 group">
+          <summary class="cursor-pointer font-bold font-heading text-base flex justify-between items-center list-none">
+            <span>Tôi có thể hủy hoặc đổi lịch hẹn không?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-primary flex-shrink-0"></i>
+          </summary>
+          <p class="mt-4 text-text-secondary leading-relaxed">Hoàn toàn có thể. Vui lòng thông báo trước tối thiểu 4 giờ để
+            chúng tôi sắp xếp lại lịch. Nếu hủy trong vòng 4 giờ, Lily Spa sẽ giữ 50% phí đặt cọc. Đổi lịch không mất phí.</p>
+        </details>
+
+        <details class="bg-bg-secondary border border-border-subtle rounded-xl p-6 group">
+          <summary class="cursor-pointer font-bold font-heading text-base flex justify-between items-center list-none">
+            <span>Sau liệu trình tại spa, tôi cần chăm sóc da tại nhà như thế nào?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-primary flex-shrink-0"></i>
+          </summary>
+          <p class="mt-4 text-text-secondary leading-relaxed">Lily Spa sẽ cung cấp phác đồ chăm sóc tại nhà miễn phí bao gồm:
+            sữa rửa mặt, toner, serum và kem chống nắng phù hợp loại da. Chuyên gia sẽ hướng dẫn chi tiết cách sử dụng từng sản
+            phẩm vào cuối buổi trị liệu.</p>
+        </details>
+
+        <details class="bg-bg-secondary border border-border-subtle rounded-xl p-6 group">
+          <summary class="cursor-pointer font-bold font-heading text-base flex justify-between items-center list-none">
+            <span>Giá dịch vụ tại Lily Spa là bao nhiêu?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-primary flex-shrink-0"></i>
+          </summary>
+          <p class="mt-4 text-text-secondary leading-relaxed">Giá dịch vụ dao động từ 299K (gói cơ bản) đến 2.5 triệu (Premium).
+            Gói Premium 12 buổi tiết kiệm 30% so với mua lẻ. Lily Spa thường xuyên có chương trình ưu đãi vào cuối tuần và dịp
+            lễ.</p>
+        </details>
+
+        <details class="bg-bg-secondary border border-border-subtle rounded-xl p-6 group">
+          <summary class="cursor-pointer font-bold font-heading text-base flex justify-between items-center list-none">
+            <span>Thời gian làm việc của Lily Spa?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-primary flex-shrink-0"></i>
+          </summary>
+          <p class="mt-4 text-text-secondary leading-relaxed">Lily Spa mở cửa từ 9:00 đến 21:00 hàng ngày, kể cả cuối tuần và
+            ngày lễ. Phòng trị liệu VIP có thể đặt trước đến 23:00 với phụ phí.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 10: FOOTER ===================== -->
+  <footer class="py-16 bg-[#050610] border-t border-border-subtle">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <!-- Brand -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+              <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
+            </div>
+            <span class="text-xl font-bold font-heading gradient-text">Lily Spa</span>
+          </div>
+          <p class="text-sm text-text-secondary leading-relaxed">Trung tâm chăm sóc sắc đẹp cao cấp tại Đà Nẵng. 8 năm kinh
+            nghiệm, 2,400+ khách hàng tin tưởng.</p>
+          <div class="flex gap-3">
+            <a href="#"
+              class="w-9 h-9 rounded-lg bg-bg-secondary border border-border-subtle flex items-center justify-center hover:border-primary transition-colors"
+              aria-label="Facebook">
+              <i data-lucide="facebook" class="w-4 h-4 text-text-secondary"></i>
+            </a>
+            <a href="#"
+              class="w-9 h-9 rounded-lg bg-bg-secondary border border-border-subtle flex items-center justify-center hover:border-primary transition-colors"
+              aria-label="Instagram">
+              <i data-lucide="instagram" class="w-4 h-4 text-text-secondary"></i>
+            </a>
+            <a href="#"
+              class="w-9 h-9 rounded-lg bg-bg-secondary border border-border-subtle flex items-center justify-center hover:border-primary transition-colors"
+              aria-label="Zalo">
+              <i data-lucide="message-circle" class="w-4 h-4 text-text-secondary"></i>
+            </a>
+            <a href="#"
+              class="w-9 h-9 rounded-lg bg-bg-secondary border border-border-subtle flex items-center justify-center hover:border-primary transition-colors"
+              aria-label="TikTok">
+              <i data-lucide="youtube" class="w-4 h-4 text-text-secondary"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="space-y-4">
+          <h3 class="font-bold font-heading text-base">Liên hệ</h3>
+          <div class="space-y-3">
+            <div class="flex items-start gap-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-primary mt-0.5 flex-shrink-0"></i>
+              <p class="text-sm text-text-secondary">72 Nguyễn Văn Linh, Quận Hải Châu, TP. Đà Nẵng</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-4 h-4 text-primary flex-shrink-0"></i>
+              <a href="tel:0236456789" class="text-sm text-text-secondary hover:text-white transition-colors">0236.456.789</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-primary flex-shrink-0"></i>
+              <a href="mailto:hello@lilyspa.vn"
+                class="text-sm text-text-secondary hover:text-white transition-colors">hello@lilyspa.vn</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="clock" class="w-4 h-4 text-primary flex-shrink-0"></i>
+              <p class="text-sm text-text-secondary">9:00 — 21:00 (Hàng ngày)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="space-y-4">
+          <h3 class="font-bold font-heading text-base">Dịch vụ</h3>
+          <div class="space-y-2">
+            <a href="#" class="block text-sm text-text-secondary hover:text-white transition-colors">Trị mụn Laser</a>
+            <a href="#" class="block text-sm text-text-secondary hover:text-white transition-colors">Trị nám Pico</a>
+            <a href="#" class="block text-sm text-text-secondary hover:text-white transition-colors">Cấy Hyaluronic</a>
+            <a href="#" class="block text-sm text-text-secondary hover:text-white transition-colors">Massage thư giãn</a>
+            <a href="#" class="block text-sm text-text-secondary hover:text-white transition-colors">Premium Package</a>
+            <a href="#" class="block text-sm text-text-secondary hover:text-white transition-colors">Tư vấn da</a>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="space-y-4">
+          <h3 class="font-bold font-heading text-base">Nhận ưu đãi</h3>
+          <p class="text-sm text-text-secondary">Đăng ký nhận tips chăm sóc da và ưu đãi độc quyền mỗi tuần.</p>
+          <form id="newsletter-form" class="space-y-2" novalidate>
+            <input type="email" placeholder="Email của bạn"
+              class="w-full px-4 py-3 rounded-xl border bg-bg-tertiary border-border-subtle text-white text-sm placeholder-text-secondary focus:border-primary outline-none transition-all" />
+            <button type="submit" class="w-full btn-primary text-white font-semibold py-2.5 rounded-xl text-sm">
+              Đăng ký
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-t border-border-subtle pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-text-secondary">© 2026 Lily Spa. Tất cả quyền được bảo lưu.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-text-secondary hover:text-white transition-colors">Chính sách bảo mật</a>
+          <a href="#" class="text-xs text-text-secondary hover:text-white transition-colors">Điều khoản dịch vụ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <div class="flex items-center gap-2">
+      <i data-lucide="check-circle" class="w-5 h-5"></i>
+      <span id="toast-msg">Thành công!</span>
+    </div>
+  </div>
+
+  <!-- ===================== JAVASCRIPT ===================== -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const hamburger = document.querySelector('[data-hamburger]');
+    const closeMenu = document.querySelector('[data-close-menu]');
+    const mobileMenu = document.querySelector('[data-mobile-menu]');
+
+    hamburger?.addEventListener('click', () => mobileMenu.classList.add('open'));
+    closeMenu?.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+    // Close mobile menu on link click
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // Navbar scroll effect
+    const navbar = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      navbar?.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, index * 80);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Counter animation
+    const counters = document.querySelectorAll('[data-counter]');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.counter);
+          const duration = 1800;
+          const step = target / (duration / 16);
+          let current = 0;
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              el.textContent = target.toLocaleString('vi-VN');
+              clearInterval(timer);
+            } else {
+              el.textContent = Math.floor(current).toLocaleString('vi-VN');
+            }
+          }, 16);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => counterObserver.observe(el));
+
+    // Toast notification
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      if (!toast || !toastMsg) return;
+      toastMsg.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // Form validation helpers
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validatePhone(phone) {
+      if (!phone) return true; // optional
+      return /^[\d\s\-\(\)\.+]{8,15}$/.test(phone);
+    }
+
+    function showError(input) {
+      input.classList.add('border-red-400');
+      const errorMsg = input.parentElement.querySelector('.error-msg');
+      if (errorMsg) errorMsg.classList.remove('hidden');
+    }
+
+    function clearError(input) {
+      input.classList.remove('border-red-400');
+      const errorMsg = input.parentElement.querySelector('.error-msg');
+      if (errorMsg) errorMsg.classList.add('hidden');
+    }
+
+    // Registration form
+    const regForm = document.getElementById('registration-form');
+    regForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      const name = regForm.querySelector('#fullname');
+      const email = regForm.querySelector('#email');
+      const phone = regForm.querySelector('#phone');
+
+      clearError(name);
+      clearError(email);
+      clearError(phone);
+
+      if (!name.value.trim()) {
+        showError(name);
+        valid = false;
+      }
+      if (!validateEmail(email.value)) {
+        showError(email);
+        valid = false;
+      }
+      if (!validatePhone(phone.value)) {
+        showError(phone);
+        valid = false;
+      }
+
+      if (valid) {
+        const data = {
+          name: name.value,
+          email: email.value,
+          phone: phone.value,
+          service: regForm.querySelector('#service').value,
+        };
+        console.log('Registration:', data);
+        showToast('Đặt lịch thành công! Lily Spa sẽ liên hệ trong 30 phút.');
+        regForm.reset();
+      }
+    });
+
+    // Newsletter form
+    const newsForm = document.getElementById('newsletter-form');
+    newsForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = newsForm.querySelector('input[type="email"]');
+      if (validateEmail(emailInput.value)) {
+        showToast('Đăng ký nhận tin thành công!');
+        emailInput.value = '';
+      } else {
+        emailInput.classList.add('border-red-400');
+        setTimeout(() => emailInput.classList.remove('border-red-400'), 2000);
+      }
+    });
+
+    // Clear errors on input
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', () => clearError(input));
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VietWander — Khám Phá Việt Nam Theo Cách Của Bạn</title>
+  <meta name="description"
+    content="VietWander mang đến trải nghiệm du lịch độc đáo tại Việt Nam. Tour trọn gói, khách sạn cao cấp, hướng dẫn viên chuyên nghiệp." />
+  <meta name="theme-color" content="#10B981" />
+  <meta property="og:title" content="VietWander — Khám Phá Việt Nam Theo Cách Của Bạn" />
+  <meta property="og:description"
+    content="Trải nghiệm du lịch độc đáo tại Việt Nam. Tour trọn gói, khách sạn cao cấp, hướng dẫn viên chuyên nghiệp." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'bg-primary': '#090a14',
+            'bg-secondary': '#12141f',
+            'bg-tertiary': '#1a1d2e',
+            'border-subtle': '#23263a',
+            'text-secondary': '#8b8fa8',
+            'primary': '#10B981',
+            'primary-hover': '#0d9668',
+            'accent': '#F59E0B',
+          },
+          fontFamily: {
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #090a14;
+      --bg-secondary: #12141f;
+      --bg-tertiary: #1a1d2e;
+      --border-subtle: #23263a;
+      --text-primary: #ffffff;
+      --text-secondary: #8b8fa8;
+      --primary: #10B981;
+      --primary-hover: #0d9668;
+      --accent: #F59E0B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      transform: scale(0.97);
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 12px;
+      border: 2px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .card-hover:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(16, 185, 129, 0.12);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 40px rgba(16, 185, 129, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 0 80px rgba(16, 185, 129, 0.4);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-scrolled {
+      background: rgba(9, 10, 20, 0.95) !important;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-visual {
+      background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    .float-anim {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .float-anim-delay {
+      animation: float 6s ease-in-out 2s infinite;
+    }
+
+    .timeline-line {
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      width: 2px;
+    }
+
+    .stat-card {
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+    }
+
+    .faq-content details summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+
+    .faq-content details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-content details[open] summary {
+      color: var(--primary);
+    }
+
+    .faq-content details summary .faq-chevron {
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-content details[open] summary .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-content details>div {
+      padding: 0 24px 20px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--primary);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      z-index: 9999;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.4);
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .input-field {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text-primary);
+      font-size: 15px;
+      width: 100%;
+      transition: border-color 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .input-field::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .input-error {
+      border-color: #ef4444 !important;
+    }
+
+    .error-msg {
+      color: #ef4444;
+      font-size: 13px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .error-msg.show {
+      display: block;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-subtle);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SECTION 1: NAVIGATION -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    style="background: rgba(9, 10, 20, 0.5);">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 text-xl font-heading font-extrabold" style="text-decoration: none;">
+        <div
+          style="width:36px;height:36px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:10px;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="compass" style="width:20px;height:20px;color:#fff;"></i>
+        </div>
+        <span class="gradient-text">VietWander</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-sm text-text-secondary hover:text-white transition-colors"
+          style="text-decoration:none;">Giới thiệu</a>
+        <a href="#features" class="text-sm text-text-secondary hover:text-white transition-colors"
+          style="text-decoration:none;">Đặc điểm</a>
+        <a href="#audience" class="text-sm text-text-secondary hover:text-white transition-colors"
+          style="text-decoration:none;">Đối tượng</a>
+        <a href="#pricing" class="text-sm text-text-secondary hover:text-white transition-colors"
+          style="text-decoration:none;">Bảng giá</a>
+        <a href="#faq" class="text-sm text-text-secondary hover:text-white transition-colors"
+          style="text-decoration:none;">FAQ</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="#register" class="btn-primary text-sm py-2.5 px-5 hidden md:inline-flex">Đặt Tour Ngay</a>
+        <!-- Hamburger -->
+        <button id="hamburger" data-hamburger aria-label="Mở menu"
+          class="md:hidden p-2 text-text-secondary hover:text-white transition-colors">
+          <i data-lucide="menu" style="width:24px;height:24px;"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" data-mobile-menu class="md:hidden hidden border-t"
+      style="border-color:var(--border-subtle);background:var(--bg-secondary);">
+      <div class="px-4 py-4 flex flex-col gap-4">
+        <a href="#about" class="text-sm text-text-secondary hover:text-white transition-colors py-2"
+          style="text-decoration:none;">Giới thiệu</a>
+        <a href="#features" class="text-sm text-text-secondary hover:text-white transition-colors py-2"
+          style="text-decoration:none;">Đặc điểm</a>
+        <a href="#audience" class="text-sm text-text-secondary hover:text-white transition-colors py-2"
+          style="text-decoration:none;">Đối tượng</a>
+        <a href="#pricing" class="text-sm text-text-secondary hover:text-white transition-colors py-2"
+          style="text-decoration:none;">Bảng giá</a>
+        <a href="#faq" class="text-sm text-text-secondary hover:text-white transition-colors py-2"
+          style="text-decoration:none;">FAQ</a>
+        <a href="#register" class="btn-primary text-center mt-2">Đặt Tour Ngay</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- SECTION 2: HERO -->
+  <section class="min-h-screen flex items-center pt-20 pb-16 md:pt-0 md:pb-0 relative overflow-hidden">
+    <div class="absolute inset-0 hero-visual pointer-events-none"></div>
+    <div class="max-w-6xl mx-auto px-4 w-full relative z-10">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left Content -->
+        <div class="text-center md:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-sm font-medium"
+            style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);color:var(--primary);">
+            <i data-lucide="sparkles" style="width:14px;height:14px;"></i>
+            <span>Ưu đãi mùa hè — Giảm đến 30%</span>
+          </div>
+
+          <h1 class="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+            Khám Phá<br><span class="gradient-text">Việt Nam</span><br>Theo Cách Riêng
+          </h1>
+
+          <p class="text-text-secondary text-base md:text-lg leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">
+            Từ Sapa mờ sương đến Phú Quốc rực nắng — VietWander thiết kế hành trình du lịch độc đáo, trọn vẹn cảm xúc, phù hợp
+            mọi ngân sách.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-10">
+            <a href="#register" class="btn-primary text-base py-4 px-8">
+              <i data-lucide="map" style="width:18px;height:18px;"></i>
+              Khám Phá Ngay
+            </a>
+            <a href="#features" class="btn-secondary text-base py-4 px-8">
+              <i data-lucide="play-circle" style="width:18px;height:18px;"></i>
+              Xem Thêm
+            </a>
+          </div>
+
+          <!-- Stats Bar -->
+          <div class="grid grid-cols-3 gap-3">
+            <div class="stat-card rounded-xl p-4 text-center">
+              <div class="font-heading font-extrabold text-2xl md:text-3xl gradient-text" data-count="500">0</div>
+              <div class="text-text-secondary text-xs mt-1">Tour đã đi</div>
+            </div>
+            <div class="stat-card rounded-xl p-4 text-center">
+              <div class="font-heading font-extrabold text-2xl md:text-3xl gradient-text" data-count="12000">0</div>
+              <div class="text-text-secondary text-xs mt-1">Khách hàng</div>
+            </div>
+            <div class="stat-card rounded-xl p-4 text-center">
+              <div class="font-heading font-extrabold text-2xl md:text-3xl gradient-text">4.9</div>
+              <div class="text-text-secondary text-xs mt-1">Điểm đánh giá</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual -->
+        <div class="relative flex justify-center">
+          <div class="relative w-72 h-72 md:w-96 md:h-96 float-anim">
+            <div class="absolute inset-0 rounded-3xl overflow-hidden border" style="border-color:var(--border-subtle);">
+              <img
+                src="https://images.unsplash.com/photo-1643029891412-92f9a81a8c16?q=80&w=3886&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Vịnh Hạ Long — Việt Nam" class="w-full h-full object-cover" loading="eager" />
+              <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(9,10,20,0.3));">
+              </div>
+            </div>
+            <!-- Floating cards -->
+
+            <div class="absolute -bottom-4 -left-4 bg-bg-secondary rounded-xl p-3 border shadow-xl float-anim"
+              style="border-color:var(--border-subtle);">
+              <div class="flex items-center gap-2">
+                <div
+                  style="width:32px;height:32px;background:linear-gradient(135deg,var(--accent),#d97706);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                  <i data-lucide="star" style="width:16px;height:16px;color:#fff;"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold">4.9 / 5.0</p>
+                  <p class="text-xs text-text-secondary">12,000+ đánh giá</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 3: PROBLEM -->
+  <section id="about" class="py-20 md:py-28 relative overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1400&q=50" alt=""
+      class="absolute inset-0 w-full h-full object-cover opacity-5" loading="lazy" aria-hidden="true" />
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <div class="text-center mb-14 reveal">
+        <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+          style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#ef4444;">Những vấn đề thường
+          gặp</span>
+        <h2 class="font-heading font-extrabold text-3xl md:text-4xl mb-4">Du lịch Việt Nam — Nỗi lo thường trực</h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">Bạn đã bao giờ lo lắng về những điều này khi lên kế hoạch du lịch?</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="card-hover rounded-2xl p-6 text-center reveal" style="background:var(--bg-secondary);">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            style="background:rgba(239,68,68,0.1);">
+            <i data-lucide="calendar-x" style="width:28px;height:28px;color:#ef4444;"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Lên kế hoạch rườm rà</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Nghiên cứu điểm đến, so sánh giá, đặt khách sạn, book vé... tốn
+            hàng tuần lễ mà vẫn thiếu sót.</p>
+        </div>
+
+        <div class="card-hover rounded-2xl p-6 text-center reveal" style="background:var(--bg-secondary);">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            style="background:rgba(245,158,11,0.1);">
+            <i data-lucide="wallet" style="width:28px;height:28px;color:#f59e0b;"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Chi phí phát sinh bất ngờ</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Giá tour ban đầu hấp dẫn nhưng phí phát sinh, chèo kéo dọc
+            đường khiến túi tiền "bốc hơi".</p>
+        </div>
+
+        <div class="card-hover rounded-2xl p-6 text-center reveal" style="background:var(--bg-secondary);">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            style="background:rgba(99,102,241,0.1);">
+            <i data-lucide="message-circle-off" style="width:28px;height:28px;color:#6366f1;"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Thông tin không đáng tin</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Review trên mạng thường không trung thực, dễ bị "fake" khiến kỳ
+            vọng và thực tế chênh lệch lớn.</p>
+        </div>
+
+        <div class="card-hover rounded-2xl p-6 text-center reveal" style="background:var(--bg-secondary);">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            style="background:rgba(236,72,153,0.1);">
+            <i data-lucide="umbrella" style="width:28px;height:28px;color:#ec4899;"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Không có bảo hiểm, không an tâm</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Rủi ro tai nạn, mất đồ, ốm đau khi đi du lịch đơn lẻ mà không
+            ai hỗ trợ 24/7.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 4: SOLUTION -->
+  <section id="features" class="py-20 md:py-28" style="background:var(--bg-secondary);">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-14 reveal">
+        <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+          style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);color:var(--primary);">Giải pháp của
+          chúng tôi</span>
+        <h2 class="font-heading font-extrabold text-3xl md:text-4xl mb-4">Tại sao chọn VietWander?</h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">Chúng tôi giải quyết mọi nỗi lo của bạn bằng công nghệ và con người.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card-hover rounded-2xl p-6 reveal" style="background:var(--bg-primary);">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+            style="background:linear-gradient(135deg,var(--primary),#059669);">
+            <i data-lucide="zap" style="width:24px;height:24px;color:#fff;"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Đặt tour trong 60 giây</h3>
+          <p class="text-text-secondary text-sm leading-relaxed mb-4">Giao diện thông minh, AI gợi ý lịch trình tối ưu. Thanh
+            toán an toàn, xác nhận tức thì qua email & SMS.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium"
+              style="background:rgba(16,185,129,0.1);color:var(--primary);">AI Planner</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium"
+              style="background:rgba(16,185,129,0.1);color:var(--primary);">Thanh toán nhanh</span>
+          </div>
+        </div>
+
+        <div class="card-hover rounded-2xl p-6 reveal" style="background:var(--bg-primary);">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+            style="background:linear-gradient(135deg,var(--accent),#d97706);">
+            <i data-lucide="shield-check" style="width:24px;height:24px;color:#fff;"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Giá minh bạch — Không phí ẩn</h3>
+          <p class="text-text-secondary text-sm leading-relaxed mb-4">Báo giá chi tiết từng hạng mục trước khi đặt. Không phí
+            dịch vụ đội lên, không "phụ thu" bất ngờ.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium"
+              style="background:rgba(245,158,11,0.1);color:var(--accent);">Giá rõ ràng</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium"
+              style="background:rgba(245,158,11,0.1);color:var(--accent);">Hoàn tiền 100%</span>
+          </div>
+        </div>
+
+        <div class="card-hover rounded-2xl p-6 reveal" style="background:var(--bg-primary);">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+            style="background:linear-gradient(135deg,#6366f1,#4338ca);">
+            <i data-lucide="users" style="width:24px;height:24px;color:#fff;"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Hướng dẫn viên địa phương</h3>
+          <p class="text-text-secondary text-sm leading-relaxed mb-4">Đội ngũ HDV bản địa giàu kinh nghiệm, am hiểu văn hóa, đưa
+            bạn đến những góc đẹp không có trên sách.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium"
+              style="background:rgba(99,102,241,0.1);color:#6366f1;">HDV bản địa</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium"
+              style="background:rgba(99,102,241,0.1);color:#6366f1;">Tin nhắn 24/7</span>
+          </div>
+        </div>
+
+        <div class="card-hover rounded-2xl p-6 reveal" style="background:var(--bg-primary);">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+            style="background:linear-gradient(135deg,#ec4899,#db2777);">
+            <i data-lucide="map" style="width:24px;height:24px;color:#fff;"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Lịch trình cá nhân hóa</h3>
+          <p class="text-text-secondary text-sm leading-relaxed mb-4">60+ điểm đến, từ miền núi Tây Bắc đến hòn đảo Phú Quốc. Tự
+            chọn mức độ mạo hiểm, ẩm thực, văn hóa.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium" style="background:rgba(236,72,153,0.1);color:#ec4899;">Cá
+              nhân hóa</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium"
+              style="background:rgba(236,72,153,0.1);color:#ec4899;">60+ điểm đến</span>
+          </div>
+        </div>
+
+        <div class="card-hover rounded-2xl p-6 reveal" style="background:var(--bg-primary);">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+            style="background:linear-gradient(135deg,#14b8a6,#0d9488);">
+            <i data-lucide="bed" style="width:24px;height:24px;color:#fff;"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Khách sạn đã được kiểm duyệt</h3>
+          <p class="text-text-secondary text-sm leading-relaxed mb-4">Hơn 200 khách sạn & homestay được đội ngũ VietWander thẩm
+            định thực tế. Đánh giá trung thực, hình ảnh thật 100%.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium" style="background:rgba(20,184,166,0.1);color:#14b8a6;">Đã
+              kiểm duyệt</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium"
+              style="background:rgba(20,184,166,0.1);color:#14b8a6;">Hình thật</span>
+          </div>
+        </div>
+
+        <div class="card-hover rounded-2xl p-6 reveal" style="background:var(--bg-primary);">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+            style="background:linear-gradient(135deg,var(--primary),var(--accent));">
+            <i data-lucide="headphones" style="width:24px;height:24px;color:#fff;"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Hỗ trợ 24/7, mọi lúc</h3>
+          <p class="text-text-secondary text-sm leading-relaxed mb-4">Đội ngũ CSKH trực hotline, Zalo, Messenger xuyên suốt hành
+            trình. Xử lý sự cố nhanh chóng, không để bạn đơn độc.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium"
+              style="background:rgba(16,185,129,0.1);color:var(--primary);">Hotline 24/7</span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-medium"
+              style="background:rgba(16,185,129,0.1);color:var(--primary);">Zalo & Messenger</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 5: TARGET AUDIENCE -->
+  <section id="audience" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-14 reveal">
+        <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+          style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);color:var(--primary);">Đối tượng phù
+          hợp</span>
+        <h2 class="font-heading font-extrabold text-3xl md:text-4xl mb-4">Ai phù hợp với VietWander?</h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">Dù bạn đi một mình, cùng bạn bè hay gia đình — chúng tôi đều có trải
+          nghiệm phù hợp.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="card-hover rounded-2xl p-7 reveal relative overflow-hidden" style="background:var(--bg-secondary);">
+          <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=400&q=70" alt="Solo Traveler"
+            class="absolute inset-0 w-full h-full object-cover opacity-20" loading="lazy" />
+          <div class="relative flex gap-5 items-start">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+              style="background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(16,185,129,0.05));">
+              <i data-lucide="backpack" style="width:26px;height:26px;color:var(--primary);"></i>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl mb-2">Solo Traveler</h3>
+              <p class="text-text-secondary text-sm leading-relaxed mb-3">Bạn muốn tự do khám phá nhưng vẫn có người đồng hành
+                hỗ
+                trợ khi cần. Group nhỏ 4-8 người, phù hợp kết bạn mới.</p>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold"
+                style="background:rgba(16,185,129,0.1);color:var(--primary);">✓ Phù hợp</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-hover rounded-2xl p-7 reveal relative overflow-hidden" style="background:var(--bg-secondary);">
+          <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=400&q=70" alt="Cặp đôi"
+            class="absolute inset-0 w-full h-full object-cover opacity-20" loading="lazy" />
+          <div class="relative flex gap-5 items-start">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+              style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(245,158,11,0.05));">
+              <i data-lucide="heart-handshake" style="width:26px;height:26px;color:var(--accent);"></i>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl mb-2">Cặp Đôi & HONEYMOON</h3>
+              <p class="text-text-secondary text-sm leading-relaxed mb-3">Kỳ nghỉ lãng mạn tại những resort riêng tư, view hoàng
+                hôn tuyệt đẹp. Champagne, spa, ẩm thực — tất cả đã được chuẩn bị.</p>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold"
+                style="background:rgba(245,158,11,0.1);color:var(--accent);">✓ Phù hợp</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-hover rounded-2xl p-7 reveal relative overflow-hidden" style="background:var(--bg-secondary);">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=70" alt="Gia đình"
+            class="absolute inset-0 w-full h-full object-cover opacity-20" loading="lazy" />
+          <div class="relative flex gap-5 items-start">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+              style="background:linear-gradient(135deg,rgba(236,72,153,0.15),rgba(236,72,153,0.05));">
+              <i data-lucide="home" style="width:26px;height:26px;color:#ec4899;"></i>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl mb-2">Gia Đình Có Con Nhỏ</h3>
+              <p class="text-text-secondary text-sm leading-relaxed mb-3">Lịch trình nhẹ nhàng, có trẻ em vui chơi, ẩm thực đa
+                dạng. Khách sạn friendly, an toàn tuyệt đối cho các bé.</p>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold"
+                style="background:rgba(236,72,153,0.1);color:#ec4899;">✓ Phù hợp</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-hover rounded-2xl p-7 reveal relative overflow-hidden" style="background:var(--bg-secondary);">
+          <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&q=70" alt="Adventure"
+            class="absolute inset-0 w-full h-full object-cover opacity-20" loading="lazy" />
+          <div class="relative flex gap-5 items-start">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+              style="background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(99,102,241,0.05));">
+              <i data-lucide="mountain" style="width:26px;height:26px;color:#6366f1;"></i>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl mb-2">Adventure Seekers</h3>
+              <p class="text-text-secondary text-sm leading-relaxed mb-3">Yêu thích leo núi, lặn biển, zip-line, khám phá hang
+                động? Đội ngũ chuyên gia địa phương đảm bảo an toàn tối đa.</p>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold"
+                style="background:rgba(99,102,241,0.1);color:#6366f1;">✓ Phù hợp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 6: DETAILS (TIMELINE) -->
+  <section id="pricing" class="py-20 md:py-28" style="background:var(--bg-secondary);">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-14 reveal">
+        <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+          style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);color:var(--primary);">Quy trình đặt
+          tour</span>
+        <h2 class="font-heading font-extrabold text-3xl md:text-4xl mb-4">Chỉ 4 bước đơn giản</h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">Từ ý tưởng đến hành trình chỉ trong vài phút. Không rườm rà, không chờ
+          đợi.</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <div class="relative">
+          <!-- Timeline vertical line -->
+          <div class="absolute left-7 top-0 bottom-0 timeline-line hidden md:block" style="left: 27px;"></div>
+
+          <div class="space-y-8">
+            <div class="reveal flex gap-6 items-start">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 z-10"
+                style="background:linear-gradient(135deg,var(--primary),#059669);">
+                <span class="font-heading font-extrabold text-lg text-white">01</span>
+              </div>
+              <div class="card-hover rounded-2xl p-6 flex-1" style="background:var(--bg-primary);">
+                <div class="flex flex-wrap items-center gap-3 mb-2">
+                  <h3 class="font-heading font-bold text-lg">Chọn điểm đến & ngày</h3>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-medium"
+                    style="background:rgba(16,185,129,0.1);color:var(--primary);">~5 phút</span>
+                </div>
+                <p class="text-text-secondary text-sm leading-relaxed">Chọn điểm đến yêu thích (Sapa, Hạ Long, Đà Nẵng, Phú
+                  Quốc...), số ngày, số lượng khách. AI sẽ gợi ý tour tối ưu nhất.</p>
+              </div>
+            </div>
+
+            <div class="reveal flex gap-6 items-start">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 z-10"
+                style="background:linear-gradient(135deg,var(--accent),#d97706);">
+                <span class="font-heading font-extrabold text-lg text-white">02</span>
+              </div>
+              <div class="card-hover rounded-2xl p-6 flex-1" style="background:var(--bg-primary);">
+                <div class="flex flex-wrap items-center gap-3 mb-2">
+                  <h3 class="font-heading font-bold text-lg">Tùy chỉnh & xác nhận</h3>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-medium"
+                    style="background:rgba(245,158,11,0.1);color:var(--accent);">~3 phút</span>
+                </div>
+                <p class="text-text-secondary text-sm leading-relaxed">Điều chỉnh lịch trình, chọn khách sạn hạng, thêm bữa ăn
+                  đặc biệt. Xem báo giá chi tiết — không phí ẩn.</p>
+              </div>
+            </div>
+
+            <div class="reveal flex gap-6 items-start">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 z-10"
+                style="background:linear-gradient(135deg,#6366f1,#4338ca);">
+                <span class="font-heading font-extrabold text-lg text-white">03</span>
+              </div>
+              <div class="card-hover rounded-2xl p-6 flex-1" style="background:var(--bg-primary);">
+                <div class="flex flex-wrap items-center gap-3 mb-2">
+                  <h3 class="font-heading font-bold text-lg">Thanh toán an toàn</h3>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-medium"
+                    style="background:rgba(99,102,241,0.1);color:#6366f1;">~2 phút</span>
+                </div>
+                <p class="text-text-secondary text-sm leading-relaxed">Thanh toán qua VNPay, MoMo, ZaloPay, Visa/Mastercard hoặc
+                  chuyển khoản. Bảo mật SSL 256-bit, xác nhận tức thì.</p>
+              </div>
+            </div>
+
+            <div class="reveal flex gap-6 items-start">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 z-10"
+                style="background:linear-gradient(135deg,#ec4899,#db2777);">
+                <span class="font-heading font-extrabold text-lg text-white">04</span>
+              </div>
+              <div class="card-hover rounded-2xl p-6 flex-1" style="background:var(--bg-primary);">
+                <div class="flex flex-wrap items-center gap-3 mb-2">
+                  <h3 class="font-heading font-bold text-lg">Lên đường — Tận hưởng!</h3>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-medium"
+                    style="background:rgba(236,72,153,0.1);color:#ec4899;">Hành trình bắt đầu</span>
+                </div>
+                <p class="text-text-secondary text-sm leading-relaxed">Nhận lịch trình chi tiết qua app, hướng dẫn viên liên hệ
+                  trước 24h. VietWander đồng hành xuyên suốt — bạn chỉ việc tận hưởng.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 7: SOCIAL PROOF -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-14 reveal">
+        <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+          style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);color:var(--primary);">Khách hàng nói
+          gì</span>
+        <h2 class="font-heading font-extrabold text-3xl md:text-4xl mb-4">Hàng nghìn người đã tin tưởng</h2>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
+        <div class="card-hover rounded-2xl p-6 reveal" style="background:var(--bg-secondary);">
+          <div class="flex gap-1 mb-3">
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-5">"Mình đi Sapa 5 ngày cùng VietWander, HDV anh Minh cực kỳ
+            nhiệt tình. Đưa mình đến bản người H'Mông, ăn súp lá xanh ở nhà dân — trải nghiệm không thể quên!"</p>
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&q=70" alt="Nguyễn Hương"
+              class="w-10 h-10 rounded-full object-cover" loading="lazy" />
+            <div>
+              <p class="font-semibold text-sm">Nguyễn Hương</p>
+              <p class="text-text-secondary text-xs">Hà Nội — Tour Sapa</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-hover rounded-2xl p-6 reveal" style="background:var(--bg-secondary);">
+          <div class="flex gap-1 mb-3">
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-5">"Tận hưởng kỳ nghỉ honeymoon tại Phú Quốc. Resort private
+            pool view biển quá đẹp, bữa tối candlelight trên bãi biển — vợ mình khóc vì hạnh phúc. Highly recommend!"</p>
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&q=70" alt="Trần Minh"
+              class="w-10 h-10 rounded-full object-cover" loading="lazy" />
+            <div>
+              <p class="font-semibold text-sm">Trần Minh</p>
+              <p class="text-text-secondary text-xs">TP.HCM — Honeymoon Phú Quốc</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-hover rounded-2xl p-6 reveal" style="background:var(--bg-secondary);">
+          <div class="flex gap-1 mb-3">
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+            <i data-lucide="star" style="width:16px;height:16px;color:var(--accent);fill:var(--accent);"></i>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-5">"Đi cả gia đình 5 người (có 2 bé 5 và 8 tuổi) qua Đà Nẵng
+            – Hội An. Lịch trình nhẹ nhàng, các bé vui không chán. Đặc biệt đội ngũ hỗ trợ 24/7 rất yên tâm."</p>
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop&q=70" alt="Lê Thanh"
+              class="w-10 h-10 rounded-full object-cover" loading="lazy" />
+            <div>
+              <p class="font-semibold text-sm">Lê Thanh</p>
+              <p class="text-text-secondary text-xs">Đà Nẵng — Gia đình</p>
+            </div>
+          </div>
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm"
+            style="background:linear-gradient(135deg,#ec4899,#db2777);color:#fff;">LT</div>
+          <div>
+            <p class="font-semibold text-sm">Lê Thanh</p>
+            <p class="text-text-secondary text-xs">Đà Nẵng — Gia đình</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 reveal">
+      <div class="stat-card rounded-2xl p-6 text-center">
+        <div class="font-heading font-extrabold text-3xl md:text-4xl gradient-text mb-1" data-count2="12">0</div>
+        <div class="text-text-secondary text-sm">Tỉnh thành</div>
+      </div>
+      <div class="stat-card rounded-2xl p-6 text-center">
+        <div class="font-heading font-extrabold text-3xl md:text-4xl gradient-text mb-1">200+</div>
+        <div class="text-text-secondary text-sm">Khách sạn đối tác</div>
+      </div>
+      <div class="stat-card rounded-2xl p-6 text-center">
+        <div class="font-heading font-extrabold text-3xl md:text-4xl gradient-text mb-1" data-count2="50">0</div>
+        <div class="text-text-secondary text-sm">Hướng dẫn viên</div>
+      </div>
+      <div class="stat-card rounded-2xl p-6 text-center">
+        <div class="font-heading font-extrabold text-3xl md:text-4xl gradient-text mb-1">4.9/5</div>
+        <div class="text-text-secondary text-sm">Điểm trung bình</div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 7.5: GALLERY CAROUSEL -->
+  <section id="gallery" class="py-20 md:py-28" style="background:var(--bg-secondary);">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-10 reveal">
+        <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+          style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);color:var(--primary);">Bộ sưu tập</span>
+        <h2 class="font-heading font-extrabold text-3xl md:text-4xl mb-4">Vịnh Hạ Long — Kỳ Quan Thiên Nhiên</h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">Hơn 1.600 đảo đá vôi với hang động kỳ bí, rừng nguyên sinh và làn nước ngọc lục bảo. Được UNESCO công nhận Di sản Thế giới.</p>
+      </div>
+
+      <!-- Carousel Container -->
+      <div class="relative reveal">
+        <!-- Main Track -->
+        <div id="carousel-track" class="overflow-hidden rounded-2xl" style="height:420px;">
+          <div id="carousel-slides" class="flex transition-transform duration-500 ease-out h-full">
+            <div class="flex-shrink-0 w-1/6 h-full relative">
+              <img src="https://images.unsplash.com/photo-1643029891412-92f9a81a8c16?w=1200&q=80" alt="Vịnh Hạ Long — toàn cảnh" class="w-full h-full object-cover" loading="eager" />
+              <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(9,10,20,0.7) 0%,transparent 50%);"></div>
+              <div class="absolute bottom-6 left-6 right-6">
+                <p class="font-heading font-bold text-xl text-white mb-1">Toàn cảnh Vịnh Hạ Long</p>
+                <p class="text-white/70 text-sm">Quảng Ninh — Di sản Thiên nhiên Thế giới UNESCO</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-1/6 h-full relative">
+              <img src="https://images.unsplash.com/photo-1675111066042-9baa4c343157?w=1200&q=80" alt="Vịnh Hạ Long — nhìn từ trên cao" class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(9,10,20,0.7) 0%,transparent 50%);"></div>
+              <div class="absolute bottom-6 left-6 right-6">
+                <p class="font-heading font-bold text-xl text-white mb-1">Nhìn từ trên cao</p>
+                <p class="text-white/70 text-sm">Hơn 1.600 đảo đá vôi trải dọc vịnh</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-1/6 h-full relative">
+              <img src="https://images.unsplash.com/photo-1697850084120-4896a446a04d?w=1200&q=80" alt="Vịnh Hạ Long — hoàng hôn" class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(9,10,20,0.7) 0%,transparent 50%);"></div>
+              <div class="absolute bottom-6 left-6 right-6">
+                <p class="font-heading font-bold text-xl text-white mb-1">Hoàng hôn trên vịnh</p>
+                <p class="text-white/70 text-sm">Khoảnh khắc vàng rực rỡ trên mặt nước</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-1/6 h-full relative">
+              <img src="https://images.unsplash.com/photo-1625396836163-80c0d3d7eb86?w=1200&q=80" alt="Hang Sửng Sốt" class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(9,10,20,0.7) 0%,transparent 50%);"></div>
+              <div class="absolute bottom-6 left-6 right-6">
+                <p class="font-heading font-bold text-xl text-white mb-1">Hang Sửng Sốt</p>
+                <p class="text-white/70 text-sm">Hang động đá vôi kỳ vĩ bậc nhất vịnh</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-1/6 h-full relative">
+              <img src="https://images.unsplash.com/photo-1573270689103-d7a4e42b609a?w=1200&q=80" alt="Thuyền buồm trên vịnh" class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(9,10,20,0.7) 0%,transparent 50%);"></div>
+              <div class="absolute bottom-6 left-6 right-6">
+                <p class="font-heading font-bold text-xl text-white mb-1">Thuyền buồm lướt vịnh</p>
+                <p class="text-white/70 text-sm">Trải nghiệm du ngoạn trên làn nước ngọc</p>
+              </div>
+            </div>
+            <div class="flex-shrink-0 w-1/6 h-full relative">
+              <img src="https://images.unsplash.com/photo-1680896444865-e76d81267f94?w=1200&q=80" alt="Làng chài Vung Viễn" class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(9,10,20,0.7) 0%,transparent 50%);"></div>
+              <div class="absolute bottom-6 left-6 right-6">
+                <p class="font-heading font-bold text-xl text-white mb-1">Làng chài Vung Viễn</p>
+                <p class="text-white/70 text-sm">Cuộc sống bình yên giữa lòng vịnh</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prev / Next Arrows -->
+        <button type="button" id="carousel-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 z-10" style="background:rgba(9,10,20,0.7);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);color:#fff;" aria-label="Ảnh trước">
+          <i data-lucide="chevron-left" style="width:24px;height:24px;"></i>
+        </button>
+        <button type="button" id="carousel-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 z-10" style="background:rgba(9,10,20,0.7);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);color:#fff;" aria-label="Ảnh sau">
+          <i data-lucide="chevron-right" style="width:24px;height:24px;"></i>
+        </button>
+
+        <!-- Dots -->
+        <div id="carousel-dots" class="flex justify-center gap-2 mt-5">
+          <button type="button" class="carousel-dot w-3 h-3 rounded-full transition-all duration-300" style="background:var(--primary);" data-index="0" aria-label="Đến ảnh 1"></button>
+          <button type="button" class="carousel-dot w-3 h-3 rounded-full transition-all duration-300" style="background:var(--border-subtle);" data-index="1" aria-label="Đến ảnh 2"></button>
+          <button type="button" class="carousel-dot w-3 h-3 rounded-full transition-all duration-300" style="background:var(--border-subtle);" data-index="2" aria-label="Đến ảnh 3"></button>
+          <button type="button" class="carousel-dot w-3 h-3 rounded-full transition-all duration-300" style="background:var(--border-subtle);" data-index="3" aria-label="Đến ảnh 4"></button>
+          <button type="button" class="carousel-dot w-3 h-3 rounded-full transition-all duration-300" style="background:var(--border-subtle);" data-index="4" aria-label="Đến ảnh 5"></button>
+          <button type="button" class="carousel-dot w-3 h-3 rounded-full transition-all duration-300" style="background:var(--border-subtle);" data-index="5" aria-label="Đến ảnh 6"></button>
+        </div>
+
+        <!-- Thumbnail Strip -->
+        <div class="flex gap-3 mt-5 overflow-x-auto pb-2" style="scrollbar-width:thin;">
+          <button type="button" class="carousel-thumb flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 opacity-60 hover:opacity-100" data-index="0" aria-label="Ảnh 1">
+            <img src="https://images.unsplash.com/photo-1643029891412-92f9a81a8c16?w=200&q=60" alt="" class="w-full h-full object-cover" loading="lazy" />
+          </button>
+          <button type="button" class="carousel-thumb flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 opacity-60 hover:opacity-100" data-index="1" aria-label="Ảnh 2">
+            <img src="https://images.unsplash.com/photo-1675111066042-9baa4c343157?w=200&q=60" alt="" class="w-full h-full object-cover" loading="lazy" />
+          </button>
+          <button type="button" class="carousel-thumb flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 opacity-60 hover:opacity-100" data-index="2" aria-label="Ảnh 3">
+            <img src="https://images.unsplash.com/photo-1697850084120-4896a446a04d?w=200&q=60" alt="" class="w-full h-full object-cover" loading="lazy" />
+          </button>
+          <button type="button" class="carousel-thumb flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 opacity-60 hover:opacity-100" data-index="3" aria-label="Ảnh 4">
+            <img src="https://images.unsplash.com/photo-1625396836163-80c0d3d7eb86?w=200&q=60" alt="" class="w-full h-full object-cover" loading="lazy" />
+          </button>
+          <button type="button" class="carousel-thumb flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 opacity-60 hover:opacity-100" data-index="4" aria-label="Ảnh 5">
+            <img src="https://images.unsplash.com/photo-1573270689103-d7a4e42b609a?w=200&q=60" alt="" class="w-full h-full object-cover" loading="lazy" />
+          </button>
+          <button type="button" class="carousel-thumb flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 opacity-60 hover:opacity-100" data-index="5" aria-label="Ảnh 6">
+            <img src="https://images.unsplash.com/photo-1680896444865-e76d81267f94?w=200&q=60" alt="" class="w-full h-full object-cover" loading="lazy" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 8: CTA (REGISTER FORM) -->
+  <section id="register" class="py-20 md:py-28 relative overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1400&q=60" alt=""
+      class="absolute inset-0 w-full h-full object-cover opacity-10" loading="lazy" aria-hidden="true" />
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom,var(--bg-primary),rgba(9,10,20,0.88));"></div>
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <div class="max-w-xl mx-auto text-center">
+        <div class="reveal">
+          <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+            style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:var(--primary);">Đăng ký ngay
+            hôm nay</span>
+          <h2 class="font-heading font-extrabold text-3xl md:text-4xl mb-4">Sẵn Sàng Cho Chuyến Đi Đầu Tiên?</h2>
+          <p class="text-text-secondary mb-8">Đăng ký tư vấn miễn phí, nhận ưu đãi giảm 15% cho 100 khách hàng đầu tiên của
+            tháng này.</p>
+        </div>
+
+        <form id="register-form" class="reveal rounded-2xl p-6 md:p-8"
+          style="background:var(--bg-secondary);border:1px solid var(--border-subtle);">
+          <div class="space-y-4 text-left">
+            <div>
+              <label for="fullname" class="block text-sm font-medium mb-1.5">Họ và tên <span
+                  style="color:#ef4444;">*</span></label>
+              <input type="text" id="fullname" name="fullname" class="input-field" placeholder="VD: Nguyễn Văn A" required />
+              <p id="fullname-error" class="error-msg">Vui lòng nhập họ và tên.</p>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium mb-1.5">Email <span style="color:#ef4444;">*</span></label>
+              <input type="email" id="email" name="email" class="input-field" placeholder="VD: email@example.com" required />
+              <p id="email-error" class="error-msg">Vui lòng nhập email hợp lệ.</p>
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium mb-1.5">Số điện thoại</label>
+              <input type="tel" id="phone" name="phone" class="input-field" placeholder="VD: 0912.xxx.xxx" />
+              <p id="phone-error" class="error-msg">Số điện thoại không hợp lệ.</p>
+            </div>
+            <button type="submit" class="btn-primary w-full justify-center text-base py-4 mt-2">
+              <i data-lucide="send" style="width:18px;height:18px;"></i>
+              Nhận Ưu Đãi Ngay
+            </button>
+          </div>
+          <p class="text-text-secondary text-xs mt-4 text-center">Bằng việc đăng ký, bạn đồng ý với <a href="#"
+              style="color:var(--primary);text-decoration:none;">Điều khoản sử dụng</a>.</p>
+        </form>
+
+        <div class="reveal mt-8">
+          <div class="flex items-center gap-4 my-6">
+            <div class="flex-1 h-px" style="background:var(--border-subtle);"></div>
+            <span class="text-text-secondary text-sm">hoặc liên hệ trực tiếp</span>
+            <div class="flex-1 h-px" style="background:var(--border-subtle);"></div>
+          </div>
+          <a href="tel:0908123456"
+            class="inline-flex items-center gap-3 font-heading font-extrabold text-2xl md:text-3xl gradient-text"
+            style="text-decoration:none;">
+            <i data-lucide="phone" style="width:24px;height:24px;color:var(--primary);"></i>
+            0908.123.456
+          </a>
+          <p class="text-text-secondary text-sm mt-2">Tư vấn 24/7 — Không tính phí</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 9: FAQ -->
+  <section id="faq" class="py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="text-center mb-14 reveal">
+        <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+          style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);color:var(--primary);">Câu hỏi thường
+          gặp</span>
+        <h2 class="font-heading font-extrabold text-3xl md:text-4xl mb-4">FAQ</h2>
+      </div>
+
+      <div class="faq-content space-y-3 reveal">
+        <details class="rounded-xl" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);">
+          <summary>
+            Tour có bảo hiểm du lịch không?
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;color:var(--text-secondary);"></i>
+          </summary>
+          <div>Chúng tôi tặng bảo hiểm du lịch cơ bản cho mọi khách. Bạn có thể nâng cấp gói bảo hiểm cao cấp (bảo hiểm hủy
+            trip, tai nạn, mất hành lý) với chi phí từ 50.000 VNĐ/ngày.</div>
+        </details>
+
+        <details class="rounded-xl" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);">
+          <summary>
+            Tôi có thể hủy tour và hoàn tiền không?
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;color:var(--text-secondary);"></i>
+          </summary>
+          <div>Có. Hủy trước 14 ngày: hoàn 100%. Hủy trước 7 ngày: hoàn 70%. Hủy trước 3 ngày: hoàn 30%. Không hoàn tiền nếu hủy
+            trong vòng 72 giờ. Chi tiết tại <a href="#" style="color:var(--primary);text-decoration:none;">Chính sách hoàn
+              tiền</a>.</div>
+        </details>
+
+        <details class="rounded-xl" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);">
+          <summary>
+            Đi một mình có được ghép group không?
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;color:var(--text-secondary);"></i>
+          </summary>
+          <div>Hoàn toàn được! VietWander có chương trình ghép group cho solo traveler. Bạn sẽ được ghép với những người cùng sở
+            thích, độ tuổi tương đương để đảm bảo trải nghiệm vui vẻ. Phụ thu phòng đơn: từ 300.000 VNĐ/đêm.</div>
+        </details>
+
+        <details class="rounded-xl" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);">
+          <summary>
+            Tour có phù hợp với người lớn tuổi không?
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;color:var(--text-secondary);"></i>
+          </summary>
+          <div>Có nhiều tour được thiết kế riêng cho người lớn tuổi với lịch trình nhẹ nhàng, không leo trèo nhiều. Chúng tôi có
+            xe riêng, HDV chuyên nghiệp, và hỗ trợ đặc biệt cho người cần di chuyển chậm hoặc có nhu cầu y tế.</div>
+        </details>
+
+        <details class="rounded-xl" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);">
+          <summary>
+            Thanh toán bằng những phương thức nào?
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;color:var(--text-secondary);"></i>
+          </summary>
+          <div>Chúng tôi chấp nhận: Visa, Mastercard, JCB, VNPay, MoMo, ZaloPay, chuyển khoản ngân hàng (Vietcombank, ACB,
+            VPBank), và trả góp 0% qua thẻ tín dụng. Tất cả giao dịch được mã hóa SSL 256-bit.</div>
+        </details>
+
+        <details class="rounded-xl" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);">
+          <summary>
+            VietWander có app di động không?
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;color:var(--text-secondary);"></i>
+          </summary>
+          <div>Có! App VietWander có trên iOS và Android. Tại đây bạn xem lịch trình chi tiết, chat trực tiếp với HDV, nhận
+            thông báo realtime, xem vé điện tử, đánh giá dịch vụ ngay trong chuyến đi.</div>
+        </details>
+
+        <details class="rounded-xl" style="background:var(--bg-secondary);border:1px solid var(--border-subtle);">
+          <summary>
+            Tôi cần chuẩn bị gì trước chuyến đi?
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;color:var(--text-secondary);"></i>
+          </summary>
+          <div>Sau khi đặt tour, bạn sẽ nhận email hướng dẫn chi tiết: check-in online, packing list theo điểm đến, giấy tờ cần
+            mang, thông tin thời tiết dự báo. Nói chung chỉ cần mang theo hành lý nhẹ và tinh thần sẵn sàng!</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 10: FOOTER -->
+  <footer style="background:#050610;">
+    <div class="max-w-6xl mx-auto px-4 py-14">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+        <!-- Brand -->
+        <div>
+          <a href="#" class="flex items-center gap-2 mb-4" style="text-decoration:none;">
+            <div
+              style="width:36px;height:36px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:10px;display:flex;align-items:center;justify-content:center;">
+              <i data-lucide="compass" style="width:20px;height:20px;color:#fff;"></i>
+            </div>
+            <span class="font-heading font-extrabold text-xl gradient-text">VietWander</span>
+          </a>
+          <p class="text-text-secondary text-sm leading-relaxed mb-4">Khám phá Việt Nam theo cách riêng. Hành trình độc đáo,
+            trọn vẹn cảm xúc.</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-colors"
+              style="background:var(--bg-tertiary);color:var(--text-secondary);" aria-label="Facebook">
+              <i data-lucide="facebook" style="width:16px;height:16px;"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-colors"
+              style="background:var(--bg-tertiary);color:var(--text-secondary);" aria-label="Instagram">
+              <i data-lucide="instagram" style="width:16px;height:16px;"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center transition-colors"
+              style="background:var(--bg-tertiary);color:var(--text-secondary);" aria-label="YouTube">
+              <i data-lucide="youtube" style="width:16px;height:16px;"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="font-heading font-bold mb-4">Liên hệ</h4>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <i data-lucide="map-pin" style="width:16px;height:16px;color:var(--primary);flex-shrink:0;margin-top:2px;"></i>
+              <p class="text-text-secondary text-sm">Tầng 12, Tòa nhà ABC Tower, 123 Nguyễn Huệ, Quận 1, TP.HCM</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="phone" style="width:16px;height:16px;color:var(--primary);flex-shrink:0;"></i>
+              <a href="tel:0908123456" class="text-text-secondary text-sm hover:text-white transition-colors"
+                style="text-decoration:none;">0908.123.456</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="mail" style="width:16px;height:16px;color:var(--primary);flex-shrink:0;"></i>
+              <a href="mailto:hello@vietwander.vn" class="text-text-secondary text-sm hover:text-white transition-colors"
+                style="text-decoration:none;">hello@vietwander.vn</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="clock" style="width:16px;height:16px;color:var(--primary);flex-shrink:0;"></i>
+              <p class="text-text-secondary text-sm">T2 – CN: 8:00 – 22:00</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-heading font-bold mb-4">Liên kết nhanh</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#about" class="text-text-secondary text-sm hover:text-white transition-colors"
+                style="text-decoration:none;">Giới thiệu</a></li>
+            <li><a href="#features" class="text-text-secondary text-sm hover:text-white transition-colors"
+                style="text-decoration:none;">Đặc điểm nổi bật</a></li>
+            <li><a href="#audience" class="text-text-secondary text-sm hover:text-white transition-colors"
+                style="text-decoration:none;">Đối tượng phù hợp</a></li>
+            <li><a href="#pricing" class="text-text-secondary text-sm hover:text-white transition-colors"
+                style="text-decoration:none;">Quy trình đặt tour</a></li>
+            <li><a href="#faq" class="text-text-secondary text-sm hover:text-white transition-colors"
+                style="text-decoration:none;">Câu hỏi thường gặp</a></li>
+            <li><a href="#" class="text-text-secondary text-sm hover:text-white transition-colors"
+                style="text-decoration:none;">Chính sách bảo mật</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h4 class="font-heading font-bold mb-4">Nhận ưu đãi</h4>
+          <p class="text-text-secondary text-sm mb-4">Đăng ký nhận tin ưu đãi du lịch mỗi tuần.</p>
+          <form id="newsletter-form" class="space-y-2">
+            <input type="email" id="newsletter-email" class="input-field" placeholder="Email của bạn" required />
+            <button type="submit" class="btn-primary w-full justify-center text-sm py-3">
+              <i data-lucide="bell" style="width:16px;height:16px;"></i>
+              Đăng ký
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-t pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+        style="border-color:var(--border-subtle);">
+        <p class="text-text-secondary text-sm">© 2026 VietWander. Tất cả quyền được bảo lưu.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-text-secondary text-sm hover:text-white transition-colors" style="text-decoration:none;">Điều
+            khoản</a>
+          <a href="#" class="text-text-secondary text-sm hover:text-white transition-colors" style="text-decoration:none;">Bảo
+            mật</a>
+          <a href="#" class="text-text-secondary text-sm hover:text-white transition-colors"
+            style="text-decoration:none;">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">
+    <i data-lucide="check-circle" style="width:20px;height:20px;"></i>
+    <span id="toast-message">Đăng ký thành công!</span>
+  </div>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      const icon = hamburger.querySelector('i');
+      if (mobileMenu.classList.contains('hidden')) {
+        icon.setAttribute('data-lucide', 'menu');
+      } else {
+        icon.setAttribute('data-lucide', 'x');
+      }
+      lucide.createIcons();
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        const icon = hamburger.querySelector('i');
+        icon.setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+      });
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('nav-scrolled');
+      } else {
+        navbar.classList.remove('nav-scrolled');
+      }
+    });
+
+    // Scroll Reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Counter Animation
+    function animateCount(el, target, suffix = '') {
+      let current = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        if (target >= 1000) {
+          el.textContent = Math.floor(current / 1000) + 'K' + suffix;
+        } else {
+          el.textContent = Math.floor(current) + suffix;
+        }
+      }, 16);
+    }
+
+    const countElements = document.querySelectorAll('[data-count]');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = parseInt(entry.target.getAttribute('data-count'));
+          animateCount(entry.target, target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    countElements.forEach(el => countObserver.observe(el));
+
+    const count2Elements = document.querySelectorAll('[data-count2]');
+    const count2Observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = parseInt(entry.target.getAttribute('data-count2'));
+          animateCount(entry.target, target, '+');
+          count2Observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    count2Elements.forEach(el => count2Observer.observe(el));
+
+    // Toast
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    // Form Validation & Submit
+    const registerForm = document.getElementById('register-form');
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      const fullname = document.getElementById('fullname');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phone');
+
+      // Reset errors
+      document.querySelectorAll('.error-msg').forEach(el => el.classList.remove('show'));
+      document.querySelectorAll('.input-field').forEach(el => el.classList.remove('input-error'));
+
+      // Validate fullname
+      if (!fullname.value.trim()) {
+        fullname.classList.add('input-error');
+        document.getElementById('fullname-error').classList.add('show');
+        valid = false;
+      }
+
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email.value.trim())) {
+        email.classList.add('input-error');
+        document.getElementById('email-error').classList.add('show');
+        valid = false;
+      }
+
+      // Validate phone (optional)
+      if (phone.value.trim()) {
+        const phoneRegex = /^(0[1-9])?[0-9]{9,10}$/;
+        if (!phoneRegex.test(phone.value.replace(/\s/g, ''))) {
+          phone.classList.add('input-error');
+          document.getElementById('phone-error').classList.add('show');
+          valid = false;
+        }
+      }
+
+      if (valid) {
+        const formData = {
+          fullname: fullname.value.trim(),
+          email: email.value.trim(),
+          phone: phone.value.trim()
+        };
+        console.log('Form submitted:', formData);
+        showToast('Đăng ký thành công! Chúng tôi sẽ liên hệ sớm.');
+        registerForm.reset();
+      }
+    });
+
+    // Newsletter form
+    const newsletterForm = document.getElementById('newsletter-form');
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('newsletter-email');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(emailInput.value.trim())) {
+        showToast('Đăng ký nhận tin thành công!');
+        newsletterForm.reset();
+      }
+    });
+
+    // ─── Gallery Carousel ───
+    (function () {
+      const slides = document.getElementById('carousel-slides');
+      const dots = document.querySelectorAll('.carousel-dot');
+      const thumbs = document.querySelectorAll('.carousel-thumb');
+      const prevBtn = document.getElementById('carousel-prev');
+      const nextBtn = document.getElementById('carousel-next');
+      const total = 6;
+      let current = 0;
+      let autoplayTimer = null;
+
+      function goTo(index) {
+        current = ((index % total) + total) % total;
+        slides.style.transform = `translateX(-${current * (100 / total)}%)`;
+        dots.forEach((d, i) => {
+          d.style.background = i === current ? 'var(--primary)' : 'var(--border-subtle)';
+          d.style.width = i === current ? '24px' : '12px';
+        });
+        thumbs.forEach((t, i) => {
+          t.style.borderColor = i === current ? 'var(--primary)' : 'transparent';
+          t.style.opacity = i === current ? '1' : '0.6';
+        });
+      }
+
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      prevBtn.addEventListener('click', () => { prev(); resetAutoplay(); });
+      nextBtn.addEventListener('click', () => { next(); resetAutoplay(); });
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => { goTo(+dot.dataset.index); resetAutoplay(); });
+      });
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('click', () => { goTo(+thumb.dataset.index); resetAutoplay(); });
+      });
+
+      // Touch / Swipe support
+      let touchStartX = 0;
+      slides.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      slides.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); resetAutoplay(); }
+      });
+
+      function resetAutoplay() {
+        clearInterval(autoplayTimer);
+        autoplayTimer = setInterval(next, 5000);
+      }
+      resetAutoplay();
+    })();
+  </script>
+</body>
+
+</html>

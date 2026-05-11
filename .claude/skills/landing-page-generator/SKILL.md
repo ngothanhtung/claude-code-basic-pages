@@ -1,6 +1,6 @@
 ---
 name: landing-page-generator
-description: Xây dựng Landing Page hoàn chỉnh với cấu trúc 10 sections chuẩn đổi mới (Hero, Problem, Solution, Benefits, Content, Social Proof, Pricing, CTA, FAQ, Footer) với tuỳ chọn chủ đề, primary color và theme (dark/light).
+description: Xây dựng Landing Page hoàn chỉnh cho mọi ngành nghề với cấu trúc 10 sections chuẩn đổi mới (Navigation, Hero, Problem, Solution, Target Audience, Details, Social Proof, CTA, FAQ, Footer). Hỗ trợ tuỳ chỉnh hoàn toàn về màu sắc, font, theme (dark/light), và design system theo yêu cầu cụ thể.
 ---
 
 ## Ngữ cảnh dự án
@@ -8,64 +8,340 @@ description: Xây dựng Landing Page hoàn chỉnh với cấu trúc 10 section
 Dự án sử dụng:
 
 - **Công nghệ cốt lõi**:
-  - **HTML thuần** cho cấu trúc ngữ nghĩa (Semantic).
-  - **CSS thuần** (kết hợp với **Tailwind CSS** qua CDN hoặc build step) để linh hoạt tùy chỉnh giao diện và bố cục.
-  - **JavaScript thuần** (Vanilla JS) để xử lý logic, sự kiện và tương tác cơ bản.
-  - **Lucide Icons** cho hệ thống biểu tượng (icons) sắc nét và nhất quán.
-  - **Animate.css** (https://animate.style/) cho các hiệu ứng chuyển động có sẵn.
-- **Mục tiêu**: Xây dựng một Landing Page chuẩn, tập trung vào chuyển đổi (conversion rate) với nội dung được tối ưu cho các chủ đề khác nhau (Khóa Học, Thẩm Mỹ Viện, ...).
-- **Thiết kế**: Đảm bảo Landing Page trông hiện đại, mượt mà, hỗ trợ Responsive và chuẩn SEO.
+  - **HTML5 Semantic** cho cấu trúc (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`).
+  - **Tailwind CSS** qua CDN (https://cdn.tailwindcss.com) để tùy biến giao diện và bố cục nhanh chóng.
+  - **JavaScript thuần** (Vanilla JS) cho menu mobile, form validation, smooth scroll, animations, và IntersectionObserver.
+  - **Lucide Icons** (CDN: https://unpkg.com/lucide@latest) cho hệ thống biểu tượng.
+  - **Google Fonts** cho font chất lượng cao.
+- **Mục tiêu**: Xây dựng Landing Page chuẩn chuyên nghiệp, tỷ lệ chuyển đổi cao, áp dụng cho mọi ngành nghề và lĩnh vực kinh doanh.
+- **Thiết kế**: Hiện đại, mượt mà, responsive (mobile → desktop), tối ưu SEO và accessibility (Lighthouse score > 90).
 
-### Cấu trúc Landing Page
+---
 
-Một Landing Page hoàn chỉnh sẽ được tạo thành từ 10 sections theo trình tự sau:
+## Quy trình bắt buộc — Xác định tham số (MANDATORY)
 
-1. **Hero Section** - Phần chào mừng đầu tiên, chứa tiêu đề thu hút, phụ đề mô tả giá trị, và nút Call-to-Action (CTA) chính.
-2. **Problem Statement** - Phát biểu vấn đề, đánh vào nỗi đau (pain points) của khách hàng.
-3. **Solution Section** - Giới thiệu giải pháp (khóa học, dịch vụ), cách giải quyết vấn đề.
-4. **Benefits Section** - Lợi ích cụ thể mà khách hàng nhận được khi sử dụng giải pháp.
-5. **Course Content / Service Details** - Chi tiết chương trình học, hoặc các bước dịch vụ.
-6. **Social Proof** - Bằng chứng xã hội, bao gồm các con số thống kê (stats), logo đối tác, và đánh giá từ khách hàng (testimonials).
-7. **Pricing** - Bảng giá các gói sản phẩm/dịch vụ (tuỳ chọn, có thể có 1-3 gói).
-8. **CTA Section** - Phần chốt sale cuối trang với các nút hành động mạnh mẽ.
-9. **FAQ** - Câu hỏi thường gặp, giải đáp các thắc mắc phổ biến để giảm rào cản mua hàng.
-10. **Footer** - Phần chân trang chứa thông tin liên hệ, links, bản quyền, chính sách bảo mật.
+**QUAN TRỌNG:** Mỗi lần chạy skill, nếu người dùng **không cung cấp đủ** các tham số bên dưới, **PHẢI hỏi họ** trước khi bắt đầu code. Không tự suy luận giá trị mặc định khi người dùng chưa nói rõ.
 
-## Tham số đầu vào (Params)
+### Bắt buộc hỏi (nếu thiếu)
 
-Khi sử dụng skill này, người dùng cần cung cấp các tham số sau (nếu không cung cấp, Claude sẽ hỏi lại hoặc sử dụng mặc định):
+| Tham số                 | Hỏi như thế nào                                                                                |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| **Chủ đề / Ngành nghề** | "Chủ đề / ngành nghề của landing page là gì? (VD: Spa, Nhà hàng, SaaS, Khóa học, Cửa hàng...)" |
+| **Tông màu chính**      | "Bạn muốn tông màu chính là gì? (VD: tím, xanh dương, cam, xanh lá, đỏ...)"                    |
+| **Theme**               | "Giao diện bạn muốn là **Dark** hay **Light**?"                                                |
 
-1. **Chủ đề**: Lĩnh vực kinh doanh (Ví dụ: Khóa Học Tiếng Anh, Thẩm Mỹ Viện, Phần Mềm SaaS, ...). Nội dung văn bản (copywriting) và hình ảnh placeholder sẽ được tạo dựa trên chủ đề này.
-2. **Primary Color**: Màu sắc chủ đạo của trang web (Ví dụ: `#3b82f6` cho màu xanh, `#ef4444` cho màu đỏ, v.v.). Sẽ được áp dụng cho nút bấm, icon, text nổi bật, và các thành phần chính.
-3. **Theme**: Giao diện sáng (Light) hoặc Giao diện tối (Dark). Sẽ quyết định màu nền và màu chữ toàn trang.
-4. **Font** (tuỳ chọn): Nếu người dùng muốn sử dụng một font cụ thể, họ có thể cung cấp tên font (ví dụ: `Roboto`, `Open Sans`). Nếu không, Claude sẽ sử dụng một font mặc định từ Google Fonts.
+### Các tham số TUỲ CHỌN (nếu không nêu → dùng gợi ý bên dưới)
 
-## Quy ước Code & Styling
+| Tham số                      | Mặc định nếu không nói                              |
+| ---------------------------- | --------------------------------------------------- |
+| **Primary Color (hex)**      | `#9333EA` (tím) — chuyển từ tên màu sang hex        |
+| **Secondary / Accent Color** | Tự chọn bổ sung cho đa dạng, hoặc bỏ qua            |
+| **Brand Name**               | Tạo tên giả phù hợp ngành: "BrandX", "Zenith", v.v. |
+| **CTA Text**                 | "Đăng Ký Ngay" hoặc tương đương ngành               |
+| **Contact Phone**            | Số giả: "0xxx.xxx.xxx"                              |
+| **Content tuỳ chỉnh**        | Tự tạo nội dung phù hợp ngành                       |
 
-- Dùng Google Fonts (ví dụ: `Roboto`, `Open Sans` - nếu người dùng không chỉ định) để đảm bảo tính thẩm mỹ và dễ đọc.
-- **Tailwind CSS & Cấu hình**: Sử dụng Tailwind utility classes. Cấu hình màu sắc (Primary color, Dark/Light theme) trong Tailwind config hoặc bằng CSS Variables kết hợp với Tailwind để dễ dàng tùy biến giao diện theo từng chủ đề.
-- **Semantic HTML**: Sử dụng các thẻ như `<header>`, `<section>`, `<article>`, `<footer>`, `<nav>`, `<main>`.
-- **Responsive Design**: Mobile-first approach với Tailwind (sử dụng `md:`, `lg:`, `xl:` modifiers). Các section phải hiển thị đẹp trên điện thoại trước khi scale lên màn hình desktop.
-- **Aesthetics & Animations**:
-  - Sử dụng Tailwind classes (`transition`, `duration-300`, `hover:`) cho các tương tác mượt mà như hover nút bấm, thẻ bài (cards).
-  - Tích hợp **Animate.css** bằng cách thêm các class (ví dụ: `animate__animated animate__fadeInUp`) để tăng tính sinh động cho trang web.
-- **Lucide Icons**: Dùng script CDN của Lucide để render icon. Nút CTA nên có icon để nổi bật và kêu gọi hành động mạnh mẽ.
-- **Accessibility & SEO**: Các thẻ `<img>` cần có `alt`, sử dụng cấu trúc heading (`<h1>`, `<h2>`, `<h3>`) hợp lý (chỉ có 1 thẻ `<h1>` duy nhất ở Hero Section).
-- Hình ảnh lấy từ placeholder ([unsplash.com](https://unsplash.com)) với kích thước phù hợp cho từng section (ví dụ: 1200x600 cho Hero, 400x300 cho các thẻ bài).
+### Luồng xử lý khi chạy skill
 
-## Các bước thực hiện (Dành cho Claude)
+```
+1. Nhận yêu cầu từ người dùng
+2. Kiểm tra: Đủ 3 tham số bắt buộc chưa?
+   ├─ ĐỦ → Tiến hành xây dựng (bước 3)
+   └─ THIẾU → Dùng AskUserQuestion hỏi từng tham số còn thiếu
+3. Chuyển tên màu → hex code (VD: "tím" → "#9333EA")
+4. Xây dựng landing page theo 10 sections
+5. Xuất file index.html
+```
 
-1. **Phân tích yêu cầu**: Xác nhận lại 3 params (Chủ đề, Primary Color, Theme) từ người dùng.
-2. **Setup Base**: Khởi tạo `index.html` và `style.css`. Trong `index.html`, nhúng script/CSS qua CDN của Tailwind CSS, Lucide Icons, và Animate.style(https://animate.style).
-3. **Phác thảo Copywriting**: Tạo nội dung giả định (nhưng thực tế) phù hợp với Chủ đề được yêu cầu cho cả 10 sections.
-4. **Xây dựng Sections**: Sử dụng HTML thuần kết hợp utility classes của Tailwind để code từng section tuần tự. Đảm bảo cấu trúc rõ ràng, đúng semantic.
-5. **Tinh chỉnh UI & Hiệu ứng**:
-   - Áp dụng cấu hình Primary Color và Dark/Light Theme.
-   - Thêm hiệu ứng hover của Tailwind cho tương tác.
-   - Gọi script `lucide.createIcons()` trong file JavaScript thuần để hiển thị icon.
-   - Gắn các class của Animate.css (`animate__animated`, `animate__fadeIn`, v.v.) vào các thành phần chính để giao diện mượt mà và thu hút.
-6. **Kiểm tra Responsive**: Đảm bảo tất cả các phần (nhất là Navbar, Grid lợi ích, và Bảng giá) tự động co giãn tốt trên mobile.
-7. **Tối ưu SEO & Accessibility**: Kiểm tra lại cấu trúc heading, alt text cho hình ảnh, và đảm bảo trang web thân thiện với người dùng và công cụ tìm kiếm.
-8. Sau đó test lại bằng /chrome-devtools để đảm bảo mọi thứ hoạt động tốt trên cả desktop và mobile.
-9. Tránh các block bị đè lên nhau, đảm bảo khoảng cách (spacing) hợp lý giữa các section và thành phần.
-10. **Hoàn thiện**: Cung cấp mã nguồn hoàn chỉnh cho người dùng và hướng dẫn cách chạy hoặc tích hợp vào dự án của họ.
+---
+
+### Gợi ý chuyển màu thông dụng
+
+| Tên màu           | Hex       |
+| ----------------- | --------- |
+| Tím / Violet      | `#9333EA` |
+| Xanh dương / Blue | `#3B82F6` |
+| Cam / Orange      | `#F97316` |
+| Xanh lá / Green   | `#10B981` |
+| Đỏ / Red          | `#EF4444` |
+| Hồng / Pink       | `#EC4899` |
+| Vàng / Yellow     | `#F59E0B` |
+| Teal              | `#14B8A6` |
+
+---
+
+## Cấu trúc Landing Page (10 Sections)
+
+Mỗi section có mục đích riêng: dẫn khách hàng từ **nhận biết → quan tâm → quyết định mua**.
+
+1. **Navigation** — Menu chính sticky, logo, CTA button, hamburger mobile
+2. **Hero** — Tiêu đề thu hút, subtitle, 2 CTA buttons, stats bar, visual
+3. **Problem** — 3-4 pain points (cards: icon + title + desc)
+4. **Solution** — 4-6 features giới thiệu dịch vụ/sản phẩm
+5. **Target Audience** — 2-4 nhóm đối tượng phù hợp
+6. **Details** — Chi tiết chương trình / dịch vụ (timeline hoặc grid)
+7. **Social Proof** — Testimonials, stats, bằng chứng xã hội
+8. **CTA** — Form đăng ký/liên hệ + hotline nổi bật
+9. **FAQ** — Accordion 6-8 câu hỏi (`<details>` + `<summary>`)
+10. **Footer** — Brand, contact, social links, newsletter, copyright
+
+---
+
+## Design System — Linh hoạt theo tham số
+
+### CSS Variables (động, dựa trên tham số đầu vào)
+
+```css
+:root {
+  --bg-primary: #090a14; /* Nền trang chính (dark) / #ffffff (light) */
+  --bg-secondary: #13141f; /* Nền card (dark) / #f5f5f7 (light) */
+  --bg-tertiary: #1a1d2e; /* Input, inner surfaces (dark) / #eeeeee (light) */
+  --border-subtle: #23263a; /* Border (dark) / #e5e5e5 (light) */
+  --text-primary: #ffffff; /* Text chính (dark) / #090a14 (light) */
+  --text-secondary: #a0a0b0; /* Text phụ (dark) / #666666 (light) */
+  --primary: #9333ea; /* Màu chủ đạo — THAY ĐỔI THEO USER */
+  --primary-hover: #7c22d9; /* Hover state */
+  --accent: #f472b6; /* Màu phụ — THAY ĐỔI THEO USER */
+}
+```
+
+### Typography
+
+- **Headings**: Plus Jakarta Sans (weight 700-800)
+- **Body / UI**: Inter (weight 400-500)
+- Font Sizes: H1 48/32px, H2 36/24px, H3 28/20px, Body 16/14px
+
+### Spacing & Layout
+
+- Section padding: Desktop 80px top/bottom, Mobile 48px top/bottom
+- Container: max-width 1200px, `mx-auto`
+- Grid: 3-4 cols (desktop), 2 cols (tablet), 1 col (mobile)
+
+### Responsive Breakpoints
+
+- Mobile: < 768px
+- Tablet: 768px–1024px
+- Desktop: > 1024px
+
+---
+
+## Content Structure — Từng Section
+
+### Section 1: Navigation
+
+- Sticky, backdrop blur, z-50
+- Logo (brand name, gradient text với primary color)
+- Menu links (desktop): 4-5 items, `text-sm`
+- CTA button (phải): primary color
+- Hamburger + mobile menu slide-in (JS toggle)
+
+### Section 2: Hero
+
+- 2 cột (desktop) / 1 cột (mobile)
+- Badge trên: "Ưu đãi", "Khai giảng", "Top đánh giá"...
+- H1 gradient text (primary → accent)
+- Subtitle: 2-3 dòng mô tả giá trị
+- 2 buttons: Primary CTA + Secondary (outline hoặc "Xem thêm")
+- Right: Visual placeholder với gradient bg + Lucide icon + glow effect
+- Stats bar: 3-4 items (số to primary color + label)
+- Fade-in animation (IntersectionObserver)
+
+### Section 3: Problem Statement
+
+- Header: H2 + subtitle
+- Grid: 2x2 (desktop) / 1 col (mobile)
+- Cards: Lucide icon (40px, màu riêng) + H3 + description
+- Hover: border → primary, translateY(-4px), transition 300ms
+
+### Section 4: Solution
+
+- Header: H2 + subtitle
+- Grid: 3 cols (desktop) / 1 col (mobile)
+- Cards: icon (32px) + title + description + tags
+- 4-6 feature cards tùy ngành
+
+### Section 5: Target Audience
+
+- Header: H2
+- Grid: 2x2 (desktop) / 1 col (mobile)
+- Cards: icon + title + description + badge "Phù hợp"
+- 2-4 nhóm đối tượng phù hợp ngành
+
+### Section 6: Details
+
+- Header: H2 + subtitle
+- **Timeline 1 bên** (recommended): số bên trái, card bên phải, đường kẻ dọc gradient nối các nodes
+- Hoặc grid cards cho nội dung ngắn
+- Mỗi step: số thứ tự + title + duration badge + description
+
+### Section 7: Social Proof
+
+- Header: H2
+- Testimonials: 3 cards (avatar initials + quote + stars)
+- Stats row: 3-4 con số nổi bật (primary color, to)
+- Optional: quote lớn ở giữa, logo clients
+
+### Section 8: CTA
+
+- Header: H2 + subtitle khuyến khích
+- Form (max-width 500px, centered):
+  - Họ và tên (required)
+  - Email (required, regex validation)
+  - Số điện thoại (optional)
+  - Nút submit (primary, full-width)
+  - Form validation → error messages → toast on success
+- Divider "hoặc"
+- Secondary CTA: outline button + hotline lớn (gradient text)
+
+### Section 9: FAQ
+
+- Header: H2
+- `<details>` + `<summary>` (native, không cần JS)
+- 6-8 Q&A pairs
+- Chevron icon rotate 180° khi mở (CSS)
+- Content: `mt-4 text-text-secondary line-height: 1.8`
+
+### Section 10: Footer
+
+- Background: `#050610` (dark) / `#f0f0f0` (light)
+- Grid 4 cột (desktop) / 1 cột (mobile):
+  1. Brand: logo + tagline
+  2. Contact: địa chỉ, phone, email, giờ mở cửa
+  3. Quick links: các trang/phần quan trọng
+  4. Newsletter: input email + button
+- Divider + copyright căn giữa
+
+---
+
+## JavaScript Requirements
+
+1. **Mobile Menu Toggle** — `[data-hamburger]` + `[data-mobile-menu]`, class toggle
+2. **Smooth Scroll** — `html { scroll-behavior: smooth; }` + anchor links
+3. **Form Validation** — required fields, email regex, phone regex, error display
+4. **Form Submit** — `e.preventDefault()`, validate, show toast, reset form
+5. **Navbar Scroll** — `window.scrollY > 50` → toggle class `scrolled`
+6. **Stats Counter** — IntersectionObserver + setInterval từ 0 → target
+7. **Scroll Reveal** — IntersectionObserver + class `visible` cho `.reveal`
+8. **Lucide Icons** — `lucide.createIcons()` cuối `<body>`
+
+---
+
+## Images and Assets
+
+1. Get image from Unsplash site or use placeholder (https://via.placeholder.com) based on industry keywords (e.g., "spa", "restaurant", "technology", "education").
+
+## Animations & Effects
+
+- Using **animate.stylehttps://animate.style/**
+- **Buttons**: `transition duration-300 hover:scale-95 hover:shadow-lg`
+- **Cards**: `transition duration-300 hover:border-primary hover:-translate-y-1`
+- **Gradient Text**: `linear-gradient(primary → accent)` → `-webkit-background-clip: text`
+- **Glow**: `box-shadow: 0 0 80px rgba(primary, 0.3)`
+- **FadeInUp**: `@keyframes fadeInUp { from { opacity:0; transform:translateY(30px) } to { opacity:1; transform:translateY(0) } }`
+- **FAQ Chevron**: `details[open] .faq-chevron { transform: rotate(180deg); }`
+- **Navbar**: `background: rgba(bg, 0.7)` → `rgba(bg, 0.95)` khi scroll
+
+---
+
+## Meta Tags & SEO
+
+```html
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{Brand} — {Tagline}</title>
+<meta name="description" content="{Mô tả dưới 160 ký tự}" />
+<meta name="theme-color" content="{primary color}" />
+<meta property="og:title" content="..." />
+<meta property="og:description" content="..." />
+<link rel="canonical" href="..." />
+```
+
+---
+
+## Output Requirements
+
+- ✅ File: `index.html` duy nhất (all-in-one)
+- ✅ CSS: Inline `<style>`, Tailwind utilities + CSS Variables
+- ✅ JavaScript: Inline `<script>` cuối `<body>`
+- ✅ Assets: CDN (Tailwind, Lucide, Google Fonts)
+- ✅ Hoạt động: Mở trực tiếp trên trình duyệt, không cần server
+- ✅ Responsive: Mobile-first, test 768px / 1024px / 1280px
+- ✅ Performance: Lighthouse > 90, Accessibility > 95
+- ✅ SEO: title 50-60 chars, meta description < 160 chars
+- ✅ Accessibility: semantic HTML, contrast > 4.5:1, ARIA labels
+
+---
+
+## Presets gợi ý (không bắt buộc)
+
+### Preset: Spa / Thẩm mỹ
+
+- Primary: `#9333EA` (tím), Accent: `#F472B6` (hồng)
+- Problem: mụn, nám, da khô, lão hóa
+- Solution: trị mục laser, cấy ẩm, pico, massage
+- Details: timeline 8 bước liệu trình
+- CTA: "Đặt Lịch Tư Vấn Miễn Phí"
+
+### Preset: Nhà hàng / F&B
+
+- Primary: `#F97316` (cam), Accent: `#EF4444` (đỏ)
+- Problem: chất lượng không ổn định, vệ sinh, thực đơn nhàm chán
+- Solution: nguyên liệu tươi, đầu bếp chuyên nghiệp, không gian
+- Details: thực đơn đặc trưng, quy trình chế biến
+- CTA: "Đặt Bàn Ngay"
+
+### Preset: SaaS / Công nghệ
+
+- Primary: `#3B82F6` (xanh dương), Accent: `#14B8A6` (teal)
+- Problem: công cụ phức tạp, chi phí cao, tích hợp khó
+- Solution: giao diện đơn giản, tiết kiệm chi phí, API mạnh
+- Details: tính năng chính, pricing tiers
+- CTA: "Dùng Thử Miễn Phí"
+
+### Preset: Khóa học / Giáo dục
+
+- Primary: `#10B981` (xanh lá), Accent: `#F59E0B` (vàng)
+- Problem: học lý thuyết nhàm chán, không có dự án thực tế, kém thực hành
+- Solution: học qua dự án, mentor 1-1, cam kết kết quả
+- Details: timeline buổi học, syllabus
+- CTA: "Đăng Ký Ngay"
+
+---
+
+## Lời khuyên & Best Practices
+
+1. **Copywriting**: Viết từ góc độ khách hàng (benefits-driven)
+2. **Color Contrast**: Đảm bảo text vs background đủ contrast (> 4.5:1 WCAG AA)
+3. **CTA Buttons**: Luôn có CTA visible ở mọi section (ít nhất 2-3 buttons)
+4. **Mobile-first**: Thiết kế mobile trước
+5. **Form đơn giản**: 3-5 fields tối đa để tăng conversion
+6. **Trust Signals**: Hiển thị reviews, testimonials, stats, badges
+7. **Visual Hierarchy**: Heading phân cấp rõ, guide mắt từ trên xuống
+8. **Content tuỳ ngành**: Nội dung mỗi section phải phù hợp với ngành nghề cụ thể
+
+---
+
+## FAQ (Về Skill này)
+
+**Q: Tôi có thể dùng framework (React, Vue) không?**
+A: Skill này tập trung vanilla HTML/CSS/JS để đơn giản deployment. Nếu cần framework, yêu cầu skill riêng cho React/Next.js.
+
+**Q: Làm sao để sửa nội dung sau khi tạo?**
+A: `index.html` là one-file, dễ edit trực tiếp trong code editor.
+
+**Q: Host ở đâu?**
+A: Vercel, Netlify, GitHub Pages, AWS S3, Heroku, hoặc shared hosting.
+
+**Q: Performance?**
+A: Mục tiêu Lighthouse Performance > 90. Optimize bằng image compression, minify CSS/JS.
+
+---
+
+## Resources
+
+- **Tailwind CSS**: https://tailwindcss.com/docs
+- **Lucide Icons**: https://lucide.dev/
+- **Google Fonts**: https://fonts.google.com/
+- **Lighthouse**: https://developers.google.com/web/tools/lighthouse
+- **WCAG 2.1**: https://www.w3.org/WAI/WCAG21/quickref/
+- **Color Picker**: https://webaim.org/resources/contrastchecker/
