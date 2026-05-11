@@ -204,6 +204,113 @@
       transform: translateX(0);
     }
 
+    /* Modal Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      transform: scale(0.85);
+      transition: transform 0.3s ease;
+    }
+
+    .lightbox.active .lightbox-content {
+      transform: scale(1);
+    }
+
+    .lightbox-content img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -48px;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .lightbox-caption {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.875rem;
+      margin-top: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(147, 51, 234, 0.4);
+      border-color: var(--primary);
+    }
+
+    .lightbox-nav.prev {
+      left: -60px;
+    }
+
+    .lightbox-nav.next {
+      right: -60px;
+    }
+
+    @media (max-width: 768px) {
+      .lightbox-nav {
+        width: 36px;
+        height: 36px;
+      }
+      .lightbox-nav.prev { left: 8px; }
+      .lightbox-nav.next { right: 8px; }
+    }
+
     .gallery-grid {
       grid-auto-rows: 200px;
     }
@@ -248,7 +355,7 @@
 
     .toast {
       position: fixed;
-      bottom: 2rem;
+      bottom: 5rem;
       right: 2rem;
       background: linear-gradient(135deg, #9333EA, #7C22D9);
       color: white;
@@ -426,34 +533,28 @@
           <!-- Main image with glow -->
           <div
             class="hero-glow w-64 h-80 md:w-80 md:h-[420px] rounded-3xl overflow-hidden border border-border-subtle float-anim relative">
-            <img
-              src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80"
-              alt="Không gian Lily Spa cao cấp"
-              class="w-full h-full object-cover"
-              loading="eager" />
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Không gian Lily Spa cao cấp"
+              class="w-full h-full object-cover" loading="eager" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
           </div>
 
           <!-- Secondary image - top right -->
-          <div class="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-32 h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border-2 border-border-subtle shadow-2xl float-anim-1 z-10">
-            <img
-              src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&q=80"
-              alt="Điều trị da mặt"
-              class="w-full h-full object-cover"
-              loading="eager" />
+          <div
+            class="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-32 h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border-2 border-border-subtle shadow-2xl float-anim-1 z-10">
+            <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&q=80" alt="Điều trị da mặt"
+              class="w-full h-full object-cover" loading="eager" />
           </div>
 
           <!-- Secondary image - bottom left -->
-          <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 w-28 h-36 md:w-36 md:h-44 rounded-2xl overflow-hidden border-2 border-border-subtle shadow-2xl float-anim-2 z-10">
-            <img
-              src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80"
-              alt="Chăm sóc da cao cấp"
-              class="w-full h-full object-cover"
-              loading="eager" />
+          <div
+            class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 w-28 h-36 md:w-36 md:h-44 rounded-2xl overflow-hidden border-2 border-border-subtle shadow-2xl float-anim-2 z-10">
+            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80" alt="Chăm sóc da cao cấp"
+              class="w-full h-full object-cover" loading="eager" />
           </div>
 
           <!-- Floating badge - organic product -->
-          <div class="absolute -bottom-8 right-6 md:-bottom-8 md:right-8 bg-bg-secondary border border-border-subtle rounded-2xl p-3 shadow-xl z-20 float-anim-3">
+          <div
+            class="absolute -bottom-8 right-6 md:-bottom-8 md:right-8 bg-bg-secondary border border-border-subtle rounded-2xl p-3 shadow-xl z-20 float-anim-3">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center flex-shrink-0">
                 <i data-lucide="leaf" class="w-5 h-5 text-green-400"></i>
@@ -466,7 +567,8 @@
           </div>
 
           <!-- Floating badge - rating -->
-          <div class="absolute top-4 right-4 md:top-4 md:right-4 bg-bg-secondary border border-border-subtle rounded-2xl p-3 shadow-xl z-20 float-anim-4">
+          <div
+            class="absolute top-4 right-4 md:top-4 md:right-4 bg-bg-secondary border border-border-subtle rounded-2xl p-3 shadow-xl z-20 float-anim-4">
             <div class="flex items-center gap-2">
               <div class="flex items-center gap-1">
                 <i data-lucide="star" class="w-4 h-4 text-primary fill-primary"></i>
@@ -480,9 +582,11 @@
           </div>
 
           <!-- Floating badge - customers -->
-          <div class="absolute bottom-24 left-[-16px] md:bottom-28 md:left-[-20px] bg-bg-secondary border border-border-subtle rounded-2xl p-3 shadow-xl z-20 float-anim-5">
+          <div
+            class="absolute bottom-24 left-[-16px] md:bottom-28 md:left-[-20px] bg-bg-secondary border border-border-subtle rounded-2xl p-3 shadow-xl z-20 float-anim-5">
             <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
+              <div
+                class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
                 <i data-lucide="users" class="w-4 h-4 text-white"></i>
               </div>
               <div>
@@ -911,12 +1015,10 @@
       <div class="gallery-grid grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 reveal">
         <!-- Featured large image (spans 2 cols x 2 rows) -->
         <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl cursor-pointer">
-          <img
-            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80"
-            alt="Không gian Lily Spa cao cấp"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80" alt="Không gian Lily Spa cao cấp"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
             <div>
               <p class="text-white font-bold font-heading">Không gian Spa</p>
               <p class="text-white/80 text-sm">Phòng trị liệu cao cấp</p>
@@ -925,89 +1027,73 @@
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
-          <img
-            src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&q=80"
-            alt="Điều trị mặt cao cấp"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&q=80" alt="Điều trị mặt cao cấp"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
             <p class="text-white font-bold text-sm font-heading">Điều trị da</p>
           </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
-          <img
-            src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&q=80"
-            alt="Massage thư giãn"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&q=80" alt="Massage thư giãn"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
             <p class="text-white font-bold text-sm font-heading">Massage</p>
           </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
-          <img
-            src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=400&q=80"
-            alt="Sản phẩm chăm sóc da"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+          <img src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=400&q=80" alt="Sản phẩm chăm sóc da"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
             <p class="text-white font-bold text-sm font-heading">Sản phẩm hữu cơ</p>
           </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
-          <img
-            src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80"
-            alt="Chăm sóc da mặt"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+          <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80" alt="Chăm sóc da mặt"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
             <p class="text-white font-bold text-sm font-heading">Facial Spa</p>
           </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
-          <img
-            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&q=80"
-            alt="Liệu pháp spa cao cấp"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&q=80" alt="Liệu pháp spa cao cấp"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
             <p class="text-white font-bold text-sm font-heading">Liệu pháp</p>
           </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
-          <img
-            src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=400&q=80"
-            alt="Tinh dầu thư giãn"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+          <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=400&q=80" alt="Tinh dầu thư giãn"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
             <p class="text-white font-bold text-sm font-heading">Tinh dầu</p>
           </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
-          <img
-            src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=400&q=80"
-            alt="Spa nghỉ dưỡng"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+          <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=400&q=80" alt="Spa nghỉ dưỡng"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
             <p class="text-white font-bold text-sm font-heading">Nghỉ dưỡng</p>
           </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
-          <img
-            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80"
-            alt="Trị liệu laser"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80" alt="Trị liệu laser"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
             <p class="text-white font-bold text-sm font-heading">Trị liệu</p>
           </div>
         </div>
@@ -1015,8 +1101,7 @@
 
       <!-- Gallery CTA -->
       <div class="text-center mt-10 reveal">
-        <a href="#cta"
-          class="inline-flex items-center gap-2 btn-outline font-semibold px-6 py-3 rounded-xl">
+        <a href="#cta" class="inline-flex items-center gap-2 btn-outline font-semibold px-6 py-3 rounded-xl">
           <i data-lucide="camera" class="w-4 h-4"></i>
           Xem thêm hình ảnh &amp; Đặt lịch ngay
         </a>
@@ -1406,6 +1491,23 @@
     </div>
   </footer>
 
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Xem ảnh">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Đóng">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <button class="lightbox-nav prev" aria-label="Ảnh trước">
+        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+      </button>
+      <img id="lightbox-img" src="" alt="" />
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+      <button class="lightbox-nav next" aria-label="Ảnh sau">
+        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </div>
+
   <!-- Toast -->
   <div id="toast" class="toast" role="alert" aria-live="polite">
     <div class="flex items-center gap-2">
@@ -1568,6 +1670,62 @@
     // Clear errors on input
     document.querySelectorAll('input').forEach(input => {
       input.addEventListener('input', () => clearError(input));
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.querySelector('.lightbox-nav.prev');
+    const lightboxNext = document.querySelector('.lightbox-nav.next');
+
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-grid img'));
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const img = galleryItems[currentIndex];
+      lightboxImg.src = img.src.replace('w=400', 'w=1200').replace('w=800', 'w=1200');
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = img.alt || '';
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+      openLightbox(currentIndex);
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % galleryItems.length;
+      openLightbox(currentIndex);
+    }
+
+    galleryItems.forEach((img, index) => {
+      img.parentElement.addEventListener('click', () => openLightbox(index));
+    });
+
+    lightboxClose?.addEventListener('click', closeLightbox);
+    lightboxPrev?.addEventListener('click', showPrev);
+    lightboxNext?.addEventListener('click', showNext);
+
+    lightbox?.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
     });
   </script>
 </body>
